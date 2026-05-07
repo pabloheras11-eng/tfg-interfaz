@@ -1,0 +1,2438 @@
+[
+    {
+        "question_id": "4",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nCanta, oh diosa, la cólera del Pelida Aquiles; cólera funesta que causó infinitos males a los aqueos.\n—Homero, La Ilíada",
+        "choices": [
+            "quiasmo",
+            "apóstrofe"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza la apóstrofe, una invocación directa a una persona ausente o a una entidad no humana.\nOh diosa es una invocación directa a una diosa, una entidad no humana.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "Vale, entonces el pasaje comienza con 'Canta, oh diosa', ¿verdad? El quiasmo consiste en invertir la estructura, como ABBA. 'Canta, oh diosa' es una invocación directa, y luego pasa a describir a Aquiles y los problemas que causó. La frase 'Canta, oh diosa' es como el principio y la descripción de Aquiles es el final, así que es como una estructura invertida. Por lo tanto, es un quiasmo.",
+            "error_detected": true,
+            "error_excerpt": "El quiasmo consiste en invertir la estructura, como ABBA. 'Canta, oh diosa' es una invocación directa, y luego pasa a describir a Aquiles y los problemas que causó. La frase 'Canta, oh diosa' es como el principio y la descripción de Aquiles es el final, así que es como una estructura invertida. Por lo tanto, es un quiasmo.",
+            "error_explanation": "El estudiante identifica incorrectamente la figura retórica como quiasmo. El quiasmo implica una estructura reflejada o invertida en cláusulas sucesivas (por ejemplo, ABBA). El pasaje en realidad usa la apóstrofe, que es una invocación directa a alguien o algo que no está presente o no puede responder, como la diosa en este caso."
+        }
+    },
+    {
+        "question_id": "4",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nCanta, oh diosa, la cólera del Pelida Aquiles; cólera funesta que causó infinitos males a los aqueos.\n—Homero, La Ilíada",
+        "choices": [
+            "quiasmo",
+            "apóstrofe"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza la apóstrofe, una alocución directa a una persona ausente o a una entidad no humana.\nOh diosa es una alocución directa a una diosa, una entidad no humana.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "Vale, entonces la figura retórica aquí es definitivamente el quiasmo. Recuerdo haber aprendido que el quiasmo es cuando tienes como, una estructura reflejada en una oración o frase. Como, A-B-B-A. En esta cita, 'Canta, oh diosa' es como la introducción, y luego 'la cólera del Pelida Aquiles' es una parte, y 'que causó infinitos males a los aqueos' es la segunda parte que refleja la primera. No es un reflejo perfecto, pero es lo suficientemente cercano, y de eso se trata el quiasmo, ¿verdad?",
+            "error_detected": true,
+            "error_excerpt": "la cólera del Pelida Aquiles",
+            "error_explanation": "El estudiante identifica incorrectamente la figura retórica como quiasmo. El quiasmo implica una estructura reflejada de elementos gramaticales (A-B-B-A). El pasaje es una apóstrofe, que es una alocución directa a alguien o algo que no está presente o no puede responder (en este caso, la diosa)."
+        }
+    },
+    {
+        "question_id": "4",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nCanta, oh diosa, la cólera del Pelida Aquiles, que causó incontables males a los aqueos.\n—Homero, La Ilíada",
+        "choices": [
+            "quiasmo",
+            "apóstrofe"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza la apóstrofe, una invocación directa a una persona ausente o a una entidad no humana.\nOh diosa es una invocación directa a una diosa, una entidad no humana.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "Vale, entonces el texto es como, 'Canta, oh diosa...' y luego habla de Aquiles y los aqueos. El quiasmo es cuando tienes como, una estructura entrecruzada en tu escritura, ¿verdad? Como A-B-B-A. Creo que la parte de 'Canta, oh diosa' se dirige a alguien, y luego el resto trata sobre Aquiles. No es exactamente A-B-B-A, pero es un poco similar porque comienza con una invocación y luego va al sujeto, y luego vuelve un poco a las personas afectadas. Entonces, tiene que ser quiasmo porque tiene esa estructura, aunque no sea perfecta.",
+            "error_detected": true,
+            "error_excerpt": "No es exactamente A-B-B-A, pero es un poco similar porque comienza con una invocación y luego va al sujeto, y luego vuelve un poco a las personas afectadas. Entonces, tiene que ser quiasmo porque tiene esa estructura, aunque no sea perfecta.",
+            "error_explanation": "El estudiante identifica incorrectamente la figura retórica como quiasmo. El quiasmo implica un paralelismo invertido o reflejado (A-B-B-A) en la estructura de una frase u oración. Si bien hay un cambio de enfoque de la diosa a Aquiles y los aqueos, no sigue el patrón invertido específico requerido para el quiasmo. La respuesta correcta es la apóstrofe, que es una invocación directa a alguien que no está presente o a un objeto inanimado. La frase 'Canta, oh diosa' es una invocación directa a la diosa, lo que la convierte en un ejemplo de apóstrofe."
+        }
+    },
+    {
+        "question_id": "4",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nCanta, oh diosa, la cólera del Pelida Aquiles; cólera funesta que causó infinitos males a los aqueos.\n—Homero, La Ilíada",
+        "choices": [
+            "quiasmo",
+            "apóstrofe"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza la apóstrofe, una invocación directa a una persona ausente o a una entidad no humana.\nOh diosa es una invocación directa a una diosa, una entidad no humana.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "Vale, entonces, recuerdo de la clase de inglés que el quiasmo es cuando tienes dos frases que están como invertidas una alrededor de la otra. Creo que esto es un quiasmo porque está hablando de Aquiles y luego de Peleo, y siento que esos nombres están colocados en un patrón entrecruzado. Es un poco difícil de explicar, pero simplemente parece que las palabras están dispuestas de una manera que lo convierte en un quiasmo.",
+            "error_detected": true,
+            "error_excerpt": "está hablando de Aquiles y luego de Peleo, y siento que esos nombres están colocados en un patrón entrecruzado",
+            "error_explanation": "El estudiante identifica incorrectamente la figura retórica como quiasmo basándose en una observación superficial de los nombres 'Aquiles' y 'Peleo'. El quiasmo implica una estructura gramatical específica donde los elementos se repiten en orden inverso (A-B-B-A). El pasaje es una apóstrofe, una invocación directa a una persona o entidad (en este caso, la diosa) que no está presente o no puede responder."
+        }
+    },
+    {
+        "question_id": "4",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nCanta, oh diosa, la cólera del Pelida Aquiles, que causó incontables males a los aqueos.\n—Homero, La Ilíada",
+        "choices": [
+            "quiasmo",
+            "apóstrofe"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza la apóstrofe, una alocución directa a una persona ausente o a una entidad no humana.\nOh diosa es una alocución directa a una diosa, una entidad no humana.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Vale, entonces la pregunta es sobre una figura retórica en el texto. El quiasmo es cuando tienes, como, dos frases que son similares pero invertidas, ¿verdad? Creo que lo veo aquí. \"Canta, oh diosa\" y luego más tarde \"la cólera del Pelida Aquiles\". No es una inversión perfecta, pero es como si la diosa estuviera cantando y luego Aquiles estuviera enfadado, así que las acciones se intercambian. Así que, sí, me decanto por el quiasmo.",
+            "error_detected": true,
+            "error_excerpt": "\"Canta, oh diosa, la cólera del Pelida Aquiles, que causó incontables males a los aqueos.\"",
+            "error_explanation": "El estudiante malinterpreta la pregunta centrándose en un patrón percibido en la estructura de la oración (orden sujeto-verbo) en lugar de reconocer la alocución directa a una deidad, que es la característica definitoria de la apóstrofe. El texto es una invocación, dirigiéndose directamente a la 'diosa', que es un claro ejemplo de apóstrofe. El quiasmo implica una estructura ABBA específica, que no está presente aquí."
+        }
+    },
+    {
+        "question_id": "4",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nCanta, oh diosa, la cólera del Pelida Aquiles; cólera funesta que causó infinitos males a los aqueos.\n—Homero, La Ilíada",
+        "choices": [
+            "quiasmo",
+            "apóstrofe"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza la apóstrofe, una alocución directa a una persona ausente o a una entidad no humana.\nOh diosa es una alocución directa a una diosa, una entidad no humana.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "Vale, entonces el texto se dirige directamente a la diosa, ¿verdad? Es como si Homero la estuviera llamando para que cante sobre la cólera de Aquiles. Eso es básicamente una apóstrofe: dirigirse a alguien o algo que no está ahí o que no puede responder. Así que, sí, es apóstrofe.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "6",
+        "question": "¿Qué sugiere la ironía verbal en este texto?\nSegún los hijos del Sr. Herrera, sus ronquidos son tan silenciosos como un martillo neumático.",
+        "choices": [
+            "Los ronquidos son fuertes.",
+            "Los ronquidos ocurren en ráfagas."
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El texto utiliza la ironía verbal, que implica decir una cosa pero insinuar algo muy diferente.\nTan silenciosos como un martillo neumático sugiere que los ronquidos son fuertes. Un martillo neumático no es silencioso, y tampoco lo son los ronquidos del Sr. Herrera.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 1,
+            "solution": "La ironía verbal es como, cuando dices algo pero quieres decir lo contrario. Así que si dicen que sus ronquidos son tan silenciosos como un martillo neumático, significa que está ocurriendo en ráfagas cortas, como un martillo neumático. Los martillos neumáticos no hacen un ruido constante, hacen 'bam, bam, bam'.",
+            "error_detected": true,
+            "error_excerpt": "silenciosos como un martillo neumático",
+            "error_explanation": "El estudiante malinterpreta el símil 'tan silenciosos como un martillo neumático' y piensa que los ronquidos ocurren en ráfagas como un martillo neumático, en lugar de entenderlo como una ironía verbal donde 'silenciosos' se usa para describir algo muy ruidoso. La interpretación correcta es que los ronquidos son muy fuertes."
+        }
+    },
+    {
+        "question_id": "6",
+        "question": "¿Qué sugiere la ironía verbal en este texto?\nSegún los hijos del Sr. Herrera, sus ronquidos son tan silenciosos como un martillo neumático.",
+        "choices": [
+            "Los ronquidos son fuertes.",
+            "Los ronquidos ocurren en ráfagas."
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El texto utiliza la ironía verbal, que implica decir una cosa pero insinuar algo muy diferente.\nTan silencioso como un martillo neumático sugiere que los ronquidos son fuertes. Un martillo neumático no es silencioso, y tampoco lo son los ronquidos del Sr. Herrera.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "La ironía verbal es como cuando dices algo que significa lo contrario. Entonces, si están diciendo que sus ronquidos son tan silenciosos como un martillo neumático, significa que está ocurriendo en ráfagas cortas, como un martillo neumático. No se trata de lo fuerte que es, sino de cómo suena.",
+            "error_detected": true,
+            "error_excerpt": "significa que está ocurriendo en ráfagas cortas, como un martillo neumático. No se trata de lo fuerte que es, sino de cómo suena.",
+            "error_explanation": "El estudiante malinterpreta el símil 'tan silencioso como un martillo neumático' para significar que los ronquidos ocurren en ráfagas, centrándose en la acción de un martillo neumático en lugar del volumen que implica. La ironía verbal en este contexto se basa en el contraste entre 'silencioso' y 'martillo neumático' para enfatizar el volumen de los ronquidos."
+        }
+    },
+    {
+        "question_id": "6",
+        "question": "¿Qué sugiere la ironía verbal en este texto?\nSegún los hijos del Sr. Herrera, sus ronquidos son tan silenciosos como un martillo neumático.",
+        "choices": [
+            "Los ronquidos son fuertes.",
+            "Los ronquidos ocurren en ráfagas."
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El texto utiliza la ironía verbal, que implica decir una cosa pero insinuar algo muy diferente.\nTan silenciosos como un martillo neumático sugiere que los ronquidos son fuertes. Un martillo neumático no es silencioso, y tampoco lo son los ronquidos del Sr. Herrera.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "Vale, entonces la ironía verbal es como decir algo que es lo opuesto a lo que quieres decir. Y un martillo neumático hace mucho ruido, pero no hace ruido todo el tiempo, son como ráfagas de ruido. Así que si están diciendo que sus ronquidos son tan silenciosos como un martillo neumático, significa que probablemente está ocurriendo en ráfagas, no solo fuerte todo el tiempo.",
+            "error_detected": true,
+            "error_excerpt": "significa que probablemente está ocurriendo en ráfagas, no solo fuerte todo el tiempo.",
+            "error_explanation": "El estudiante sobregeneraliza la característica de un martillo neumático (ráfagas de ruido) a los ronquidos. Si bien los martillos neumáticos funcionan en ráfagas, la ironía en la declaración 'tan silenciosos como un martillo neumático' enfatiza principalmente la intensidad de los ronquidos, no su patrón."
+        }
+    },
+    {
+        "question_id": "6",
+        "question": "¿Qué sugiere la ironía verbal en este texto?\nSegún los hijos del Sr. Herrera, sus ronquidos son tan silenciosos como un martillo neumático.",
+        "choices": [
+            "Los ronquidos son fuertes.",
+            "Los ronquidos ocurren en ráfagas."
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El texto utiliza la ironía verbal, que implica decir una cosa pero insinuar algo muy diferente.\nTan silenciosos como un martillo neumático sugiere que los ronquidos son fuertes. Un martillo neumático no es silencioso, y tampoco lo son los ronquidos del Sr. Herrera.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "La ironía verbal es como, cuando dices algo pero quieres decir lo contrario. Así que si dicen que sus ronquidos son tan silenciosos como un martillo neumático, significa que probablemente no es silencioso todo el tiempo. Como, un martillo neumático no funciona sin parar, sino que va en ráfagas cortas. Así que los ronquidos probablemente también hacen eso.",
+            "error_detected": true,
+            "error_excerpt": "Así que si dicen que sus ronquidos son tan silenciosos como un martillo neumático, significa que probablemente no es silencioso todo el tiempo.",
+            "error_explanation": "El estudiante identifica correctamente la ironía verbal, pero da un salto lógico injustificado. La ironía sugiere que los ronquidos son fuertes, no necesariamente que ocurren en ráfagas. La comparación con un martillo neumático enfatiza el volumen, no la naturaleza intermitente, de los ronquidos."
+        }
+    },
+    {
+        "question_id": "6",
+        "question": "¿Qué sugiere la ironía verbal en este texto?\nSegún los hijos del Sr. Herrera, sus ronquidos son tan silenciosos como un martillo neumático.",
+        "choices": [
+            "Los ronquidos son fuertes.",
+            "Los ronquidos ocurren en ráfagas."
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El texto utiliza la ironía verbal, que implica decir una cosa pero insinuar algo muy diferente.\nTan silenciosos como un martillo neumático sugiere que los ronquidos son fuertes. Un martillo neumático no es silencioso, y tampoco lo son los ronquidos del Sr. Herrera.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 1,
+            "solution": "La ironía verbal es como, cuando dices algo pero quieres decir lo contrario, ¿verdad? Entonces, si dicen que sus ronquidos son tan silenciosos como un martillo neumático, significa que no son nada silenciosos, sino que están ocurriendo como, en ráfagas cortas, como un martillo neumático. Así que no es solo fuerte, es fuerte y se detiene y comienza.",
+            "error_detected": true,
+            "error_excerpt": "sus ronquidos son tan silenciosos como un martillo neumático",
+            "error_explanation": "El estudiante malinterpreta el propósito del símil. El símil se utiliza para enfatizar el volumen de los ronquidos, no el patrón o el ritmo de los ronquidos. La interpretación correcta es que los ronquidos son muy fuertes."
+        }
+    },
+    {
+        "question_id": "6",
+        "question": "¿Qué sugiere la ironía verbal en este texto?\nSegún los hijos del Sr. Herrera, sus ronquidos son tan silenciosos como un martillo neumático.",
+        "choices": [
+            "Los ronquidos son fuertes.",
+            "Los ronquidos ocurren en ráfagas."
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El texto utiliza la ironía verbal, que implica decir una cosa pero insinuar algo muy diferente.\nTan silenciosos como un martillo neumático sugiere que los ronquidos son fuertes. Un martillo neumático no es silencioso, y tampoco lo son los ronquidos del Sr. Herrera.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 0,
+            "solution": "La ironía verbal es cuando dices algo pero quieres decir lo contrario. Así que si dicen que sus ronquidos son tan silenciosos como un martillo neumático, realmente quieren decir que son súper fuertes.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "8",
+        "question": "¿Es esto un fragmento de oración?\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "2º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Esto es un fragmento de oración. No expresa un pensamiento completo.\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.\nAquí hay una forma de arreglar el fragmento de oración:\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca fueron retiradas de la montaña para crear el monumento.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "No creo que sea un fragmento de oración. Un fragmento de oración es como una parte de una oración a la que le falta algo importante, ¿verdad? Pero esto tiene un sujeto, 'ochocientos millones de libras de roca', y un verbo, 'para crear'. Es una oración larga, pero está todo ahí. Entonces, es una oración completa, incluso si es un poco redundante. Aunque apuesto a que la cantidad real de roca estaba más cerca de los mil millones de libras.",
+            "error_detected": true,
+            "error_excerpt": "aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.",
+            "error_explanation": "El texto proporcionado es un fragmento de oración porque carece de un verbo finito. La frase 'para crear' es un infinitivo, no un verbo principal. Una oración completa requiere un sujeto y un verbo finito (un verbo que muestra el tiempo). El estudiante identifica incorrectamente 'para crear' como el verbo principal e introduce una afirmación fáctica irrelevante sobre la cantidad de roca."
+        }
+    },
+    {
+        "question_id": "8",
+        "question": "¿Es esto un fragmento de oración?\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "2º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Esto es un fragmento de oración. No expresa un pensamiento completo.\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.\nAquí hay una manera de arreglar el fragmento de oración:\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca fueron removidas de la montaña para crear el monumento.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "Creo que es una oración completa porque tiene un sujeto, que es 'Monte Rushmore', y habla sobre algo que le está sucediendo, que es la construcción y la remoción de roca. Parece describir una acción relacionada con el monumento, así que no es un fragmento.",
+            "error_detected": true,
+            "error_excerpt": "Durante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.",
+            "error_explanation": "La oración es un fragmento porque carece de un verbo principal. La frase 'Durante la construcción del Monte Rushmore...' es una frase introductoria, y 'aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento' es una frase nominal que actúa como sujeto, pero no hay un verbo que complete el pensamiento. Una oración completa necesita un sujeto y un verbo."
+        }
+    },
+    {
+        "question_id": "8",
+        "question": "¿Es esto un fragmento de oración?\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "2º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Esto es un fragmento de oración. No expresa un pensamiento completo.\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.\nAquí hay una manera de arreglar el fragmento de oración:\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca fueron removidas de la montaña para crear el monumento.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "Creo que no es un fragmento de oración porque tiene un sujeto ('Monte Rushmore') y un verbo ('crear'). Describe una acción relacionada con la construcción, así que me parece una oración completa. Aunque es una oración larga, aún expresa un pensamiento completo.",
+            "error_detected": true,
+            "error_excerpt": "Describe una acción relacionada con la construcción, así que me parece una oración completa.",
+            "error_explanation": "El estudiante identifica incorrectamente la frase como una oración completa al sobregeneralizar la presencia de un sujeto y un verbo. Si bien se menciona 'Monte Rushmore', la frase carece de un verbo principal que actúe directamente sobre el sujeto. La frase 'para crear el monumento' es una frase infinitiva, no un verbo principal. Por lo tanto, es un fragmento de oración."
+        }
+    },
+    {
+        "question_id": "8",
+        "question": "¿Es esto un fragmento de oración?\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "2º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Esto es un fragmento de oración. No expresa un pensamiento completo.\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.\nAquí hay una forma de arreglar el fragmento de oración:\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca fueron removidas de la montaña para crear el monumento.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "Creo que es una oración completa porque habla de la construcción del Monte Rushmore y la cantidad de roca removida. Tiene un sujeto, que es 'la construcción del Monte Rushmore', y da información sobre lo que sucedió, así que parece que está todo ahí. Está describiendo un evento, así que debe ser una oración.",
+            "error_detected": true,
+            "error_excerpt": "Tiene un sujeto, que es 'la construcción del Monte Rushmore', y da información sobre lo que sucedió, así que parece que está todo ahí.",
+            "error_explanation": "El estudiante identifica un sujeto pero no reconoce la ausencia de un verbo principal. La frase 'Durante la construcción del Monte Rushmore...' es una frase preposicional introductoria, y 'aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento' carece de un verbo para completar la cláusula principal, convirtiéndola en un fragmento."
+        }
+    },
+    {
+        "question_id": "8",
+        "question": "¿Es esto un fragmento de oración?\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "2º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Esto es un fragmento de oración. No expresa un pensamiento completo.\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.\nAquí hay una manera de arreglar el fragmento de oración:\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca fueron removidas de la montaña para crear el monumento.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Creo que es una oración completa porque habla de algo que sucedió durante la construcción del Monte Rushmore. Da un detalle sobre la cantidad de roca removida. No necesita nada más para tener sentido. Entonces, no es un fragmento.",
+            "error_detected": true,
+            "error_excerpt": "Durante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.",
+            "error_explanation": "El estudiante identifica incorrectamente la oración como completa. La frase 'Durante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento' carece de un verbo principal, lo que la convierte en un fragmento de oración."
+        }
+    },
+    {
+        "question_id": "8",
+        "question": "¿Es esto un fragmento de oración?\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "2º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Esto es un fragmento de oración. No expresa un pensamiento completo.\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento.\nAquí hay una manera de arreglar el fragmento de oración:\nDurante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca fueron retiradas de la montaña para crear el monumento.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "Sí, definitivamente es un fragmento de oración. Le falta un verbo. 'Durante la construcción del Monte Rushmore, aproximadamente ochocientos millones de libras de roca de la montaña para crear el monumento' no tiene un verbo principal que muestre la acción. Es solo una frase colgando ahí.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "9",
+        "question": "¿Qué tiempo verbal utiliza la oración?\nMona imprimirá su nombre con cuidado.",
+        "choices": [
+            "tiempo presente",
+            "tiempo futuro",
+            "tiempo pasado"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La oración está en tiempo futuro. Puedes saberlo porque usa 'imprimirá' (will print) antes del verbo principal, imprimir. El verbo te indica algo que va a suceder.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "¡Dice 'imprimir', así que está sucediendo ahora! Eso significa que está en tiempo presente, como cuando imprimo mi nombre en clase ahora mismo.",
+            "error_detected": true,
+            "error_excerpt": "¡Dice 'imprimir', así que está sucediendo ahora!",
+            "error_explanation": "La oración usa 'imprimirá' (will print), lo que indica una acción que sucederá en el futuro. El estudiante identifica incorrectamente 'imprimir' como indicativo de tiempo presente, pasando por alto el verbo auxiliar 'imprimirá'."
+        }
+    },
+    {
+        "question_id": "9",
+        "question": "¿Qué tiempo verbal utiliza la oración?\nMona imprimirá su nombre con cuidado.",
+        "choices": [
+            "tiempo presente",
+            "tiempo futuro",
+            "tiempo pasado"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La oración está en tiempo futuro. Se puede saber porque usa 'imprimirá' (will print) antes del verbo principal, imprimir. El verbo te dice algo que va a suceder.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "¡Dice 'imprimir' así que está pasando ahora! Eso significa que es tiempo presente. Como cuando imprimo mi nombre en clase ahora mismo.",
+            "error_detected": true,
+            "error_excerpt": "¡Dice 'imprimir' así que está pasando ahora!",
+            "error_explanation": "El estudiante asocia incorrectamente la palabra 'imprimir' con el tiempo presente, ignorando el verbo auxiliar 'imprimirá' que indica tiempo futuro. La respuesta correcta es tiempo futuro porque la oración usa 'imprimirá' para describir una acción que sucederá en el futuro."
+        }
+    },
+    {
+        "question_id": "9",
+        "question": "¿Qué tiempo verbal utiliza la oración?\nMona imprimirá su nombre con cuidado.",
+        "choices": [
+            "tiempo presente",
+            "tiempo futuro",
+            "tiempo pasado"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La oración está en tiempo futuro. Puedes saberlo porque usa 'imprimirá' (will print) antes del verbo principal, imprimir. El verbo te indica algo que va a suceder.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "¡Dice 'imprimir', así que está sucediendo ahora! Eso significa que es tiempo presente porque yo imprimo mi nombre todos los días en la escuela.",
+            "error_detected": true,
+            "error_excerpt": "¡Dice 'imprimir', así que está sucediendo ahora!",
+            "error_explanation": "El estudiante está sobregeneralizando el uso de la palabra 'imprimir' para indicar siempre el tiempo presente, ignorando el verbo auxiliar 'imprimirá' (will print) que indica el tiempo futuro. La presencia de 'imprimirá' (will print) significa una acción que sucederá en el futuro, no una que está sucediendo ahora."
+        }
+    },
+    {
+        "question_id": "9",
+        "question": "¿Qué tiempo verbal utiliza la oración?\nMona imprimirá su nombre con cuidado.",
+        "choices": [
+            "tiempo presente",
+            "tiempo futuro",
+            "tiempo pasado"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La oración está en tiempo futuro. Se puede saber porque usa 'imprimirá' (will print) antes del verbo principal, imprimir. El verbo te dice algo que va a suceder.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "La oración dice 'Mona imprimirá'. ¡Está sucediendo ahora, así que es presente!",
+            "error_detected": true,
+            "error_excerpt": "¡Está sucediendo ahora, así que es presente!",
+            "error_explanation": "El estudiante identifica incorrectamente 'imprimirá' como tiempo presente. La palabra 'imprimirá' indica que la acción va a suceder en el futuro, no en el presente."
+        }
+    },
+    {
+        "question_id": "9",
+        "question": "¿Qué tiempo verbal utiliza la oración?\nMona imprimirá su nombre con cuidado.",
+        "choices": [
+            "tiempo presente",
+            "tiempo futuro",
+            "tiempo pasado"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La oración está en tiempo futuro. Puedes saberlo porque usa 'imprimirá' (will print) antes del verbo principal, imprimir. El verbo te indica algo que va a suceder.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Mona está imprimiendo ahora. Así que es ahora mismo. ¡Eso significa que es presente!",
+            "error_detected": true,
+            "error_excerpt": "Mona está imprimiendo ahora.",
+            "error_explanation": "El estudiante se centró en la palabra 'imprimiendo' y asumió que significaba que la acción estaba sucediendo ahora (tiempo presente), en lugar de reconocer que la construcción 'imprimirá' indica tiempo futuro."
+        }
+    },
+    {
+        "question_id": "9",
+        "question": "¿Qué tiempo verbal utiliza la oración?\nMona imprimirá su nombre con cuidado.",
+        "choices": [
+            "tiempo presente",
+            "tiempo futuro",
+            "tiempo pasado"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La oración está en tiempo futuro. Se puede identificar porque usa 'imprimirá' que indica que la acción ocurrirá en el futuro. El verbo te indica algo que va a suceder.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "La oración dice 'imprimirá'. Eso significa que va a ocurrir más tarde, así que es tiempo futuro.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "10",
+        "question": "Completa la frase.\nCoser un delantal es un ().",
+        "choices": [
+            "cambio químico",
+            "cambio físico"
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coser un delantal es un cambio físico. La tela y el hilo que componen el delantal adquieren una nueva forma, pero el tipo de materia en cada uno de ellos no cambia.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "Coser un delantal es como cuando mezclas cosas y cambian. Como cuando horneas un pastel, es un cambio químico. Así que coser es lo mismo porque estás cambiando la tela.",
+            "error_detected": true,
+            "error_excerpt": "Coser un delantal es un cambio químico",
+            "error_explanation": "Coser un delantal es un cambio físico porque solo estás cambiando la forma y el tamaño de la tela, no creando una nueva sustancia. Un cambio químico implica la creación de una nueva sustancia."
+        }
+    },
+    {
+        "question_id": "10",
+        "question": "Completa la frase.\nCoser un delantal es un ().",
+        "choices": [
+            "cambio químico",
+            "cambio físico"
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coser un delantal es un cambio físico. La tela y el hilo que componen el delantal adquieren una nueva forma, pero el tipo de materia en cada uno de ellos no cambia.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "Coser es como mezclar cosas y cuando mezclas cosas se crea algo nuevo. Como cuando horneas un pastel, mezclas harina y huevos y haces un pastel. Eso es un cambio químico. Así que coser es así, crea algo nuevo, así que es un cambio químico.",
+            "error_detected": true,
+            "error_excerpt": "cuando mezclas cosas se crea algo nuevo. Eso es un cambio químico. Así que coser es así, crea algo nuevo, así que es un cambio químico.",
+            "error_explanation": "El estudiante asocia incorrectamente cualquier proceso que crea algo nuevo con un cambio químico. Coser es un cambio físico porque solo altera la disposición de las fibras de la tela sin cambiar la composición química de la tela. Un cambio químico implica la formación de nuevas sustancias a través de una reacción química."
+        }
+    },
+    {
+        "question_id": "10",
+        "question": "Completa la frase.\nCoser un delantal es un ().",
+        "choices": [
+            "cambio químico",
+            "cambio físico"
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coser un delantal es un cambio físico. La tela y el hilo que componen el delantal adquieren una nueva forma, pero el tipo de materia en cada uno de ellos no cambia.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "Coser es como mezclar cosas, y cuando mezclas cosas, es como un experimento de ciencias. Los experimentos de ciencias son cambios químicos, ¡así que coser también es un cambio químico!",
+            "error_detected": true,
+            "error_excerpt": "Coser es como mezclar cosas, y cuando mezclas cosas, es como un experimento de ciencias.",
+            "error_explanation": "Coser un delantal es un cambio físico porque solo estás cambiando la forma y la disposición de la tela, no creando una nueva sustancia. Un cambio químico implica la creación de una nueva sustancia con diferentes propiedades."
+        }
+    },
+    {
+        "question_id": "10",
+        "question": "Completa la frase.\nCoser un delantal es un ().",
+        "choices": [
+            "cambio químico",
+            "cambio físico"
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coser un delantal es un cambio físico. La tela y el hilo que componen el delantal adquieren una nueva forma, pero el tipo de materia en cada uno de ellos no cambia.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "Coser es como cuando mezclas cosas, y mezclar es un cambio químico. Así que coser es un cambio químico.",
+            "error_detected": true,
+            "error_excerpt": "Coser es como cuando mezclas cosas, y mezclar es un cambio químico.",
+            "error_explanation": "El estudiante equipara incorrectamente coser con mezclar sustancias, lo que le lleva a creer que es un cambio químico. Coser es un cambio físico porque solo altera la forma y la disposición de la tela sin cambiar su composición química."
+        }
+    },
+    {
+        "question_id": "10",
+        "question": "Completa la frase.\nCoser un delantal es un ().",
+        "choices": [
+            "cambio químico",
+            "cambio físico"
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coser un delantal es un cambio físico. La tela y el hilo que componen el delantal adquieren una nueva forma, pero el tipo de materia en cada uno de ellos no cambia.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Coser es como mezclar cosas, y cuando mezclas cosas y cambian, eso es como un cambio químico. Como cuando horneas un pastel, mezclas cosas y es diferente después. Así que coser es así, cambia la tela.",
+            "error_detected": true,
+            "error_excerpt": "Coser es como mezclar cosas, y cuando mezclas cosas y cambian, eso es como un cambio químico.",
+            "error_explanation": "El estudiante interpreta incorrectamente la pregunta como si preguntara sobre una reacción química. Coser un delantal es un cambio físico porque solo cambia la forma de la tela, no su composición química."
+        }
+    },
+    {
+        "question_id": "10",
+        "question": "Completa la frase.\nCoser un delantal es un ().",
+        "choices": [
+            "cambio químico",
+            "cambio físico"
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coser un delantal es un cambio físico. La tela y el hilo que componen el delantal adquieren una nueva forma, pero el tipo de materia en cada uno de ellos no cambia.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "Cuando coses un delantal, solo estás cambiando el aspecto de la tela. No estás creando algo nuevo, así que es un cambio físico.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "12",
+        "question": "¿Cuál de las siguientes opciones contiene una referencia pronominal vaga?",
+        "choices": [
+            "El hermano de Steven, Jim, se preguntó si él corría lo suficientemente rápido para clasificarse para el Maratón de Boston.",
+            "El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston."
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La primera opción contiene una referencia pronominal vaga. El pronombre 'él' podría referirse a Steven o a Jim.\nLa segunda opción muestra una posible corrección para la referencia pronominal vaga. 'Él' ha sido reemplazado por Steven.\nEl hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 1,
+            "solution": "La segunda oración, 'El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston,' es vaga porque no está claro a quién se hace referencia. Podría ser Steven o Jim quien se lo esté preguntando, lo que hace que la referencia sea ambigua. La primera oración es más clara porque especifica que Jim se pregunta si 'él' corría lo suficientemente rápido, por lo que el pronombre 'él' se refiere claramente a Jim.",
+            "error_detected": true,
+            "error_excerpt": "El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston,",
+            "error_explanation": "La primera oración contiene la referencia pronominal vaga. El pronombre 'él' podría referirse tanto a Steven como a Jim, creando ambigüedad. La segunda oración es más clara porque indica explícitamente que 'Steven' corría, eliminando la ambigüedad."
+        }
+    },
+    {
+        "question_id": "12",
+        "question": "¿Cuál de las siguientes opciones contiene una referencia pronominal vaga?",
+        "choices": [
+            "El hermano de Steven, Jim, se preguntó si corría lo suficientemente rápido para clasificarse para el Maratón de Boston.",
+            "El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston."
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La primera opción contiene una referencia pronominal vaga. El pronombre 'él' podría referirse a Steven o a Jim.\nLa segunda opción muestra una posible corrección para la referencia pronominal vaga. 'Él' ha sido reemplazado por Steven.\nEl hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "Vale, entonces, una referencia pronominal vaga es cuando no está totalmente claro a quién se refiere el pronombre, ¿verdad? En la opción B, dice 'El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido...' Es súper obvio que 'Steven' se refiere a Steven. No hay ninguna confusión. Es como si Steven se preguntara sobre Steven. Así que no hay ninguna vaguedad ahí. Por eso la opción B es la que tiene la referencia pronominal vaga... porque NO es vaga. Es cristalina.",
+            "error_detected": true,
+            "error_excerpt": "Es súper obvio que 'Steven' se refiere a Steven. No hay ninguna confusión.",
+            "error_explanation": "El estudiante identifica incorrectamente la opción B como poseedora de una referencia pronominal vaga. La opción B es clara porque usa el nombre propio 'Steven' en lugar de un pronombre. La opción A contiene el pronombre vago 'él' que podría referirse tanto a Steven como a Jim."
+        }
+    },
+    {
+        "question_id": "12",
+        "question": "¿Cuál de las siguientes opciones contiene una referencia pronominal vaga?",
+        "choices": [
+            "El hermano de Steven, Jim, se preguntó si él corría lo suficientemente rápido para clasificarse para el Maratón de Boston.",
+            "El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston."
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La primera opción contiene una referencia pronominal vaga. El pronombre 'él' podría referirse a Steven o a Jim.\nLa segunda opción muestra una posible corrección para la referencia pronominal vaga. 'Él' ha sido reemplazado por Steven.\nEl hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "Vale, una referencia pronominal vaga es cuando no está totalmente claro a quién se refiere el pronombre. En la opción B, dice 'El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido...' Como 'Steven' se menciona dos veces en la misma frase, es automáticamente vago. Es como si no supiéramos de qué Steven están hablando, así que definitivamente es una referencia pronominal vaga porque se usa el mismo nombre para ambas personas que podrían estar corriendo. La opción A es más clara porque usa 'él', que es un pronombre, pero aún así está bastante claro que se refiere a Jim, el hermano.",
+            "error_detected": true,
+            "error_excerpt": "El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido...",
+            "error_explanation": "El estudiante asume incorrectamente que la repetición de un nombre crea automáticamente una referencia pronominal vaga. Si bien la repetición a veces puede generar ambigüedad, en este caso, identifica claramente quién está corriendo. La referencia pronominal vaga real está en la opción A, donde 'él' podría referirse a Steven o a Jim, lo que hace que la referencia no esté clara."
+        }
+    },
+    {
+        "question_id": "12",
+        "question": "¿Cuál de las siguientes opciones contiene una referencia pronominal vaga?",
+        "choices": [
+            "El hermano de Steven, Jim, se preguntó si corría lo suficientemente rápido para clasificarse para la Maratón de Boston.",
+            "El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para la Maratón de Boston."
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La primera opción contiene una referencia pronominal vaga. El pronombre 'él' podría referirse a Steven o a Jim.\nLa segunda opción muestra una posible corrección para la referencia pronominal vaga. 'Él' ha sido reemplazado por 'Steven'.\nEl hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para la Maratón de Boston.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "Vale, entonces una referencia pronominal vaga es cuando no está muy claro a quién se refiere el pronombre, ¿verdad? En la opción B, dice 'El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido...' Como se usa 'Steven' dos veces, es un poco repetitivo y podría verse como vago porque podrías pensar que se refiere a Jim al principio. Así que, sí, la opción B es la que tiene la referencia pronominal vaga.",
+            "error_detected": true,
+            "error_excerpt": "Como se usa 'Steven' dos veces, es un poco repetitivo y podría verse como vago porque podrías pensar que se refiere a Jim al principio.",
+            "error_explanation": "El pronombre 'él' en la opción A es vago porque no está claro si 'él' se refiere a Steven o a Jim. La opción B, aunque repetitiva, no es vaga porque indica explícitamente 'Steven' en lugar de usar un pronombre, evitando así la ambigüedad."
+        }
+    },
+    {
+        "question_id": "12",
+        "question": "¿Cuál de las siguientes opciones contiene una referencia pronominal vaga?",
+        "choices": [
+            "El hermano de Steven, Jim, se preguntó si corría lo suficientemente rápido para clasificarse para el Maratón de Boston.",
+            "El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston."
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La primera opción contiene una referencia pronominal vaga. El pronombre 'él' podría referirse a Steven o a Jim.\nLa segunda opción muestra una posible corrección para la referencia pronominal vaga. 'Él' ha sido reemplazado por 'Steven'.\nEl hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para el Maratón de Boston.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 1,
+            "solution": "Vale, entonces la pregunta trata sobre referencias pronominales vagas, ¿verdad? Eso significa que estamos buscando una oración donde no esté totalmente claro a quién se refiere el pronombre. En la opción B, dice 'El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido...' El pronombre 'él' se reemplaza por 'Steven', lo que deja súper claro de quién están hablando. Entonces, no hay ninguna vaguedad en absoluto. Por eso la opción B es la que contiene una referencia pronominal vaga, porque en realidad no es vaga en absoluto, ya que usa el nombre 'Steven' en lugar de un pronombre.",
+            "error_detected": true,
+            "error_excerpt": "El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido",
+            "error_explanation": "El estudiante interpretó erróneamente la pregunta como si pidiera la oración que NO contiene una referencia pronominal vaga. La respuesta correcta es la opción A porque el pronombre 'él' podría referirse tanto a Steven como a Jim, lo que hace que la referencia sea vaga. La opción B es clara porque especifica 'Steven'."
+        }
+    },
+    {
+        "question_id": "12",
+        "question": "¿Cuál de las siguientes opciones contiene una referencia pronominal vaga?",
+        "choices": [
+            "El hermano de Steven, Jim, se preguntó si él corría lo suficientemente rápido para clasificarse para la Maratón de Boston.",
+            "El hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para la Maratón de Boston."
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La primera opción contiene una referencia pronominal vaga. El pronombre 'él' podría referirse a Steven o a Jim.\nLa segunda opción muestra una posible corrección para la referencia pronominal vaga. 'Él' ha sido reemplazado por Steven.\nEl hermano de Steven, Jim, se preguntó si Steven corría lo suficientemente rápido para clasificarse para la Maratón de Boston.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 0,
+            "solution": "La frase 'El hermano de Steven, Jim, se preguntó si él corría lo suficientemente rápido para clasificarse para la Maratón de Boston' contiene una referencia pronominal vaga porque 'él' podría referirse tanto a Steven como a Jim. No está claro quién está corriendo, lo que hace que la referencia pronominal sea vaga.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "14",
+        "question": "¿Cuál muestra correctamente el título de una obra de teatro?",
+        "choices": [
+            "A breath of Fresh Air",
+            "A Breath of Fresh Air"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Se debe poner en mayúscula la primera palabra, la última palabra y cada palabra importante entre ellas. La palabra 'of' no es importante, por lo que no debe escribirse con mayúscula.\nEl título correcto es A Breath of Fresh Air.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "El título debe tener todas las letras minúsculas porque no es un nombre. Solo los nombres tienen letras mayúsculas al principio. Así que es 'a breath of fresh air'.",
+            "error_detected": true,
+            "error_excerpt": "A breath of Fresh Air",
+            "error_explanation": "El título de una obra de teatro, 'A Breath of Fresh Air', requiere que se ponga en mayúscula la primera letra de cada palabra principal. El alumno asume incorrectamente que solo los nombres requieren el uso de mayúsculas."
+        }
+    },
+    {
+        "question_id": "14",
+        "question": "¿Cuál muestra correctamente el título de una obra de teatro?",
+        "choices": [
+            "A breath of Fresh Air",
+            "A Breath of Fresh Air"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Se debe poner en mayúscula la primera palabra, la última palabra y cada palabra importante entre ellas. La palabra 'of' no es importante, por lo que no debe escribirse con mayúscula.\nEl título correcto es A Breath of Fresh Air.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "El título debe estar todo en letras grandes porque es importante. Como cuando escribimos nuestros nombres, empezamos con una letra grande. Entonces, 'A breath of Fresh Air' es correcto porque todas las palabras empiezan con una letra grande.",
+            "error_detected": true,
+            "error_excerpt": "El título debe estar todo en letras grandes porque es importante.",
+            "error_explanation": "El estudiante cree incorrectamente que todas las palabras en un título deben estar en mayúscula. La capitalización correcta para un título es poner en mayúscula la primera palabra, la última palabra y todas las palabras principales (sustantivos, pronombres, verbos, adjetivos, adverbios y algunas conjunciones). Los artículos cortos, las preposiciones y las conjunciones generalmente no se escriben con mayúscula a menos que sean la primera o la última palabra del título."
+        }
+    },
+    {
+        "question_id": "14",
+        "question": "¿Cuál muestra correctamente el título de una obra de teatro?",
+        "choices": [
+            "A breath of Fresh Air",
+            "A Breath of Fresh Air"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Se debe poner en mayúscula la primera palabra, la última palabra y cada palabra importante entre ellas. La palabra 'of' no es importante, por lo que no debe escribirse con mayúscula.\nEl título correcto es A Breath of Fresh Air.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "Los títulos siempre empiezan con una letra mayúscula. Así que cada palabra en el título debería empezar con una letra mayúscula. Como A, breath, Of, Fresh, y Air. ¡Así es como se escriben los títulos!",
+            "error_detected": true,
+            "error_excerpt": "Así que cada palabra en el título debería empezar con una letra mayúscula.",
+            "error_explanation": "El estudiante sobregeneraliza la regla de poner en mayúscula la primera palabra de un título, pensando que cada palabra en un título debe estar en mayúscula. El uso correcto de mayúsculas en títulos solo pone en mayúscula la primera palabra y los nombres propios."
+        }
+    },
+    {
+        "question_id": "14",
+        "question": "¿Cuál muestra correctamente el título de una obra de teatro?",
+        "choices": [
+            "A breath of Fresh Air",
+            "A Breath of Fresh Air"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Se debe poner en mayúscula la primera palabra, la última palabra y cada palabra importante entre ellas. La palabra 'of' no es importante, por lo que no debe escribirse con mayúscula.\nEl título correcto es A Breath of Fresh Air.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "El título es 'A breath of Fresh Air' porque empieza con una letra mayúscula y todas las palabras empiezan con mayúsculas. ¡Así es como se escribe un título!",
+            "error_detected": true,
+            "error_excerpt": "todas las palabras empiezan con mayúsculas",
+            "error_explanation": "El estudiante asume incorrectamente que todas las palabras en un título deben estar en mayúsculas. La respuesta correcta solo pone en mayúscula la primera palabra y los nombres propios."
+        }
+    },
+    {
+        "question_id": "14",
+        "question": "¿Cuál muestra correctamente el título de una obra de teatro?",
+        "choices": [
+            "A breath of Fresh Air",
+            "A Breath of Fresh Air"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Se debe poner en mayúscula la primera palabra, la última palabra y cada palabra importante entre ellas. La palabra 'of' no es importante, por lo que no debe escribirse con mayúscula.\nEl título correcto es A Breath of Fresh Air.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Creo que el título es correcto porque tiene una A mayúscula y luego las otras palabras son pequeñas. Así es como escribimos los títulos en mi clase.",
+            "error_detected": true,
+            "error_excerpt": "A breath of Fresh Air",
+            "error_explanation": "El estudiante malinterpreta la pregunta como si se tratara de reglas de uso de mayúsculas en general, en lugar de centrarse en la convención específica para los títulos, que requiere poner en mayúscula la primera letra de cada palabra principal. La respuesta correcta pone en mayúscula 'Breath', 'Fresh' y 'Air'."
+        }
+    },
+    {
+        "question_id": "14",
+        "question": "¿Cuál muestra correctamente el título de una obra de teatro?",
+        "choices": [
+            "A breath of Fresh Air",
+            "A Breath of Fresh Air"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Pon en mayúscula la primera palabra, la última palabra y cada palabra importante entre ellas. La palabra 'of' no es importante, así que no debería estar en mayúscula.\nEl título correcto es A Breath of Fresh Air.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "El título tiene letras grandes al principio de cada palabra. ¡Como en mis libros!",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "15",
+        "question": "¿Encontrarías la palabra 'docena' en una página de diccionario con las siguientes palabras guía?\npapá - definición",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Coloca las palabras en orden alfabético.\nDado que 'docena' no está entre las palabras guía 'papá - definición', no se encontraría en esa página.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 1,
+            "solution": "Sí, creo que encontrarías 'docena' en esa página. 'Docena' empieza con 'd' igual que 'papá' y 'definición', así que estaría justo entre ellas. Es como funciona el diccionario, todas las palabras que empiezan con la misma letra se agrupan.",
+            "error_detected": true,
+            "error_excerpt": "'Docena' empieza con 'd' igual que 'papá' y 'definición', así que estaría justo entre ellas.",
+            "error_explanation": "La palabra 'docena' no se encontraría en esa página. Los diccionarios están organizados alfabéticamente, y 'docena' va después de 'definición', por lo que estaría en una página posterior."
+        }
+    },
+    {
+        "question_id": "15",
+        "question": "¿Encontrarías la palabra 'docena' en una página de diccionario con las siguientes palabras guía?\npapá - definición",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Coloca las palabras en orden alfabético.\nDado que 'docena' no está entre las palabras guía 'papá - definición', no se encontraría en esa página.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "Sí, creo que encontrarías 'docena' allí. 'Docena' empieza con 'd' y 'papá' y 'definición' también empiezan con 'd'. Así que, 'docena' estaría en algún lugar entre ellas porque todas las palabras con 'd' están juntas.",
+            "error_detected": true,
+            "error_excerpt": "'Docena' empieza con 'd' y 'papá' y 'definición' también empiezan con 'd'. Así que, 'docena' estaría en algún lugar entre ellas porque todas las palabras con 'd' están juntas.",
+            "error_explanation": "El estudiante asume incorrectamente que todas las palabras que comienzan con la misma letra se agrupan en un diccionario. Los diccionarios están ordenados alfabéticamente letra por letra, por lo que 'docena' estaría después de 'papá' y 'definición'."
+        }
+    },
+    {
+        "question_id": "15",
+        "question": "¿Encontrarías la palabra 'docena' en una página de diccionario con las siguientes palabras guía?\npapá - definición",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Pon las palabras en orden alfabético.\nDado que 'docena' no está entre las palabras guía 'papá - definición', no se encontraría en esa página.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "Sí, porque 'docena' empieza con 'd' igual que 'papá' y 'definición'. Todas las palabras que empiezan con 'd' están en esa página.",
+            "error_detected": true,
+            "error_excerpt": "Todas las palabras que empiezan con 'd' están en esa página.",
+            "error_explanation": "El estudiante sobregeneraliza que todas las palabras que empiezan con 'd' estarán en la página. Las palabras guía indican que la página contiene palabras desde 'papá' hasta 'definición' alfabéticamente. 'docena' se encuentra alfabéticamente entre estas dos palabras, pero el razonamiento del estudiante es erróneo."
+        }
+    },
+    {
+        "question_id": "15",
+        "question": "¿Encontrarías la palabra 'docena' en una página de diccionario con las siguientes palabras guía?\npapá - definición",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Coloca las palabras en orden alfabético.\nDado que 'docena' no está entre las palabras guía 'papá - definición', no se encontraría en esa página.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "Sí, porque 'docena' empieza con 'd' y 'papá' y 'definición' también empiezan con 'd'. ¡Así que tiene que estar en esa página!",
+            "error_detected": true,
+            "error_excerpt": "¡Así que tiene que estar en esa página!",
+            "error_explanation": "El estudiante solo consideró que 'docena' empieza con 'd' y que las palabras guía también empiezan con 'd'. No consideró el orden alfabético dentro de las palabras con 'd'. 'docena' va después de 'definición', por lo que no estaría en esa página."
+        }
+    },
+    {
+        "question_id": "15",
+        "question": "¿Encontrarías la palabra 'docena' en una página de diccionario con las siguientes palabras guía?\npapá - definición",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Pon las palabras en orden alfabético.\nDado que 'docena' no está entre las palabras guía 'papá' - 'definición', no se encontraría en esa página.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 1,
+            "solution": "Sí, porque 'docena' es como una definición de algo, ¿verdad? Así que estaría en la página con la palabra 'definición'.",
+            "error_detected": true,
+            "error_excerpt": "porque 'docena' es como una definición de algo",
+            "error_explanation": "El estudiante malinterpreta la pregunta al pensar que 'docena' se encontraría en una página de diccionario porque está relacionado con el concepto de una definición. La pregunta es si 'docena' está alfabéticamente entre 'papá' y 'definición'. Dado que 'docena' comienza con 'do' y va después de 'papá' y antes de 'definición' alfabéticamente, la respuesta es sí."
+        }
+    },
+    {
+        "question_id": "15",
+        "question": "¿Encontrarías la palabra 'docena' en una página de diccionario con las siguientes palabras guía?\npapá - definición",
+        "choices": [
+            "no",
+            "sí"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Pon las palabras en orden alfabético.\nDado que 'docena' no está entre las palabras guía 'papá' - 'definición', no se encontraría en esa página.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 0,
+            "solution": "La palabra 'docena' empieza con 'd', y las palabras guía son 'papá' y 'definición'. Dado que 'docena' va después de 'definición' alfabéticamente, no estaría en esa página.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "18",
+        "question": "¿Basándonos en esta información, cuál es el fenotipo de Daffodil para el rasgo de los cuernos?",
+        "choices": [
+            "no tener cuernos",
+            "tener cuernos"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El genotipo de Daffodil para el gen de los cuernos es HH. El genotipo HH de Daffodil solo tiene alelos H. El alelo H es para no tener cuernos. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.\nPara comprobar esta respuesta, considera si los alelos de Daffodil son dominantes o recesivos. El alelo para tener cuernos (h) es recesivo al alelo para no tener cuernos (H). Esto significa que H es un alelo dominante y h es un alelo recesivo.\nEl genotipo HH de Daffodil tiene dos alelos dominantes. Un organismo con al menos un alelo dominante para un gen tendrá la versión del alelo dominante del rasgo. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 1,
+            "solution": "El fenotipo es como, lo que ves, ¿verdad? Así que si Daffodil tiene el rasgo de los cuernos, eso significa que tiene cuernos. Está ahí mismo en la pregunta.",
+            "error_detected": true,
+            "error_excerpt": "Daffodil tiene el rasgo de los cuernos",
+            "error_explanation": "El estudiante interpreta erróneamente que 'tener el rasgo de los cuernos' significa automáticamente que el animal tiene cuernos físicamente. La pregunta requiere comprender que 'tener el rasgo de los cuernos' podría significar tener cuernos o no tener cuernos, dependiendo de si el rasgo se expresa. La respuesta correcta es no tener cuernos."
+        }
+    },
+    {
+        "question_id": "18",
+        "question": "Basándonos en esta información, ¿cuál es el fenotipo de Daffodil para el rasgo de los cuernos?",
+        "choices": [
+            "no tener cuernos",
+            "tener cuernos"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El genotipo de Daffodil para el gen de los cuernos es HH. El genotipo HH de Daffodil solo tiene alelos H. El alelo H es para no tener cuernos. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.\nPara comprobar esta respuesta, considera si los alelos de Daffodil son dominantes o recesivos. El alelo para tener cuernos (h) es recesivo con respecto al alelo para no tener cuernos (H). Esto significa que H es un alelo dominante y h es un alelo recesivo.\nEl genotipo HH de Daffodil tiene dos alelos dominantes. Un organismo con al menos un alelo dominante para un gen tendrá la versión del rasgo del alelo dominante. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "El fenotipo es como lo que puedes ver, ¿verdad? Así que si Daffodil tiene el rasgo de los cuernos, eso significa que TIENE cuernos. Está ahí mismo en el nombre del rasgo. Así que el fenotipo es tener cuernos.",
+            "error_detected": true,
+            "error_excerpt": "si Daffodil tiene el rasgo de los cuernos, eso significa que TIENE cuernos",
+            "error_explanation": "El estudiante asume incorrectamente que tener el 'rasgo de los cuernos' automáticamente significa que el animal expresa cuernos. El fenotipo depende de los alelos específicos y su expresión. La pregunta proporciona información para determinar el fenotipo real (presencia o ausencia de cuernos) basándose en los datos proporcionados, independientemente de simplemente poseer el gen del 'rasgo de los cuernos'."
+        }
+    },
+    {
+        "question_id": "18",
+        "question": "¿Basándonos en esta información, cuál es el fenotipo de Daffodil para el rasgo de los cuernos?",
+        "choices": [
+            "no tener cuernos",
+            "tener cuernos"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El genotipo de Daffodil para el gen de los cuernos es HH. El genotipo HH de Daffodil solo tiene alelos H. El alelo H es para no tener cuernos. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.\nPara comprobar esta respuesta, considera si los alelos de Daffodil son dominantes o recesivos. El alelo para tener cuernos (h) es recesivo al alelo para no tener cuernos (H). Esto significa que H es un alelo dominante y h es un alelo recesivo.\nEl genotipo HH de Daffodil tiene dos alelos dominantes. Un organismo con al menos un alelo dominante para un gen tendrá la versión del alelo dominante del rasgo. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "Vale, entonces, si tienes el gen para algo, lo vas a mostrar, ¿verdad? Así que si Daffodil tiene el gen para los cuernos, entonces tiene que tener cuernos. Es como si tienes el gen para los ojos marrones, TIENES ojos marrones. Así que Daffodil tiene el gen de los cuernos, así que tiene cuernos.",
+            "error_detected": true,
+            "error_excerpt": "si tienes el gen para algo, lo vas a mostrar, ¿verdad?",
+            "error_explanation": "El estudiante sobregeneraliza que tener un gen para un rasgo siempre significa que el rasgo se expresará. Esto ignora el concepto de genes recesivos, donde el rasgo solo se expresa si ambos alelos están presentes. El hecho de que Daffodil tenga el gen para los cuernos no significa automáticamente que tenga cuernos; depende de si el gen es dominante o recesivo y cuál es el otro alelo."
+        }
+    },
+    {
+        "question_id": "18",
+        "question": "¿Basándonos en esta información, cuál es el fenotipo de Daffodil para el rasgo de los cuernos?",
+        "choices": [
+            "no tener cuernos",
+            "tener cuernos"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El genotipo de Daffodil para el gen de los cuernos es HH. El genotipo HH de Daffodil solo tiene alelos H. El alelo H es para no tener cuernos. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.\nPara comprobar esta respuesta, considera si los alelos de Daffodil son dominantes o recesivos. El alelo para tener cuernos (h) es recesivo al alelo para no tener cuernos (H). Esto significa que H es un alelo dominante y h es un alelo recesivo.\nEl genotipo HH de Daffodil tiene dos alelos dominantes. Un organismo con al menos un alelo dominante para un gen tendrá la versión del rasgo del alelo dominante. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "Si Daffodil tiene el rasgo de los cuernos, entonces debe tener cuernos. Está ahí mismo en la pregunta, así que la respuesta es tener cuernos.",
+            "error_detected": true,
+            "error_excerpt": "Si Daffodil tiene el rasgo de los cuernos, entonces debe tener cuernos.",
+            "error_explanation": "El estudiante asume que poseer el 'rasgo de los cuernos' significa automáticamente tener cuernos, sin considerar que el rasgo también podría manifestarse como la ausencia de cuernos. La pregunta requiere comprender que un fenotipo es la característica observable, y la información proporcionada debe interpretarse para determinar si el rasgo resulta en cuernos o no."
+        }
+    },
+    {
+        "question_id": "18",
+        "question": "¿Basándonos en esta información, cuál es el fenotipo de Daffodil para el rasgo de los cuernos?",
+        "choices": [
+            "no tener cuernos",
+            "tener cuernos"
+        ],
+        "grade": "1º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El genotipo de Daffodil para el gen de los cuernos es HH. El genotipo HH de Daffodil solo tiene alelos H. El alelo H es para no tener cuernos. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.\nPara comprobar esta respuesta, considera si los alelos de Daffodil son dominantes o recesivos. El alelo para tener cuernos (h) es recesivo al alelo para no tener cuernos (H). Esto significa que H es un alelo dominante y h es un alelo recesivo.\nEl genotipo HH de Daffodil tiene dos alelos dominantes. Un organismo con al menos un alelo dominante para un gen tendrá la versión del rasgo del alelo dominante. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 1,
+            "solution": "El fenotipo es como, lo que puedes ver, ¿verdad? Entonces, si Daffodil tiene un rasgo, significa que lo muestra. La pregunta es sobre los cuernos, y si tiene el rasgo de los cuernos, entonces debe tener cuernos. Es como decir que tiene el aspecto de 'cuernos'.",
+            "error_detected": true,
+            "error_excerpt": "si tiene el rasgo de los cuernos, entonces debe tener cuernos",
+            "error_explanation": "El estudiante malinterpreta la pregunta como si preguntara si Daffodil posee el *gen* de los cuernos, en lugar de preguntar sobre la característica física observable (fenotipo) relacionada con los cuernos. La pregunta requiere comprender que la ausencia de cuernos también es un fenotipo."
+        }
+    },
+    {
+        "question_id": "18",
+        "question": "¿Basándonos en esta información, cuál es el fenotipo de Daffodil para el rasgo de los cuernos?",
+        "choices": [
+            "no tener cuernos",
+            "tener cuernos"
+        ],
+        "grade": "1º de ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "El genotipo de Daffodil para el gen de los cuernos es HH. El genotipo HH de Daffodil solo tiene alelos H. El alelo H es para no tener cuernos. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.\nPara comprobar esta respuesta, considera si los alelos de Daffodil son dominantes o recesivos. El alelo para tener cuernos (h) es recesivo al alelo para no tener cuernos (H). Esto significa que H es un alelo dominante y h es un alelo recesivo.\nEl genotipo HH de Daffodil tiene dos alelos dominantes. Un organismo con al menos un alelo dominante para un gen tendrá la versión del alelo dominante del rasgo. Por lo tanto, el fenotipo de Daffodil para el rasgo de los cuernos debe ser no tener cuernos.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 0,
+            "solution": "Como la pregunta no dice que Daffodil tenga cuernos, supongo que no los tiene. Por lo tanto, su fenotipo es no tener cuernos.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "20",
+        "question": "¿Qué tienen en común estos dos cambios?\nrasgar un trozo de papel\nromper un trozo de vidrio",
+        "choices": [
+            "Ambos son solo cambios físicos.",
+            "Ambos son cambios químicos.",
+            "Ambos son causados por el enfriamiento.",
+            "Ambos son causados por el calentamiento."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nRasgar un trozo de papel es un cambio físico. El papel se rompe en pedazos. Pero cada pedazo sigue siendo de papel.\nRomper un trozo de vidrio es un cambio físico. El vidrio se rompe en pedazos. Pero cada pedazo sigue siendo del mismo tipo de materia.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios físicos. No se crea nueva materia.\nAmbos son cambios químicos.\nAmbos cambios son cambios físicos. No son cambios químicos.\nAmbos son causados por el calentamiento.\nNinguno de los cambios es causado por el calentamiento.\nAmbos son causados por el enfriamiento.\nNinguno de los cambios es causado por el enfriamiento.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 3,
+            "solution": "Cuando rasgas papel o rompes vidrio, ¡es como cuando horneas un pastel! Necesitas calor para que el papel se rasgue y el vidrio se rompa. ¡Así que ambos son causados por el calentamiento!",
+            "error_detected": true,
+            "error_excerpt": "Ambos son causados por el calentamiento.",
+            "error_explanation": "Rasgar papel y romper vidrio son cambios físicos que ocurren debido a la fuerza aplicada, no al calentamiento. No se requiere calentamiento para que ocurra ninguno de estos cambios."
+        }
+    },
+    {
+        "question_id": "20",
+        "question": "¿Qué tienen en común estos dos cambios?\ntrozos de papel rasgados\ntrozos de vidrio rotos",
+        "choices": [
+            "Ambos son solo cambios físicos.",
+            "Ambos son cambios químicos.",
+            "Ambos son causados por el enfriamiento.",
+            "Ambos son causados por el calentamiento."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nRasgar un trozo de papel es un cambio físico. El papel se rompe en pedazos. Pero cada pedazo todavía está hecho de papel.\nRomper un trozo de vidrio es un cambio físico. El vidrio se rompe en pedazos. Pero cada pedazo todavía está hecho del mismo tipo de materia.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios físicos. No se crea nueva materia.\nAmbos son cambios químicos.\nAmbos cambios son cambios físicos. No son cambios químicos.\nAmbos son causados por el calentamiento.\nNinguno de los cambios es causado por el calentamiento.\nAmbos son causados por el enfriamiento.\nNinguno de los cambios es causado por el enfriamiento.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "Cuando rasgas papel o rompes vidrio, no puedes volver a unirlos. ¡Eso significa que se transformaron en algo nuevo, como cuando horneas un pastel! Por lo tanto, ambos son cambios químicos.",
+            "error_detected": true,
+            "error_excerpt": "¡Eso significa que se transformaron en algo nuevo, como cuando horneas un pastel! Por lo tanto, ambos son cambios químicos.",
+            "error_explanation": "El estudiante cree incorrectamente que cualquier cambio que sea difícil de revertir es un cambio químico. Rasgar papel y romper vidrio son cambios físicos porque solo cambian la forma o la figura de la sustancia, no su composición química. Un cambio químico implica la formación de nuevas sustancias con diferentes propiedades."
+        }
+    },
+    {
+        "question_id": "20",
+        "question": "¿Qué tienen en común estos dos cambios?\nrasgar un trozo de papel\nromper un trozo de vidrio",
+        "choices": [
+            "Ambos son solo cambios físicos.",
+            "Ambos son cambios químicos.",
+            "Ambos son causados por el enfriamiento.",
+            "Ambos son causados por el calentamiento."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nRasgar un trozo de papel es un cambio físico. El papel se rompe en pedazos. Pero cada pedazo sigue siendo de papel.\nRomper un trozo de vidrio es un cambio físico. El vidrio se rompe en pedazos. Pero cada pedazo sigue siendo del mismo tipo de materia.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios físicos. No se crea nueva materia.\nAmbos son cambios químicos.\nAmbos cambios son cambios físicos. No son cambios químicos.\nAmbos son causados por el calentamiento.\nNinguno de los cambios es causado por el calentamiento.\nAmbos son causados por el enfriamiento.\nNinguno de los cambios es causado por el enfriamiento.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "Cuando rasgas papel o rompes vidrio, ¡cambian! ¡Como cuando horneas un pastel, también cambia! Entonces, ambos son cambios químicos porque cambian a algo diferente.",
+            "error_detected": true,
+            "error_excerpt": "Entonces, ambos son cambios químicos porque cambian a algo diferente.",
+            "error_explanation": "El estudiante sobregeneraliza que cualquier cambio es un cambio químico. Rasgar papel y romper vidrio son cambios físicos porque solo cambian la forma o la apariencia de la sustancia, no su composición química. Un cambio químico implica la formación de nuevas sustancias."
+        }
+    },
+    {
+        "question_id": "20",
+        "question": "¿Qué tienen en común estos dos cambios?\ntrozos de papel rasgados\ntrozos de vidrio rotos",
+        "choices": [
+            "Ambos son solo cambios físicos.",
+            "Ambos son cambios químicos.",
+            "Ambos son causados por el enfriamiento.",
+            "Ambos son causados por el calentamiento."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nRasgar un trozo de papel es un cambio físico. El papel se rompe en pedazos. Pero cada pedazo sigue siendo de papel.\nRomper un trozo de vidrio es un cambio físico. El vidrio se rompe en pedazos. Pero cada pedazo sigue siendo del mismo tipo de materia.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios físicos. No se crea nueva materia.\nAmbos son cambios químicos.\nAmbos cambios son cambios físicos. No son cambios químicos.\nAmbos son causados por el calentamiento.\nNinguno de los cambios es causado por el calentamiento.\nAmbos son causados por el enfriamiento.\nNinguno de los cambios es causado por el enfriamiento.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "Cuando rasgas papel o rompes vidrio, no puedes volver a unirlos. Eso es como cuando horneas un pastel, no puedes deshornearlo. Entonces, ambos son cambios químicos porque no pueden volver atrás.",
+            "error_detected": true,
+            "error_excerpt": "Cuando rasgas papel o rompes vidrio, no puedes volver a unirlos. Eso es como cuando horneas un pastel, no puedes deshornearlo. Entonces, ambos son cambios químicos porque no pueden volver atrás.",
+            "error_explanation": "El estudiante equipara incorrectamente la irreversibilidad con los cambios químicos. Si bien los cambios químicos a menudo son irreversibles, los cambios físicos también pueden ser difíciles o imposibles de revertir (como rasgar papel). El estudiante llega a la conclusión de que, dado que los cambios son difíciles de revertir, deben ser químicos, sin tener en cuenta el aspecto crucial de si se forman nuevas sustancias."
+        }
+    },
+    {
+        "question_id": "20",
+        "question": "¿Qué tienen en común estos dos cambios?\nrasgar un trozo de papel\nromper un trozo de vidrio",
+        "choices": [
+            "Ambos son solo cambios físicos.",
+            "Ambos son cambios químicos.",
+            "Ambos son causados por enfriamiento.",
+            "Ambos son causados por calentamiento."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nRasgar un trozo de papel es un cambio físico. El papel se rompe en pedazos. Pero cada pedazo sigue siendo de papel.\nRomper un trozo de vidrio es un cambio físico. El vidrio se rompe en pedazos. Pero cada pedazo sigue siendo del mismo tipo de materia.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios físicos. No se crea nueva materia.\nAmbos son cambios químicos.\nAmbos cambios son cambios físicos. No son cambios químicos.\nAmbos son causados por calentamiento.\nNinguno de los cambios es causado por calentamiento.\nAmbos son causados por enfriamiento.\nNinguno de los cambios es causado por enfriamiento.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 2,
+            "solution": "Cuando rasgas papel o rompes vidrio, se enfría. ¡Como cuando tienes hielo! Así que ambos son causados por enfriamiento.",
+            "error_detected": true,
+            "error_excerpt": "Ambos son causados por enfriamiento.",
+            "error_explanation": "El estudiante malinterpreta la pregunta pensando que pregunta qué sucede *después* del cambio, en lugar del tipo de cambio en sí. Rasgar papel y romper vidrio son cambios físicos, no causados por enfriamiento."
+        }
+    },
+    {
+        "question_id": "20",
+        "question": "¿Qué tienen en común estos dos cambios?\ntrozos de papel rasgados\ntrozos de vidrio rotos",
+        "choices": [
+            "Ambos son solo cambios físicos.",
+            "Ambos son cambios químicos.",
+            "Ambos son causados por el enfriamiento.",
+            "Ambos son causados por el calentamiento."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nRasgar un trozo de papel es un cambio físico. El papel se rompe en pedazos. Pero cada pedazo todavía está hecho de papel.\nRomper un trozo de vidrio es un cambio físico. El vidrio se rompe en pedazos. Pero cada pedazo todavía está hecho del mismo tipo de materia.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios físicos. No se crea nueva materia.\nAmbos son cambios químicos.\nAmbos cambios son cambios físicos. No son cambios químicos.\nAmbos son causados por el calentamiento.\nNinguno de los cambios es causado por el calentamiento.\nAmbos son causados por el enfriamiento.\nNinguno de los cambios es causado por el enfriamiento.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 0,
+            "solution": "Cuando rasgas papel o rompes vidrio, todavía tienes papel y vidrio. No has creado nada nuevo. Así que es solo un cambio físico.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "22",
+        "question": "¿Qué palabra encontrarías en una página de diccionario con las siguientes palabras guía?\nshot - suit",
+        "choices": [
+            "service",
+            "stockade"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coloca las palabras en orden alfabético.\nDado que 'stockade' está entre las palabras guía 'shot - suit', se encontraría en esa página.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "Vale, entonces las palabras guía son 'shot' y 'suit'. Eso significa que las palabras en la página tienen que estar alfabéticamente entre esas dos palabras. 'Service' comienza con 's' y 'e', que va antes de la 'h' en 'shot', así que no puede estar en esa página. 'Stockade' comienza con 's' y 't', que va después de 's' y 'h' pero antes de 's' y 'u', así que 'service' debe ser la respuesta correcta porque va antes de 'shot'.",
+            "error_detected": true,
+            "error_excerpt": "'Service' comienza con 's' y 'e', que va antes de la 'h' en 'shot', así que no puede estar en esa página.",
+            "error_explanation": "El estudiante afirma incorrectamente que 'service' va antes que 'shot' alfabéticamente. En realidad, 'service' comienza con 'se' y 'shot' comienza con 'sh', por lo que 'service' va después de 'shot' alfabéticamente. La respuesta correcta, 'stockade', se encuentra alfabéticamente entre 'shot' y 'suit'."
+        }
+    },
+    {
+        "question_id": "22",
+        "question": "¿Qué palabra encontrarías en la página de un diccionario con las siguientes palabras guía?\nshot - suit",
+        "choices": [
+            "service",
+            "stockade"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coloca las palabras en orden alfabético.\nDado que 'stockade' está entre las palabras guía 'shot - suit', se encontraría en esa página.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "Creo que es 'service' porque 'service' empieza con 's' y 'shot' y 'suit' también empiezan con 's'. Así que 'service' está como en el mismo grupo que 'shot' y 'suit'.",
+            "error_detected": true,
+            "error_excerpt": "'service' empieza con 's' y 'shot' y 'suit' también empiezan con 's'.",
+            "error_explanation": "El estudiante cree incorrectamente que las palabras que comienzan con la misma letra que las palabras guía aparecerán en la misma página del diccionario. La respuesta correcta, 'stockade', está alfabéticamente entre 'shot' y 'suit'."
+        }
+    },
+    {
+        "question_id": "22",
+        "question": "¿Qué palabra encontrarías en la página de un diccionario con las siguientes palabras guía?\nshot - suit",
+        "choices": [
+            "service",
+            "stockade"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coloca las palabras en orden alfabético.\nDado que *stockade* está entre las palabras guía *shot - suit*, se encontraría en esa página.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "Vale, entonces las palabras guía son *shot* y *suit*. Eso significa que la palabra tiene que ir después de *shot* pero antes de *suit* en el alfabeto. *Service* empieza con *s* igual que *shot* y *suit*, y *service* es algo que la gente hace, así que es una palabra común como *shot* y *suit*. Así que encaja con el patrón.",
+            "error_detected": true,
+            "error_excerpt": "Eso significa que la palabra tiene que ir después de *shot* pero antes de *suit* en el alfabeto. *Service* empieza con *s* igual que *shot* y *suit*, y *service* es algo que la gente hace, así que es una palabra común como *shot* y *suit*. Así que encaja con el patrón.",
+            "error_explanation": "El estudiante asume incorrectamente que porque *service* empieza con *s* como las palabras guía, debe estar entre ellas alfabéticamente. El estudiante está sobregeneralizando la importancia de la primera letra e ignorando las letras siguientes que determinan el orden alfabético. *Service* va después de *suit*, no entre *shot* y *suit*. *Stockade* va alfabéticamente entre *shot* y *suit*."
+        }
+    },
+    {
+        "question_id": "22",
+        "question": "¿Qué palabra encontrarías en una página de diccionario con las siguientes palabras guía?\nshot - suit",
+        "choices": [
+            "service",
+            "stockade"
+        ],
+        "grade": "2º de ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coloca las palabras en orden alfabético.\nDado que 'stockade' está entre las palabras guía 'shot - suit', se encontraría en esa página.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "Vale, entonces las palabras guía son 'shot' y 'suit'. 'Service' empieza con 's', y eso está entre 'shot' y 'suit' porque 's' va después de 'sh' y antes de 'su'. Por lo tanto, 'service' debe estar en esa página.",
+            "error_detected": true,
+            "error_excerpt": "'Service' empieza con 's', y eso está entre 'shot' y 'suit' porque 's' va después de 'sh' y antes de 'su'.",
+            "error_explanation": "El estudiante solo consideró la primera letra de las palabras guía y la opción. No consideró las letras siguientes para determinar el orden alfabético con precisión. 'Stockade' se encuentra alfabéticamente entre 'shot' y 'suit' al considerar todas las letras, mientras que 'service' no."
+        }
+    },
+    {
+        "question_id": "22",
+        "question": "¿Qué palabra encontrarías en una página de diccionario con las siguientes palabras guía?\nshot - suit",
+        "choices": [
+            "service",
+            "stockade"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coloca las palabras en orden alfabético.\nDado que 'stockade' está entre las palabras guía 'shot - suit', se encontraría en esa página.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Vale, entonces las palabras guía son 'shot' y 'suit'. Creo que la pregunta está preguntando qué palabra es como, un sinónimo o algo que va con esas palabras. 'Service' como que va con 'shot' porque puedes servir en el ejército y los soldados usan disparos. 'Stockade' realmente no tiene nada que ver con ninguna de esas palabras.",
+            "error_detected": true,
+            "error_excerpt": "Creo que la pregunta está preguntando qué palabra es como, un sinónimo o algo que va con esas palabras.",
+            "error_explanation": "El estudiante interpretó erróneamente la pregunta como si pidiera un sinónimo o una palabra relacionada con 'shot' y 'suit', en lugar de comprender que las palabras guía indican el rango alfabético de las palabras en una página del diccionario. La respuesta correcta, 'stockade', se encuentra alfabéticamente entre 'shot' y 'suit'."
+        }
+    },
+    {
+        "question_id": "22",
+        "question": "¿Qué palabra encontrarías en una página de diccionario con las siguientes palabras guía?\nshot - suit",
+        "choices": [
+            "service",
+            "stockade"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "Coloca las palabras en orden alfabético.\nDado que 'stockade' está entre las palabras guía 'shot - suit', se encontraría en esa página.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "Vale, entonces las palabras guía son 'shot' y 'suit'. Eso significa que la palabra tiene que ir después de 'shot' pero antes de 'suit' en el alfabeto. 'Stockade' empieza con 'st', que va después de 'sh' pero antes de 'su'. Así que, sí, es 'stockade'.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "26",
+        "question": "¿Cuánto tiempo se tarda en hornear lasaña en el horno?",
+        "choices": [
+            "33 minutos",
+            "33 horas"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación de cuánto tiempo se tarda en hornear lasaña en el horno es 33 minutos.\n33 horas es demasiado.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 1,
+            "solution": "La lasaña tarda mucho en hornearse. Muchísimo, muchísimo tiempo. ¡Así que deben ser 33 horas!",
+            "error_detected": true,
+            "error_excerpt": "33 horas",
+            "error_explanation": "El estudiante indica incorrectamente que la lasaña tarda 33 horas en hornearse. El tiempo correcto de horneado es 33 minutos."
+        }
+    },
+    {
+        "question_id": "26",
+        "question": "¿Cuánto tiempo se tarda en hornear una lasaña en el horno?",
+        "choices": [
+            "33 minutos",
+            "33 horas"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación de cuánto tiempo se tarda en hornear lasaña en el horno es 33 minutos.\n33 horas es demasiado.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "La lasaña tarda mucho, mucho tiempo en cocinarse. Como cuando tengo que esperar a mi cumpleaños. ¡Así que deben ser 33 horas!",
+            "error_detected": true,
+            "error_excerpt": "33 horas",
+            "error_explanation": "El estudiante confunde el concepto de mucho tiempo con el tiempo real que se tarda en hornear la lasaña. Hornear lasaña lleva minutos, no horas. El estudiante asocia incorrectamente la sensación de esperar mucho tiempo con la duración real del horneado."
+        }
+    },
+    {
+        "question_id": "26",
+        "question": "¿Cuánto tiempo se tarda en hornear una lasaña en el horno?",
+        "choices": [
+            "33 minutos",
+            "33 horas"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación de cuánto tiempo se tarda en hornear una lasaña en el horno es 33 minutos.\n33 horas es demasiado tiempo.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "¡La lasaña es grande y deliciosa! Es como un pastel. Los pasteles tardan mucho, mucho tiempo en hornearse. ¡Así que la lasaña tarda muchas horas!",
+            "error_detected": true,
+            "error_excerpt": "¡Así que la lasaña tarda muchas horas!",
+            "error_explanation": "El estudiante sobregeneraliza el tiempo de horneado de los pasteles a la lasaña. Si bien algunos pasteles tardan mucho, la lasaña se cocina mucho más rápido, normalmente en minutos, no en horas."
+        }
+    },
+    {
+        "question_id": "26",
+        "question": "¿Cuánto tiempo se tarda en hornear una lasaña en el horno?",
+        "choices": [
+            "33 minutos",
+            "33 horas"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación de cuánto tiempo se tarda en hornear una lasaña en el horno es 33 minutos.\n33 horas es demasiado.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "La lasaña tarda mucho en cocinarse. Las horas son más largas que los minutos. ¡Así que deben ser 33 horas!",
+            "error_detected": true,
+            "error_excerpt": "Las horas son más largas que los minutos. ¡Así que deben ser 33 horas!",
+            "error_explanation": "El estudiante identifica correctamente que la lasaña tarda un tiempo en cocinarse y que las horas son más largas que los minutos. Sin embargo, llega a la conclusión de que '33 horas' es la respuesta correcta sin considerar si esa duración es razonable para hornear lasaña. El estudiante omite el paso de considerar el marco de tiempo típico para cocinar alimentos en un horno."
+        }
+    },
+    {
+        "question_id": "26",
+        "question": "¿Cuánto tiempo se tarda en hornear lasaña en el horno?",
+        "choices": [
+            "33 minutos",
+            "33 horas"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación de cuánto tiempo se tarda en hornear lasaña en el horno es 33 minutos.\n33 horas es demasiado.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 1,
+            "solution": "¡La lasaña lleva muchísimo tiempo! ¡Como, un día entero! Así que deben ser 33 horas. Eso es mucho más que minutos.",
+            "error_detected": true,
+            "error_excerpt": "33 horas",
+            "error_explanation": "El estudiante malinterpreta la pregunta y cree que se refiere al tiempo total para *hacer* la lasaña, incluyendo la preparación, en lugar de solo el tiempo de horneado en el horno. La respuesta correcta se refiere solo al tiempo de horneado."
+        }
+    },
+    {
+        "question_id": "26",
+        "question": "¿Cuánto tiempo se tarda en hornear lasaña en el horno?",
+        "choices": [
+            "33 minutos",
+            "33 horas"
+        ],
+        "grade": "2º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación de cuánto tiempo se tarda en hornear lasaña en el horno es 33 minutos.\n33 horas es demasiado.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 0,
+            "solution": "La lasaña no tarda mucho. Es como cuando hacemos galletas. ¡Así que, 33 minutos es correcto!",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "27",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nEl vendedor se esforzó por convencer a Franklin de que la chaqueta era una buena compra; después de todo, estaba hecha de cuero de imitación auténtico.",
+        "choices": [
+            "hipérbole",
+            "oxímoron"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un oxímoron, una unión de dos términos aparentemente contradictorios.\nImitación auténtica es una contradicción, porque auténtico significa real, e imitación significa falso o sintético.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "Vale, entonces la frase 'cuero de imitación auténtico' es como, totalmente exagerar lo real que es el cuero, ¿verdad? Quiero decir, o es real o no lo es. Entonces, como está exagerando, tiene que ser una hipérbole. La hipérbole se trata de una exageración exagerada para lograr un efecto, y esto definitivamente encaja.",
+            "error_detected": true,
+            "error_excerpt": "cuero de imitación auténtico",
+            "error_explanation": "La frase 'cuero de imitación auténtico' es un oxímoron porque combina dos términos contradictorios. La hipérbole es una exageración, que no está presente en la frase dada."
+        }
+    },
+    {
+        "question_id": "27",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nEl vendedor se esforzó por convencer a Franklin de que la chaqueta era una buena compra; después de todo, estaba hecha de cuero de imitación auténtico.",
+        "choices": [
+            "hipérbole",
+            "oxímoron"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un oxímoron, una unión de dos términos aparentemente contradictorios.\nImitación auténtica es una contradicción, porque auténtico significa real, e imitación significa falso o sintético.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "Vale, entonces la frase 'cuero de imitación auténtico' es como, súper exagerada, ¿verdad? Quiero decir, está intentando hacer que algo suene mucho mejor de lo que es. Eso es totalmente una hipérbole porque es exagerado y no está destinado a ser tomado literalmente. Están tratando de vender la chaqueta, así que la están promocionando.",
+            "error_detected": true,
+            "error_excerpt": "cuero de imitación auténtico",
+            "error_explanation": "La frase 'cuero de imitación auténtico' es un oxímoron, una figura retórica que combina términos contradictorios. La hipérbole es una exageración que no debe tomarse literalmente."
+        }
+    },
+    {
+        "question_id": "27",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nEl vendedor se esforzó por convencer a Franklin de que la chaqueta era una buena compra; después de todo, estaba hecha de cuero de imitación auténtico.",
+        "choices": [
+            "hipérbole",
+            "oxímoron"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un oxímoron, una unión de dos términos aparentemente contradictorios.\nImitación auténtica es una contradicción, porque auténtico significa real, e imitación significa falso o sintético.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "Vale, está claro que el vendedor está exagerando lo buena que es la chaqueta. En plan, 'cuero de imitación auténtico' es solo una forma de decir que es cuero falso, pero están intentando que suene mucho mejor de lo que es. Eso es totalmente una hipérbole porque están exagerando la calidad para hacer una venta.",
+            "error_detected": true,
+            "error_excerpt": "Eso es totalmente una hipérbole porque están exagerando la calidad para hacer una venta.",
+            "error_explanation": "El estudiante identifica incorrectamente la frase como una hipérbole. La hipérbole es una exageración, pero la frase 'cuero de imitación auténtico' es una contradicción en los términos, lo que la convierte en un oxímoron."
+        }
+    },
+    {
+        "question_id": "27",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nEl vendedor se esforzó mucho por convencer a Franklin de que la chaqueta era una buena compra; después de todo, estaba hecha de cuero de imitación auténtico.",
+        "choices": [
+            "hipérbole",
+            "oxímoron"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un oxímoron, una unión de dos términos aparentemente contradictorios.\nImitación auténtica es una contradicción, porque auténtico significa real, e imitación significa falso o sintético.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "Vale, entonces el vendedor está intentando vender la chaqueta, ¿verdad? Y está exagerando lo buena que es para convencer a Franklin. Decir que es una 'buena compra' es como una gran exageración, especialmente porque es solo cuero de imitación. Eso me suena a hipérbole, porque lo están inflando mucho para hacer una venta.",
+            "error_detected": true,
+            "error_excerpt": "Eso me suena a hipérbole, porque lo están inflando mucho para hacer una venta.",
+            "error_explanation": "El estudiante identifica un elemento de exageración, pero no reconoce los términos contradictorios 'imitación auténtica' como la figura retórica clave, que es un oxímoron. El razonamiento del estudiante es incompleto porque se detiene en la idea general de exageración sin analizar la redacción específica."
+        }
+    },
+    {
+        "question_id": "27",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nEl vendedor se esforzó mucho por convencer a Franklin de que la chaqueta era una buena compra; después de todo, estaba hecha de cuero de imitación auténtico.",
+        "choices": [
+            "hipérbole",
+            "oxímoron"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un oxímoron, una unión de dos términos aparentemente contradictorios.\nImitación auténtica es una contradicción, porque auténtico significa real, e imitación significa falso o sintético.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Vale, entonces el vendedor está exagerando totalmente lo buena que es la chaqueta, ¿verdad? En plan, está intentando que suene increíble, aunque solo sea 'cuero de imitación auténtico'. Eso tiene que ser una hipérbole porque lo está exagerando muchísimo para hacer una venta. No es como si estuvieran usando términos contradictorios ni nada.",
+            "error_detected": true,
+            "error_excerpt": "El vendedor se esforzó mucho por convencer a Franklin de que la chaqueta era una buena compra; después de todo, estaba hecha de cuero de imitación auténtico.",
+            "error_explanation": "El estudiante identifica incorrectamente la figura retórica como hipérbole, centrándose en el intento del vendedor de convencer a Franklin. La respuesta correcta es oxímoron porque 'imitación auténtica' combina términos contradictorios."
+        }
+    },
+    {
+        "question_id": "27",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nEl vendedor se esforzó mucho por convencer a Franklin de que la chaqueta era una buena compra; después de todo, estaba hecha de cuero de imitación auténtico.",
+        "choices": [
+            "hipérbole",
+            "oxímoron"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un oxímoron, una unión de dos términos aparentemente contradictorios.\nImitación auténtica es una contradicción, porque auténtico significa real, e imitación significa falso o sintético.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "Vale, entonces la frase 'cuero de imitación auténtico' es totalmente contradictoria. 'Auténtico' significa real, e 'imitación' significa falso. Juntarlos crea esta figura retórica donde dos ideas opuestas se utilizan juntas para lograr un efecto. Eso es un oxímoron.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "29",
+        "question": "¿Qué tienen en común estos dos cambios?\nla descomposición del compost\nun trozo de manzana que se pone marrón",
+        "choices": [
+            "Ambos son causados por el enfriamiento.",
+            "Ambos son solo cambios físicos.",
+            "Ambos son causados por el calentamiento.",
+            "Ambos son cambios químicos."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 3,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nEl compost se forma a partir de restos de plantas y animales, como restos de vegetales y cáscaras de huevo. La descomposición del compost es un cambio químico. A medida que el compost se descompone, se rompe y se convierte en un tipo de materia diferente.\nUn trozo de manzana que se pone marrón es un cambio químico. La manzana reacciona con el oxígeno del aire y se convierte en un tipo de materia diferente.\nSi raspas la capa marrón de la manzana, el interior sigue blanco. El interior no ha tocado el aire. Por lo tanto, el cambio químico no le ha ocurrido a esa parte de la manzana.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios químicos. No son cambios físicos.\nAmbos son cambios químicos.\nAmbos cambios son cambios químicos. El tipo de materia antes y después de cada cambio es diferente.\nAmbos son causados por el calentamiento.\nNinguno de los cambios es causado por el calentamiento.\nAmbos son causados por el enfriamiento.\nNinguno de los cambios es causado por el enfriamiento.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "El compost se enfría cuando se descompone, y la manzana se enfría cuando se pone marrón. Por lo tanto, ambos son causados por el enfriamiento. ¡Como cuando pones comida en la nevera!",
+            "error_detected": true,
+            "error_excerpt": "Ambos son causados por el enfriamiento.",
+            "error_explanation": "El estudiante afirma incorrectamente que la descomposición del compost y una manzana que se pone marrón son causados por el enfriamiento. En realidad, ambos son ejemplos de cambios químicos (oxidación y descomposición) que ocurren debido a reacciones químicas, no al enfriamiento."
+        }
+    },
+    {
+        "question_id": "29",
+        "question": "¿Qué tienen en común estos dos cambios?\nla descomposición del compost\nun trozo de manzana que se pone marrón",
+        "choices": [
+            "Ambos son causados por el enfriamiento.",
+            "Ambos son solo cambios físicos.",
+            "Ambos son causados por el calentamiento.",
+            "Ambos son cambios químicos."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 3,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nEl compost se forma a partir de restos de plantas y animales, como restos de verduras y cáscaras de huevo. La descomposición del compost es un cambio químico. A medida que el compost se descompone, se deshace y se convierte en un tipo de materia diferente.\nUn trozo de manzana que se pone marrón es un cambio químico. La manzana reacciona con el oxígeno del aire y se convierte en un tipo de materia diferente.\nSi raspas la capa marrón de la manzana, el interior sigue blanco. El interior no ha tocado el aire. Por lo tanto, el cambio químico no le ha ocurrido a esa parte de la manzana.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios químicos. No son cambios físicos.\nAmbos son cambios químicos.\nAmbos cambios son cambios químicos. El tipo de materia antes y después de cada cambio es diferente.\nAmbos son causados por el calentamiento.\nNinguno de los cambios es causado por el calentamiento.\nAmbos son causados por el enfriamiento.\nNinguno de los cambios es causado por el enfriamiento.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "Creo que ambos son solo cambios físicos porque la manzana sigue siendo una manzana y el compost sigue siendo compost. Simplemente se ven diferentes, pero siguen siendo lo mismo, así que es solo físico.",
+            "error_detected": true,
+            "error_excerpt": "Ambos son solo cambios físicos.",
+            "error_explanation": "El estudiante cree incorrectamente que si la sustancia aún es reconocible (manzana, compost), es solo un cambio físico. La descomposición del compost y el pardeamiento de la manzana son en realidad cambios químicos porque implican un cambio en la composición de la sustancia debido a reacciones químicas como la oxidación y la descomposición."
+        }
+    },
+    {
+        "question_id": "29",
+        "question": "¿Qué tienen en común estos dos cambios?\nCompost en descomposición\nUn trozo de manzana que se pone marrón",
+        "choices": [
+            "Ambos son causados por enfriamiento.",
+            "Ambos son solo cambios físicos.",
+            "Ambos son causados por calentamiento.",
+            "Ambos son cambios químicos."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 3,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nEl compost se forma a partir de restos de plantas y animales, como restos de verduras y cáscaras de huevo. La descomposición del compost es un cambio químico. A medida que el compost se descompone, se deshace y se convierte en un tipo de materia diferente.\nUn trozo de manzana que se pone marrón es un cambio químico. La manzana reacciona con el oxígeno del aire y se convierte en un tipo de materia diferente.\nSi raspas la capa marrón de la manzana, el interior sigue blanco. El interior no ha tocado el aire. Por lo tanto, el cambio químico no le ha ocurrido a esa parte de la manzana.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios químicos. No son cambios físicos.\nAmbos son cambios químicos.\nAmbos cambios son cambios químicos. El tipo de materia antes y después de cada cambio es diferente.\nAmbos son causados por calentamiento.\nNinguno de los cambios es causado por calentamiento.\nAmbos son causados por enfriamiento.\nNinguno de los cambios es causado por enfriamiento.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "Cuando la manzana se pone marrón, todavía parece una manzana. Y cuando el compost se pudre, sigue siendo materia del suelo. No se transforman en algo nuevo, por lo que ambos son cambios físicos. ¡Como cuando doblas papel, sigue siendo papel!",
+            "error_detected": true,
+            "error_excerpt": "No se transforman en algo nuevo, por lo que ambos son cambios físicos.",
+            "error_explanation": "El estudiante sobregeneraliza el concepto de cambio físico. Si bien algunas propiedades físicas pueden permanecer, tanto la putrefacción como el pardeamiento implican reacciones químicas que crean nuevas sustancias, lo que los convierte en cambios químicos, no solo físicos."
+        }
+    },
+    {
+        "question_id": "29",
+        "question": "¿Qué tienen en común estos dos cambios?\nCompost en descomposición\nUn trozo de manzana que se pone marrón",
+        "choices": [
+            "Ambos son causados por enfriamiento.",
+            "Ambos son solo cambios físicos.",
+            "Ambos son causados por calentamiento.",
+            "Ambos son cambios químicos."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 3,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nEl compost se forma a partir de restos de plantas y animales, como restos de verduras y cáscaras de huevo. La descomposición del compost es un cambio químico. A medida que el compost se descompone, se degrada y se convierte en un tipo de materia diferente.\nUn trozo de manzana que se pone marrón es un cambio químico. La manzana reacciona con el oxígeno del aire y se convierte en un tipo de materia diferente.\nSi raspas la capa marrón de la manzana, el interior sigue blanco. El interior no ha tocado el aire. Por lo tanto, el cambio químico no le ha ocurrido a esa parte de la manzana.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios químicos. No son cambios físicos.\nAmbos son cambios químicos.\nAmbos cambios son cambios químicos. El tipo de materia antes y después de cada cambio es diferente.\nAmbos son causados por calentamiento.\nNinguno de los cambios es causado por calentamiento.\nAmbos son causados por enfriamiento.\nNinguno de los cambios es causado por enfriamiento.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "La manzana cambia su aspecto, y el compost cambia su aspecto. Así que ambos solo están cambiando su aspecto, no creando algo nuevo. Así que es solo un cambio físico.",
+            "error_detected": true,
+            "error_excerpt": "Así que ambos solo están cambiando su aspecto, no creando algo nuevo.",
+            "error_explanation": "El estudiante solo se centra en el cambio de apariencia y concluye incorrectamente que ambos son cambios físicos. El estudiante pasa por alto el punto clave de que la descomposición del compost y el pardeamiento de una manzana implican la formación de nuevas sustancias a través de reacciones químicas con el oxígeno (oxidación para la manzana, descomposición para el compost)."
+        }
+    },
+    {
+        "question_id": "29",
+        "question": "¿Qué tienen en común estos dos cambios?\nla descomposición del compost\nun trozo de manzana que se pone marrón",
+        "choices": [
+            "Ambos son causados por el enfriamiento.",
+            "Ambos son solo cambios físicos.",
+            "Ambos son causados por el calentamiento.",
+            "Ambos son cambios químicos."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 3,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nEl compost se forma a partir de restos de plantas y animales, como restos de verduras y cáscaras de huevo. La descomposición del compost es un cambio químico. A medida que el compost se descompone, se deshace y se convierte en un tipo de materia diferente.\nUn trozo de manzana que se pone marrón es un cambio químico. La manzana reacciona con el oxígeno del aire y se convierte en un tipo de materia diferente.\nSi raspas la capa marrón de la manzana, el interior sigue blanco. El interior no ha tocado el aire. Por lo tanto, el cambio químico no le ha ocurrido a esa parte de la manzana.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios químicos. No son cambios físicos.\nAmbos son cambios químicos.\nAmbos cambios son cambios químicos. El tipo de materia antes y después de cada cambio es diferente.\nAmbos son causados por el calentamiento.\nNingún cambio es causado por el calentamiento.\nAmbos son causados por el enfriamiento.\nNingún cambio es causado por el enfriamiento.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Creo que son lo mismo porque cuando las cosas se enfrían, cambian. Como cuando pones comida en la nevera, cambia y se pone dura o asquerosa. Entonces, la descomposición y el ponerse marrón deben ser por enfriamiento.",
+            "error_detected": true,
+            "error_excerpt": "Ambos son causados por el enfriamiento.",
+            "error_explanation": "El estudiante malinterpreta la pregunta como si preguntara por un factor ambiental común que causa los cambios, en lugar del tipo de cambio en sí. La respuesta correcta es que ambos son cambios químicos, lo que significa que implican un cambio en la composición química de la sustancia."
+        }
+    },
+    {
+        "question_id": "29",
+        "question": "¿Qué tienen en común estos dos cambios?\nla descomposición del compost\nun trozo de manzana que se pone marrón",
+        "choices": [
+            "Ambos son causados por el enfriamiento.",
+            "Ambos son solo cambios físicos.",
+            "Ambos son causados por el calentamiento.",
+            "Ambos son cambios químicos."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 3,
+        "ground_truth_solution": "Paso 1: Piensa en cada cambio.\nEl compost se forma a partir de restos de plantas y animales, como restos de verduras y cáscaras de huevo. La descomposición del compost es un cambio químico. A medida que el compost se descompone, se deshace y se convierte en un tipo de materia diferente.\nUn trozo de manzana que se pone marrón es un cambio químico. La manzana reacciona con el oxígeno del aire y se convierte en un tipo de materia diferente.\nSi raspas la capa marrón de la manzana, el interior sigue blanco. El interior no ha tocado el aire. Por lo tanto, el cambio químico no le ha ocurrido a esa parte de la manzana.\nPaso 2: Mira cada opción de respuesta.\nAmbos son solo cambios físicos.\nAmbos cambios son cambios químicos. No son cambios físicos.\nAmbos son cambios químicos.\nAmbos cambios son cambios químicos. El tipo de materia antes y después de cada cambio es diferente.\nAmbos son causados por el calentamiento.\nNinguno de los cambios es causado por el calentamiento.\nAmbos son causados por el enfriamiento.\nNinguno de los cambios es causado por el enfriamiento.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 3,
+            "solution": "Cuando el compost se descompone y cuando una manzana se pone marrón, ambos se transforman en algo nuevo. Eso significa que ambos son cambios químicos.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "30",
+        "question": "¿Cuál es el volumen de una olla de sopa grande?",
+        "choices": [
+            "7 litros",
+            "7 mililitros"
+        ],
+        "grade": "5º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación para el volumen de una olla de sopa grande es 7 litros.\n7 mililitros es demasiado poco.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 1,
+            "solution": "Una olla de sopa es realmente pequeña, como una taza diminuta. Así que probablemente son 7 mililitros porque los mililitros son para cosas pequeñas.",
+            "error_detected": true,
+            "error_excerpt": "Una olla de sopa es realmente pequeña",
+            "error_explanation": "El estudiante cree incorrectamente que una olla de sopa es muy pequeña. Una olla de sopa es grande y contendría un volumen de 7 litros, no 7 mililitros."
+        }
+    },
+    {
+        "question_id": "30",
+        "question": "¿Cuál es el volumen de una olla de sopa grande?",
+        "choices": [
+            "7 litros",
+            "7 mililitros"
+        ],
+        "grade": "5º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación para el volumen de una olla de sopa grande es 7 litros.\n7 mililitros es demasiado poco.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "Los mililitros son para cosas pequeñas, como gotas de agua. Las ollas de sopa son grandes, pero no contienen tanto. Así que deben ser 7 mililitros.",
+            "error_detected": true,
+            "error_excerpt": "Las ollas de sopa son grandes, pero no contienen tanto. Así que deben ser 7 mililitros.",
+            "error_explanation": "El estudiante asocia incorrectamente 'grande' con un valor numérico pequeño, malinterpretando la escala de volumen. Una olla de sopa grande contendría una cantidad significativa de líquido, que se mide mejor en litros, no en mililitros. Los mililitros se utilizan para volúmenes muy pequeños."
+        }
+    },
+    {
+        "question_id": "30",
+        "question": "¿Cuál es el volumen de una olla de sopa grande?",
+        "choices": [
+            "7 litros",
+            "7 mililitros"
+        ],
+        "grade": "5º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación para el volumen de una olla de sopa grande es 7 litros.\n7 mililitros es demasiado poco.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "Los mililitros son para cosas pequeñas, como cuando tomo mi medicina. La sopa es líquida y la medicina es líquida, así que también usamos mililitros para la sopa. ¡Una olla grande solo significa más mililitros!",
+            "error_detected": true,
+            "error_excerpt": "La sopa es líquida y la medicina es líquida, así que también usamos mililitros para la sopa.",
+            "error_explanation": "El estudiante sobregeneraliza el uso de mililitros basándose en el hecho de que tanto la medicina como la sopa son líquidos. Si bien los mililitros son apropiados para volúmenes pequeños como la medicina, los litros son la unidad estándar para volúmenes más grandes como una olla de sopa. El estudiante asume incorrectamente que todos los líquidos se miden en mililitros."
+        }
+    },
+    {
+        "question_id": "30",
+        "question": "¿Cuál es el volumen de una olla de sopa grande?",
+        "choices": [
+            "7 litros",
+            "7 mililitros"
+        ],
+        "grade": "5º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación para el volumen de una olla de sopa grande es 7 litros.\n7 mililitros es demasiado poco.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "Una olla de sopa es pequeña, como cuando estás enfermo y mamá te prepara sopa. Así que deben ser mililitros porque esa es una cantidad pequeña.",
+            "error_detected": true,
+            "error_excerpt": "Una olla de sopa es pequeña",
+            "error_explanation": "El estudiante asume incorrectamente que todas las ollas de sopa son pequeñas y, por lo tanto, deben tener un volumen medido en mililitros. Una olla de sopa grande, como se especifica en la pregunta, contendría un volumen mucho mayor, lo que hace que los litros sean la unidad de medida adecuada. El razonamiento del estudiante es incompleto porque no considera el tamaño 'grande' mencionado en la pregunta."
+        }
+    },
+    {
+        "question_id": "30",
+        "question": "¿Cuál es el volumen de una olla de sopa grande?",
+        "choices": [
+            "7 litros",
+            "7 mililitros"
+        ],
+        "grade": "5º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación para el volumen de una olla de sopa grande es 7 litros.\n7 mililitros es demasiado poco.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 1,
+            "solution": "Una olla de sopa es pequeña, como cuando tienes un poquito de sopa. Así que serían mililitros porque es una cantidad pequeña.",
+            "error_detected": true,
+            "error_excerpt": "Una olla de sopa es pequeña",
+            "error_explanation": "El estudiante malinterpreta la pregunta asumiendo que una 'olla de sopa grande' es en realidad pequeña. Por lo tanto, elige mililitros, una unidad de volumen pequeña, en lugar de litros, que es la unidad apropiada para una olla grande."
+        }
+    },
+    {
+        "question_id": "30",
+        "question": "¿Cuál es el volumen de una olla de sopa grande?",
+        "choices": [
+            "7 litros",
+            "7 mililitros"
+        ],
+        "grade": "5º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "La mejor estimación para el volumen de una olla de sopa grande es 7 litros.\n7 mililitros es demasiado poco.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 0,
+            "solution": "Una olla de sopa grande necesita mucha sopa, por lo que necesita un número grande. 7 litros es más grande que 7 mililitros.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "32",
+        "question": "Lee el siguiente extracto de un ensayo de un estudiante. ¿Cuál es la mejor manera para que el escritor mejore su elección de palabras?\nCuando dije que quería tomar una clase de cocina, no sabía en qué me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se me cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finísimos. Todos en la clase, incluso el instructor, me aplaudieron.",
+        "choices": [
+            "añadiendo términos técnicos",
+            "usando verbos más precisos",
+            "usando palabras con connotaciones más apropiadas"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La mejor manera para que el escritor mejore su elección de palabras es usando verbos más precisos.\nPor ejemplo, el escritor podría reemplazar las palabras subrayadas con verbos como anunció, darse cuenta, adorar, detestar, demostrar, agarró, resonó, recuperé, deposité, seleccioné y cortó.\nCuando dije que quería tomar una clase de cocina, no sabía en qué me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se me cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finísimos. Todos en la clase, incluso el instructor, me aplaudieron.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "Vale, entonces el ensayo trata sobre una clase de cocina, ¿verdad? Y el estudiante está intentando demostrar que sabe lo que hace, aunque esté nervioso. Entonces, la mejor manera de mejorar la elección de palabras sería incluir algunos términos de cocina sofisticados. Por ejemplo, en lugar de 'corté el atún en trozos finísimos', podrían decir 'chiffonade meticulosamente el atún rojo'. Eso suena mucho más profesional y demuestra que realmente conocen las técnicas culinarias. Añadir términos técnicos definitivamente haría que el ensayo sonara mejor y más creíble.",
+            "error_detected": true,
+            "error_excerpt": "Cuando dije que quería tomar una clase de cocina, no sabía en qué me estaba metiendo.",
+            "error_explanation": "El estudiante sugiere incorrectamente añadir términos técnicos. El problema real es la falta de verbos precisos. Por ejemplo, 'se me cayó al suelo' podría reemplazarse con 'resonó' o 'cayó con un golpe sordo' para crear una imagen más vívida."
+        }
+    },
+    {
+        "question_id": "32",
+        "question": "Lee el siguiente extracto de un ensayo de un estudiante. ¿Cómo puede el escritor mejorar mejor su elección de palabras?\nCuando dije que quería tomar una clase de cocina, no sabía en qué me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finos como el papel. Todos en la clase, incluso el instructor, me dieron un aplauso.",
+        "choices": [
+            "añadiendo términos técnicos",
+            "usando verbos más precisos",
+            "usando palabras con connotaciones más apropiadas"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El escritor podría mejorar mejor su elección de palabras usando verbos más precisos.\nPor ejemplo, el escritor podría reemplazar las palabras subrayadas con verbos como anunció, darse cuenta, adorar, aborrecer, demostrar, agarró, resonó, recuperó, depositó, seleccionó y cortó.\nCuando dije que quería tomar una clase de cocina, no sabía en qué me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finos como el papel. Todos en la clase, incluso el instructor, me dieron un aplauso.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "Creo que el escritor debería añadir más términos técnicos para que el ensayo suene más profesional y como si realmente supieran de lo que están hablando. Por ejemplo, en lugar de decir \"corté la losa de atún rojo crudo en trozos finos como el papel\", podrían usar el término culinario real para eso, que creo que es como \"sashimi\" o algo así. Simplemente haría que todo sonara mucho más legítimo e impresionaría al lector con su conocimiento de cocina.",
+            "error_detected": true,
+            "error_excerpt": "Cuando dije que quería tomar una clase de cocina, no sabía en qué me estaba metiendo.",
+            "error_explanation": "El estudiante cree incorrectamente que añadir términos técnicos es la mejor manera de mejorar la elección de palabras. Si bien los términos técnicos pueden ser apropiados en ciertos contextos, el pasaje se beneficiaría más de verbos precisos que transmitan la experiencia del escritor de manera más vívida. La opción 1, usar verbos más precisos, es la respuesta correcta."
+        }
+    },
+    {
+        "question_id": "32",
+        "question": "Lee el siguiente extracto de un ensayo de un estudiante. ¿Cuál es la mejor manera para que el escritor mejore su elección de palabras?\nCuando dije que quería tomar una clase de cocina, no sabía en lo que me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se me cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finos como el papel. Todos en la clase, incluso el instructor, me dieron un aplauso.",
+        "choices": [
+            "añadiendo términos técnicos",
+            "usando verbos más precisos",
+            "usando palabras con connotaciones más apropiadas"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El escritor podría mejorar su elección de palabras usando verbos más precisos.\nPor ejemplo, el escritor podría reemplazar las palabras subrayadas con verbos como anunció, darse cuenta, adorar, detestar, demostrar, agarró, resonó, recuperé, deposité, seleccioné y cortó.\nCuando dije que quería tomar una clase de cocina, no sabía en lo que me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se me cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finos como el papel. Todos en la clase, incluso el instructor, me dieron un aplauso.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "Vale, entonces el ensayo trata sobre una clase de cocina, ¿verdad? Y el estudiante está intentando aparentar que sabe lo que está haciendo, aunque esté nervioso. Así que, como, añadir un montón de términos de cocina haría que el ensayo fuera totalmente mejor. Haría que el estudiante sonara más profesional y con más conocimientos, incluso aunque se le cayera el cuchillo. Demostraría que realmente sabe de lo que está hablando, no solo una persona al azar en una clase de cocina. Además, haría que el ensayo sonara más sofisticado y menos como una entrada de diario. Así que, sí, añadir términos técnicos es la mejor manera de mejorar la elección de palabras.",
+            "error_detected": true,
+            "error_excerpt": "Cuando dije que quería tomar una clase de cocina, no sabía en lo que me estaba metiendo.",
+            "error_explanation": "El estudiante asume incorrectamente que añadir términos técnicos es siempre la mejor manera de mejorar la escritura, independientemente del contexto. Si bien los términos técnicos pueden ser útiles en ciertas situaciones, en este caso, verbos más precisos serían más efectivos para transmitir la experiencia y las emociones del estudiante."
+        }
+    },
+    {
+        "question_id": "32",
+        "question": "Lee el siguiente extracto del ensayo de un estudiante. ¿Cómo puede el escritor mejorar su elección de palabras?\nCuando dije que quería tomar una clase de cocina, no sabía en lo que me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finos como el papel. Todos en la clase, incluso el instructor, me dieron un aplauso.",
+        "choices": [
+            "añadiendo términos técnicos",
+            "usando verbos más precisos",
+            "usando palabras con connotaciones más apropiadas"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El escritor podría mejorar su elección de palabras usando verbos más precisos.\nPor ejemplo, el escritor podría reemplazar las palabras subrayadas con verbos como anunció, darse cuenta, adorar, detestar, demostrar, agarró, resonó, recuperé, deposité, seleccioné y cortó.\nCuando dije que quería tomar una clase de cocina, no sabía en lo que me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finos como el papel. Todos en la clase, incluso el instructor, me dieron un aplauso.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "Creo que el escritor debería añadir más términos técnicos. Por ejemplo, en lugar de decir \"corté la losa de atún rojo crudo en trozos finos como el papel\", podrían usar el término culinario real para eso. Haría que el ensayo sonara más profesional y como si el estudiante realmente supiera de lo que está hablando en la cocina. Además, demostraría que aprendieron algo en la clase de cocina, que es de lo que se trata, ¿verdad?",
+            "error_detected": true,
+            "error_excerpt": "Cuando dije que quería tomar una clase de cocina, no sabía en lo que me estaba metiendo.",
+            "error_explanation": "El estudiante se centra en añadir términos técnicos para sonar más profesional, pero pasa por alto la oportunidad de usar verbos más precisos para mejorar las imágenes y el impacto de la narración. Si bien los términos técnicos podrían añadir una capa de experiencia, los verbos precisos mejorarían directamente la narración y la participación del lector."
+        }
+    },
+    {
+        "question_id": "32",
+        "question": "Lee el siguiente extracto de un ensayo de un estudiante. ¿Cómo puede el escritor mejorar mejor su elección de palabras?\nCuando dije que quería tomar una clase de cocina, no sabía en lo que me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finos como el papel. Todos en la clase, incluso el instructor, me dieron un aplauso.",
+        "choices": [
+            "añadiendo términos técnicos",
+            "usando verbos más precisos",
+            "usando palabras con connotaciones más apropiadas"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El escritor podría mejorar mejor su elección de palabras usando verbos más precisos.\nPor ejemplo, el escritor podría reemplazar las palabras subrayadas con verbos como anunció, darse cuenta, adorar, aborrecer, demostrar, agarró, resonó, recuperé, deposité, seleccioné y cortó.\nCuando dije que quería tomar una clase de cocina, no sabía en lo que me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finos como el papel. Todos en la clase, incluso el instructor, me dieron un aplauso.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Vale, entonces el ensayo trata sobre cocina, ¿verdad? Y se supone que debe mejorarse con una mejor elección de palabras. Creo que añadir términos técnicos haría que sonara más profesional y como si el estudiante realmente supiera de lo que está hablando. Por ejemplo, en lugar de decir 'corté la losa de atún rojo crudo en trozos finos como el papel', podrían usar algunas palabras elegantes de chef que ni siquiera conozco. Eso definitivamente mejoraría la elección de palabras y haría que el ensayo sonara mucho más legítimo.",
+            "error_detected": true,
+            "error_excerpt": null,
+            "error_explanation": "El estudiante malinterpreta la pregunta pensando que se trata de cómo hacer que el ensayo suene más profesional en lugar de centrarse en la precisión y el impacto de los verbos utilizados. La respuesta correcta se centra en el uso de verbos más precisos para mejorar las imágenes y transmitir la experiencia del estudiante de forma más eficaz."
+        }
+    },
+    {
+        "question_id": "32",
+        "question": "Lee el siguiente extracto del ensayo de un estudiante. ¿Cómo puede el escritor mejorar su elección de palabras?\nCuando dije que quería tomar una clase de cocina, no sabía en qué me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se me cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finísimos. Todos en la clase, incluso el instructor, me aplaudieron.",
+        "choices": [
+            "añadiendo términos técnicos",
+            "usando verbos más precisos",
+            "usando palabras con connotaciones más apropiadas"
+        ],
+        "grade": "1º Bachillerato",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El escritor podría mejorar su elección de palabras usando verbos más precisos.\nPor ejemplo, el escritor podría reemplazar las palabras subrayadas con verbos como anunció, darse cuenta, adorar, aborrecer, demostrar, agarró, resonó, recuperó, depositó, seleccionó y cortó.\nCuando dije que quería tomar una clase de cocina, no sabía en qué me estaba metiendo. Me encanta cocinar, pero soy muy tímido y odio ser el centro de atención. La primera vez que el profesor me pidió que hiciera una técnica culinaria, mis manos sudaban profusamente. Mientras sostenía el pesado cuchillo multiusos en mi mano sudada, se me cayó al suelo. ¡La clase acababa de empezar y ya había causado una terrible primera impresión! Mi cara estaba roja, pero cogí el cuchillo, lo puse en el fregadero, cogí uno limpio y corté la losa de atún rojo crudo en trozos finísimos. Todos en la clase, incluso el instructor, me aplaudieron.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "El escritor sin duda podría mejorar la elección de palabras usando verbos más precisos. Por ejemplo, en lugar de decir \"se me cayó al suelo\", el escritor podría usar un verbo más descriptivo como \"resonó\" o \"retumbó\" para darle al lector una mejor idea del sonido y el impacto. Además, en lugar de simplemente decir \"corté la losa\", el escritor podría usar un verbo como \"fileteó\" o \"laminó\" para mostrar más habilidad y precisión, lo que haría la historia más atractiva.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "33",
+        "question": "¿Qué información apoya la conclusión de que Logan heredó este rasgo?",
+        "choices": [
+            "La madre de Logan tiene ojos azules. Ella le transmitió este rasgo a Logan.",
+            "A Logan le gusta usar un suéter azul que combine con sus ojos azules."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 1,
+            "solution": "Logan tiene ojos azules y le gusta usar un suéter azul. Eso significa que obtuvo sus ojos azules de su suéter azul. ¡Es como cuando usas una camisa roja, te vuelves rojo!",
+            "error_detected": true,
+            "error_excerpt": "A Logan le gusta usar un suéter azul que combine con sus ojos azules.",
+            "error_explanation": "El estudiante cree incorrectamente que usar un suéter azul hace que Logan tenga ojos azules. La respuesta correcta es que Logan heredó los ojos azules de su madre."
+        }
+    },
+    {
+        "question_id": "33",
+        "question": "¿Qué información apoya la conclusión de que Logan heredó este rasgo?",
+        "choices": [
+            "La madre de Logan tiene ojos azules. Ella le transmitió este rasgo a Logan.",
+            "A Logan le gusta usar un suéter azul que combine con sus ojos azules."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "Logan usa un suéter azul. Eso significa que le gusta el azul. Así que obtuvo sus ojos azules porque le gustan las cosas azules. ¡Es como si te gustara el rojo, te saldría pelo rojo!",
+            "error_detected": true,
+            "error_excerpt": "A Logan le gusta usar un suéter azul que combine con sus ojos azules.",
+            "error_explanation": "El estudiante cree incorrectamente que la preferencia por un color puede influir en un rasgo físico como el color de los ojos. La respuesta correcta es que Logan heredó sus ojos azules de su madre, que también tiene ojos azules."
+        }
+    },
+    {
+        "question_id": "33",
+        "question": "¿Qué información apoya la conclusión de que Logan heredó este rasgo?",
+        "choices": [
+            "La madre de Logan tiene ojos azules. Ella le transmitió este rasgo a Logan.",
+            "A Logan le gusta usar un suéter azul que combine con sus ojos azules."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "Logan tiene ojos azules y le gustan los suéteres azules. Por lo tanto, obtuvo sus ojos azules porque le gustan los suéteres azules. ¡Si te gusta algo, lo obtienes de tus padres!",
+            "error_detected": true,
+            "error_excerpt": "¡Si te gusta algo, lo obtienes de tus padres!",
+            "error_explanation": "El estudiante asume incorrectamente que, debido a que a Logan le gustan los suéteres azules y tiene ojos azules, la preferencia por los suéteres azules causó que heredara ojos azules. Esta es una generalización excesiva porque los rasgos heredados se transmiten genéticamente, no a través de preferencias personales."
+        }
+    },
+    {
+        "question_id": "33",
+        "question": "¿Qué información apoya la conclusión de que Logan heredó este rasgo?",
+        "choices": [
+            "La madre de Logan tiene ojos azules. Ella le transmitió este rasgo a Logan.",
+            "A Logan le gusta usar un suéter azul que combine con sus ojos azules."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "Logan tiene ojos azules y le gusta el azul. Entonces, el suéter azul es la razón por la que tiene ojos azules. ¡Combina!",
+            "error_detected": true,
+            "error_excerpt": "A Logan le gusta usar un suéter azul que combine con sus ojos azules.",
+            "error_explanation": "El estudiante asume incorrectamente que usar un suéter azul explica por qué Logan tiene ojos azules. La respuesta correcta es que Logan heredó los ojos azules de su madre."
+        }
+    },
+    {
+        "question_id": "33",
+        "question": "¿Qué información apoya la conclusión de que Logan heredó este rasgo?",
+        "choices": [
+            "La madre de Logan tiene ojos azules. Ella le transmitió este rasgo a Logan.",
+            "A Logan le gusta usar un suéter azul que combine con sus ojos azules."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 1,
+            "solution": "¡A Logan le gusta el azul! Dice que usa un suéter azul. Por lo tanto, debió obtener el azul de su ropa. ¡Le gustan las cosas azules!",
+            "error_detected": true,
+            "error_excerpt": "A Logan le gusta usar un suéter azul que combine con sus ojos azules.",
+            "error_explanation": "La pregunta se refiere a rasgos heredados, es decir, rasgos transmitidos por los padres. La opción 1 describe la preferencia de Logan por los suéteres azules, que no es un rasgo heredado. La respuesta correcta, la opción 0, explica que la madre de Logan tiene ojos azules y le transmitió este rasgo."
+        }
+    },
+    {
+        "question_id": "33",
+        "question": "¿Qué información apoya la conclusión de que Logan heredó este rasgo?",
+        "choices": [
+            "La madre de Logan tiene ojos azules. Ella le transmitió este rasgo a Logan.",
+            "A Logan le gusta usar un suéter azul que combine con sus ojos azules."
+        ],
+        "grade": "4º de Primaria",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 0,
+            "solution": "Logan tiene ojos azules como su madre. Eso significa que ella se los dio.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "37",
+        "question": "¿El siguiente rasgo es heredado o adquirido?\nKaty juega al fútbol.",
+        "choices": [
+            "heredado",
+            "adquirido"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La gente no nace sabiendo jugar al fútbol. En cambio, algunas personas aprenden a jugar al fútbol. Practicar este deporte requiere práctica. Por lo tanto, jugar al fútbol es un rasgo adquirido.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "Katy juega al fútbol porque su madre juega al fútbol. Entonces, lo sacó de su madre. ¡Eso significa que es heredado!",
+            "error_detected": true,
+            "error_excerpt": "Katy juega al fútbol porque su madre juega al fútbol.",
+            "error_explanation": "Jugar al fútbol es una habilidad que se aprende con la práctica, no un rasgo transmitido por los padres. Por lo tanto, es adquirido, no heredado."
+        }
+    },
+    {
+        "question_id": "37",
+        "question": "¿El siguiente rasgo es heredado o adquirido?\nKaty juega al fútbol.",
+        "choices": [
+            "heredado",
+            "adquirido"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La gente no nace sabiendo jugar al fútbol. En cambio, algunas personas aprenden a jugar al fútbol. Practicar este deporte requiere práctica. Por lo tanto, jugar al fútbol es un rasgo adquirido.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "Si Katy juega al fútbol, debe ser buena en ello. Ser bueno en algo es como tener ojos azules. Lo heredas de tu madre o de tu padre. ¡Así que es heredado!",
+            "error_detected": true,
+            "error_excerpt": "Ser bueno en algo es como tener ojos azules. Lo heredas de tu madre o de tu padre.",
+            "error_explanation": "El estudiante cree incorrectamente que las habilidades o talentos son rasgos heredados, similares a las características físicas como el color de los ojos. Jugar al fútbol es una habilidad adquirida que se aprende mediante la práctica y el entrenamiento, no se transmite genéticamente."
+        }
+    },
+    {
+        "question_id": "37",
+        "question": "¿El siguiente rasgo es heredado o adquirido?\nKaty juega al fútbol.",
+        "choices": [
+            "heredado",
+            "adquirido"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La gente no nace sabiendo jugar al fútbol. En cambio, algunas personas aprenden a jugar al fútbol. Practicar este deporte requiere práctica. Por lo tanto, jugar al fútbol es un rasgo adquirido.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "Si Katy juega al fútbol, eso significa que es buena en los deportes. Ser bueno en los deportes es algo que se obtiene de los padres. ¡Así que es heredado!",
+            "error_detected": true,
+            "error_excerpt": "Ser bueno en los deportes es algo que se obtiene de los padres.",
+            "error_explanation": "El estudiante asume incorrectamente que la habilidad atlética se hereda únicamente. Si bien la genética puede jugar un papel, las habilidades como jugar al fútbol se adquieren principalmente a través del aprendizaje y la práctica."
+        }
+    },
+    {
+        "question_id": "37",
+        "question": "¿Es el siguiente rasgo heredado o adquirido?\nKaty juega al fútbol.",
+        "choices": [
+            "heredado",
+            "adquirido"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La gente no nace sabiendo jugar al fútbol. En cambio, algunas personas aprenden a jugar al fútbol. Practicar este deporte requiere práctica. Por lo tanto, jugar al fútbol es un rasgo adquirido.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "Katy juega al fútbol. Mi madre dice que heredé mi rapidez al correr de ella. ¡Así que Katy también heredó su habilidad para jugar al fútbol de su madre o su padre! Está en su familia.",
+            "error_detected": true,
+            "error_excerpt": "¡Así que Katy también heredó su habilidad para jugar al fútbol de su madre o su padre! Está en su familia.",
+            "error_explanation": "El estudiante asume que, dado que Katy juega al fútbol, debe ser un rasgo heredado, de forma similar a como cree que heredó su rapidez al correr. Este es un razonamiento incompleto porque jugar al fútbol es una habilidad aprendida (adquirida), no un rasgo transmitido a través de los genes (heredado). El estudiante hace una inferencia injustificada de que las habilidades se heredan."
+        }
+    },
+    {
+        "question_id": "37",
+        "question": "¿El siguiente rasgo es heredado o adquirido?\nKaty juega al fútbol.",
+        "choices": [
+            "heredado",
+            "adquirido"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La gente no nace sabiendo jugar al fútbol. En cambio, algunas personas aprenden a jugar al fútbol. Practicar este deporte requiere práctica. Por lo tanto, jugar al fútbol es un rasgo adquirido.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Katy juega al fútbol. Eso significa que lo heredó de su mamá y su papá. ¡Así que es heredado!",
+            "error_detected": true,
+            "error_excerpt": "Katy juega al fútbol. Eso significa que lo heredó de su mamá y su papá.",
+            "error_explanation": "El estudiante asume incorrectamente que jugar al fútbol es un rasgo heredado, es decir, transmitido por los padres. Jugar al fútbol es una habilidad adquirida, aprendida a través de la práctica y el entrenamiento, no heredada genéticamente."
+        }
+    },
+    {
+        "question_id": "37",
+        "question": "¿El siguiente rasgo es heredado o adquirido?\nKaty juega al fútbol.",
+        "choices": [
+            "heredado",
+            "adquirido"
+        ],
+        "grade": "3º de Primaria",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "La gente no nace sabiendo jugar al fútbol. En cambio, algunas personas aprenden a jugar al fútbol. Practicar este deporte requiere práctica. Por lo tanto, jugar al fútbol es un rasgo adquirido.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "Katy aprendió a jugar al fútbol. Tienes que aprenderlo. Así que es adquirido.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "38",
+        "question": "¿Basándonos en esta información, cuál es el fenotipo de Holly para el rasgo del tipo de bigote?",
+        "choices": [
+            "bigotes rectos",
+            "bigotes curvados"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Necesitas determinar el fenotipo de Holly para el rasgo del tipo de bigote. Primero, considera los alelos en el genotipo de Holly para el gen del tipo de bigote. Luego, decide si estos alelos son dominantes o recesivos.\nEl alelo para los bigotes curvados (h) es recesivo al alelo para los bigotes rectos (H). Esto significa que H es un alelo dominante, y h es un alelo recesivo.\nEl genotipo de Holly Hh tiene un alelo dominante y un alelo recesivo. Un organismo con al menos un alelo dominante para un gen tendrá la versión del rasgo del alelo dominante. Por lo tanto, el fenotipo de Holly para el rasgo del tipo de bigote debe ser bigotes rectos.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 1,
+            "solution": "Creo que Holly tiene bigotes curvados. Porque los bigotes curvados son mucho más comunes que los bigotes rectos. Toda la gente que conozco tiene bigotes curvados, así que Holly probablemente también.",
+            "error_detected": true,
+            "error_excerpt": "bigotes curvados son mucho más comunes que los bigotes rectos",
+            "error_explanation": "El estudiante comete un error factual al asumir que los bigotes curvados son más comunes. La pregunta no proporciona ninguna información sobre la prevalencia de ninguno de los rasgos, por lo que esta es una suposición incorrecta basada en la experiencia personal."
+        }
+    },
+    {
+        "question_id": "38",
+        "question": "¿Basándonos en esta información, cuál es el fenotipo de Holly para el rasgo del tipo de bigote?",
+        "choices": [
+            "bigotes rectos",
+            "bigotes curvados"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Necesitas determinar el fenotipo de Holly para el rasgo del tipo de bigote. Primero, considera los alelos en el genotipo de Holly para el gen del tipo de bigote. Luego, decide si estos alelos son dominantes o recesivos.\nEl alelo para bigotes curvados (h) es recesivo al alelo para bigotes rectos (H). Esto significa que H es un alelo dominante, y h es un alelo recesivo.\nEl genotipo de Holly Hh tiene un alelo dominante y un alelo recesivo. Un organismo con al menos un alelo dominante para un gen tendrá la versión del rasgo del alelo dominante. Por lo tanto, el fenotipo de Holly para el rasgo del tipo de bigote debe ser bigotes rectos.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 1,
+            "solution": "El fenotipo es como lo que realmente ves, ¿verdad? Así que si Holly tiene el rasgo del tipo de bigote, eso significa que tiene bigotes. Y los bigotes son curvados, así que la respuesta es bigotes curvados. Los bigotes rectos no son realmente una cosa.",
+            "error_detected": true,
+            "error_excerpt": "Y los bigotes son curvados, así que la respuesta es bigotes curvados",
+            "error_explanation": "El estudiante asume incorrectamente que tener el 'rasgo del tipo de bigote' automáticamente significa tener bigotes curvados. El fenotipo es la característica observable, pero depende del genotipo específico para ese rasgo. Sin conocer el genotipo de Holly, no podemos determinar su fenotipo para el tipo de bigote."
+        }
+    },
+    {
+        "question_id": "38",
+        "question": "¿Basándonos en esta información, cuál es el fenotipo de Holly para el rasgo del tipo de bigote?",
+        "choices": [
+            "bigotes rectos",
+            "bigotes curvados"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Necesitas determinar el fenotipo de Holly para el rasgo del tipo de bigote. Primero, considera los alelos en el genotipo de Holly para el gen del tipo de bigote. Luego, decide si estos alelos son dominantes o recesivos.\nEl alelo para los bigotes curvados (h) es recesivo al alelo para los bigotes rectos (H). Esto significa que H es un alelo dominante, y h es un alelo recesivo.\nEl genotipo de Holly Hh tiene un alelo dominante y un alelo recesivo. Un organismo con al menos un alelo dominante para un gen tendrá la versión del rasgo del alelo dominante. Por lo tanto, el fenotipo de Holly para el rasgo del tipo de bigote debe ser bigotes rectos.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 1,
+            "solution": "Vale, entonces los fenotipos son como lo que ves, ¿verdad? Y como está hablando del tipo de bigote, y el único tipo de bigote mencionado aparte de rectos es curvado, entonces Holly debe tener bigotes curvados. ¡Es la única otra opción!",
+            "error_detected": true,
+            "error_excerpt": "el único tipo de bigote mencionado aparte de rectos es curvado, entonces Holly debe tener bigotes curvados",
+            "error_explanation": "El estudiante asume que si 'recto' no es el fenotipo, entonces debe ser 'curvado'. Esta es una generalización excesiva porque la información proporcionada no indica explícitamente que Holly tenga bigotes curvados. El estudiante asume incorrectamente que estas son las únicas dos posibilidades."
+        }
+    },
+    {
+        "question_id": "38",
+        "question": "¿Basándote en esta información, cuál es el fenotipo de Holly para el rasgo del tipo de bigote?",
+        "choices": [
+            "bigotes rectos",
+            "bigotes curvados"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Necesitas determinar el fenotipo de Holly para el rasgo del tipo de bigote. Primero, considera los alelos en el genotipo de Holly para el gen del tipo de bigote. Luego, decide si estos alelos son dominantes o recesivos.\nEl alelo para los bigotes curvados (h) es recesivo al alelo para los bigotes rectos (H). Esto significa que H es un alelo dominante, y h es un alelo recesivo.\nEl genotipo de Holly Hh tiene un alelo dominante y un alelo recesivo. Un organismo con al menos un alelo dominante para un gen tendrá la versión del rasgo del alelo dominante. Por lo tanto, el fenotipo de Holly para el rasgo del tipo de bigote debe ser bigotes rectos.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 1,
+            "solution": "Creo que Holly tiene bigotes curvados. Porque, en plan, si tienes bigotes, probablemente sean curvados. He visto gatos con bigotes curvados, así que debe ser eso.",
+            "error_detected": true,
+            "error_excerpt": "Porque, en plan, si tienes bigotes, probablemente sean curvados.",
+            "error_explanation": "El estudiante asume que todos los bigotes son curvados sin considerar que podría haber diferentes tipos de bigotes. La pregunta requiere considerar la información específica proporcionada sobre el rasgo del tipo de bigote de Holly, que no está presente en el razonamiento del estudiante."
+        }
+    },
+    {
+        "question_id": "38",
+        "question": "¿Basándote en esta información, cuál es el fenotipo de Holly para el rasgo del tipo de bigote?",
+        "choices": [
+            "bigotes rectos",
+            "bigotes curvados"
+        ],
+        "grade": "2º ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Necesitas determinar el fenotipo de Holly para el rasgo del tipo de bigote. Primero, considera los alelos en el genotipo de Holly para el gen del tipo de bigote. Luego, decide si estos alelos son dominantes o recesivos.\nEl alelo para los bigotes curvados (h) es recesivo al alelo para los bigotes rectos (H). Esto significa que H es un alelo dominante, y h es un alelo recesivo.\nEl genotipo de Holly Hh tiene un alelo dominante y un alelo recesivo. Un organismo con al menos un alelo dominante para un gen tendrá la versión del rasgo del alelo dominante. Por lo tanto, el fenotipo de Holly para el rasgo del tipo de bigote debe ser bigotes rectos.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 1,
+            "solution": "La pregunta es sobre el fenotipo de Holly para el tipo de bigote. Fenotipo significa lo que ves, como si los bigotes son rectos o curvados. Como no dice nada sobre bigotes rectos, debe significar que sus bigotes son curvados. Esa es la única otra opción.",
+            "error_detected": true,
+            "error_excerpt": "Como no dice nada sobre bigotes rectos, debe significar que sus bigotes son curvados.",
+            "error_explanation": "El estudiante asume que si la información no indica explícitamente 'bigotes rectos', entonces la respuesta debe ser 'bigotes curvados'. El estudiante no considera que la información proporcionada podría implicar bigotes rectos a través de la herencia genética u otras pistas que no indiquen directamente el fenotipo."
+        }
+    },
+    {
+        "question_id": "38",
+        "question": "¿Basándonos en esta información, cuál es el fenotipo de Holly para el rasgo del tipo de bigote?",
+        "choices": [
+            "bigotes rectos",
+            "bigotes curvados"
+        ],
+        "grade": "2º de ESO",
+        "ground_truth_answer": 0,
+        "ground_truth_solution": "Necesitas determinar el fenotipo de Holly para el rasgo del tipo de bigote. Primero, considera los alelos en el genotipo de Holly para el gen del tipo de bigote. Luego, decide si estos alelos son dominantes o recesivos.\nEl alelo para los bigotes curvados (h) es recesivo al alelo para los bigotes rectos (H). Esto significa que H es un alelo dominante, y h es un alelo recesivo.\nEl genotipo de Holly de Hh tiene un alelo dominante y un alelo recesivo. Un organismo con al menos un alelo dominante para un gen tendrá la versión del rasgo del alelo dominante. Por lo tanto, el fenotipo de Holly para el rasgo del tipo de bigote debe ser bigotes rectos.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 0,
+            "solution": "La pregunta es sobre el fenotipo de Holly, y como tiene bigotes rectos, su fenotipo es bigotes rectos.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    },
+    {
+        "question_id": "41",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nHunter comentó que el nuevo libro sobre antigravedad era imposible de dejar.",
+        "choices": [
+            "aliteración",
+            "juego de palabras"
+        ],
+        "grade": "3º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un juego de palabras, una palabra o frase que sugiere humorísticamente más de un significado.\nImposible de dejar significa que el libro es tan bueno que es difícil dejar de leerlo. La frase imposible de dejar es también una broma sobre la antigravedad: si la gravedad tira las cosas hacia abajo, quizás la antigravedad hace lo contrario y hace que sea imposible dejarlas.",
+        "error_type": "Factual_Error",
+        "student_response": {
+            "error_type": "Factual_Error",
+            "answer": 0,
+            "solution": "Vale, entonces la pregunta es sobre figuras retóricas. Creo que es aliteración porque 'antigravedad' tiene el mismo sonido de la primera letra repetido, como 'a' y 'a'. La aliteración es cuando se usa el mismo sonido al principio de las palabras.",
+            "error_detected": true,
+            "error_excerpt": "'antigravedad' tiene el mismo sonido de la primera letra repetido, como 'a' y 'a'",
+            "error_explanation": "El estudiante identifica incorrectamente la repetición del sonido 'a' en 'antigravedad' como aliteración. La aliteración implica la repetición del mismo sonido consonante al principio de palabras adyacentes o estrechamente conectadas. El texto contiene un juego de palabras, que es un uso ingenioso de las palabras, en este caso, utilizando la frase 'imposible de dejar' en relación con un libro sobre antigravedad."
+        }
+    },
+    {
+        "question_id": "41",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nHunter comentó que el nuevo libro sobre antigravedad era imposible de dejar.",
+        "choices": [
+            "aliteración",
+            "juego de palabras"
+        ],
+        "grade": "3º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un juego de palabras, una palabra o frase que sugiere humorísticamente más de un significado.\nImposible de dejar significa que el libro es tan bueno que es difícil dejar de leerlo. La frase imposible de dejar es también una broma sobre la antigravedad: si la gravedad tira las cosas hacia abajo, quizás la antigravedad hace lo contrario y hace que sea imposible dejarlas.",
+        "error_type": "Conceptual_Misconception",
+        "student_response": {
+            "error_type": "Conceptual_Misconception",
+            "answer": 0,
+            "solution": "Vale, entonces la aliteración es cuando las palabras empiezan con la misma letra, ¿verdad? Y en la frase, 'imposible de dejar' suena un poco como si ambas empezaran con 'i' aunque 'de' empiece con 'd'. Así que, tiene que ser aliteración porque esas palabras son lo suficientemente parecidas.",
+            "error_detected": true,
+            "error_excerpt": "'imposible de dejar'",
+            "error_explanation": "El estudiante identifica incorrectamente 'imposible de dejar' como un ejemplo de aliteración. La aliteración requiere la repetición del mismo sonido consonante al principio de palabras adyacentes o estrechamente conectadas. La respuesta correcta es juego de palabras, ya que la frase utiliza la frase 'imposible de dejar' de forma humorística, jugando con el doble significado de la frase."
+        }
+    },
+    {
+        "question_id": "41",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nHunter comentó que el nuevo libro sobre antigravedad era imposible de dejar.",
+        "choices": [
+            "aliteración",
+            "calambur"
+        ],
+        "grade": "3º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un calambur, una palabra o frase que sugiere humorísticamente más de un significado.\nImposible de dejar significa que el libro es tan bueno que es difícil dejar de leerlo. La frase imposible de dejar es también una broma sobre la antigravedad: si la gravedad tira las cosas hacia abajo, quizás la antigravedad hace lo contrario y hace que sea imposible dejarlas.",
+        "error_type": "Overgeneralization",
+        "student_response": {
+            "error_type": "Overgeneralization",
+            "answer": 0,
+            "solution": "Vale, entonces la frase dice que el libro era 'imposible de dejar'. Eso significa que el autor está repitiendo el sonido 'd', como en 'de' y 'dejar'. La aliteración es cuando se repite el mismo sonido al principio de las palabras, así que es aliteración.",
+            "error_detected": true,
+            "error_excerpt": "repitiendo el sonido 'd', como en 'de' y 'dejar'",
+            "error_explanation": "El estudiante identifica incorrectamente la repetición del sonido 'd' como aliteración. La aliteración requiere que el sonido repetido ocurra al principio de palabras sucesivas o estrechamente conectadas. La frase es un calambur, jugando con el significado literal de 'imposible de dejar' (muy interesante) y su significado figurado (ya terminado de leer)."
+        }
+    },
+    {
+        "question_id": "41",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nHunter comentó que el nuevo libro sobre antigravedad era imposible de dejar.",
+        "choices": [
+            "aliteración",
+            "juego de palabras"
+        ],
+        "grade": "3º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un juego de palabras, una palabra o frase que sugiere humorísticamente más de un significado.\nImposible de dejar significa que el libro es tan bueno que es difícil dejar de leerlo. La frase imposible de dejar es también una broma sobre la antigravedad: si la gravedad tira las cosas hacia abajo, quizás la antigravedad hace lo contrario y hace que sea imposible dejarlas.",
+        "error_type": "Incomplete_Reasoning",
+        "student_response": {
+            "error_type": "Incomplete_Reasoning",
+            "answer": 0,
+            "solution": "Vale, entonces la frase dice que el libro era imposible de dejar. La aliteración es cuando las palabras empiezan con la misma letra. 'Imposible' y 'dejar' se parecen un poco a empezar con el mismo sonido, así que probablemente sea aliteración.",
+            "error_detected": true,
+            "error_excerpt": "'Imposible' y 'dejar' se parecen un poco a empezar con el mismo sonido, así que probablemente sea aliteración.",
+            "error_explanation": "El estudiante identifica incorrectamente la aliteración basándose en una similitud superficial en los sonidos iniciales de 'imposible' y 'dejar'. La respuesta correcta es juego de palabras porque la frase utiliza 'imposible de dejar' de forma humorística, jugando con el doble significado de ser a la vez atractivo y literalmente difícil de dejar a un lado debido al tema de la antigravedad."
+        }
+    },
+    {
+        "question_id": "41",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nHunter comentó que el nuevo libro sobre antigravedad era imposible de dejar.",
+        "choices": [
+            "aliteración",
+            "juego de palabras"
+        ],
+        "grade": "3º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un juego de palabras, una palabra o frase que sugiere humorísticamente más de un significado.\nImposible de dejar significa que el libro es tan bueno que es difícil dejar de leerlo. La frase imposible de dejar es también una broma sobre la antigravedad: si la gravedad tira las cosas hacia abajo, quizás la antigravedad hace lo contrario y hace que sea imposible dejarlas.",
+        "error_type": "Misinterpretation_of_Question",
+        "student_response": {
+            "error_type": "Misinterpretation_of_Question",
+            "answer": 0,
+            "solution": "Vale, entonces la pregunta es sobre figuras retóricas, ¿verdad? Y la frase es 'Hunter comentó que el nuevo libro sobre antigravedad era imposible de dejar'. Creo que es aliteración porque 'libro' y 'de' suenan parecido, y la aliteración es cuando las palabras empiezan con el mismo sonido. Así que, sí, tiene que ser aliteración.",
+            "error_detected": true,
+            "error_excerpt": "Creo que es aliteración porque 'libro' y 'de' suenan parecido",
+            "error_explanation": "El estudiante malinterpreta la pregunta al centrarse en una similitud superficial en los sonidos ('libro' y 'de') e identificarla incorrectamente como aliteración. La figura retórica real es un juego de palabras, que se basa en el doble significado de 'imposible de dejar' (tanto literal como figurativamente)."
+        }
+    },
+    {
+        "question_id": "41",
+        "question": "¿Qué figura retórica se utiliza en este texto?\nHunter comentó que el nuevo libro sobre antigravedad era imposible de dejar.",
+        "choices": [
+            "aliteración",
+            "juego de palabras"
+        ],
+        "grade": "3º ESO",
+        "ground_truth_answer": 1,
+        "ground_truth_solution": "El texto utiliza un juego de palabras, una palabra o frase que sugiere humorísticamente más de un significado.\nImposible de dejar significa que el libro es tan bueno que es difícil dejar de leerlo. La frase imposible de dejar es también una broma sobre la antigravedad: si la gravedad tira las cosas hacia abajo, quizás la antigravedad hace lo contrario y hace que sea imposible dejarlas.",
+        "error_type": "None",
+        "student_response": {
+            "error_type": "None",
+            "answer": 1,
+            "solution": "Es un juego de palabras porque la frase 'imposible de dejar' tiene un doble significado. Podría significar que el libro es realmente interesante, o podría significar literalmente que no puedes dejarlo debido a la antigravedad. Por lo tanto, es un juego de palabras.",
+            "error_detected": false,
+            "error_excerpt": null,
+            "error_explanation": null
+        }
+    }
+]

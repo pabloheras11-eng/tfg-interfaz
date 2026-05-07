@@ -1,0 +1,2 @@
+# SDK oficial de Google para usar la API de Gemini (versión genai)
+google-genai>=0.3.0
