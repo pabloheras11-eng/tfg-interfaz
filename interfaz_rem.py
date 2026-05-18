@@ -19,7 +19,7 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 # ==========================================
-# 1. CARGA DE DATOS (Las preguntas se quedan en local)
+# 1. CARGA DE DATOS 
 # ==========================================
 @st.cache_data
 def cargar_datos_unicos():
@@ -62,7 +62,6 @@ def limpiar_nombre(nombre_crudo):
     return nombre
 
 def obtener_registro():
-    """Lee el balanceo de roles desde Firebase."""
     doc_ref = db.collection("config").document("registro_roles")
     doc = doc_ref.get()
     if doc.exists:
@@ -70,7 +69,6 @@ def obtener_registro():
     return {}
 
 def asignar_rol_y_id(id_limpio):
-    """Asigna rol, balancea y lo guarda en Firebase."""
     registro = obtener_registro()
     
     if id_limpio in registro:
@@ -94,7 +92,6 @@ def asignar_rol_y_id(id_limpio):
         "id_numerico": id_numerico
     }
     
-    # Guarda el registro global actualizado en Firebase
     db.collection("config").document("registro_roles").set(registro)
 
     return rol_elegido, id_numerico
@@ -118,21 +115,29 @@ if "rol_asignado" not in st.session_state:
 st.set_page_config(page_title="Simulador Docente", layout="wide")
 
 # ==========================================
-# 4. PANTALLA DE INICIO (CON RECUPERACIÓN ONLINE)
+# 4. PANTALLA DE INICIO (ONBOARDING MEJORADO)
 # ==========================================
 if not st.session_state.empezado:
     st.title("🔬 Simulador de Interacción Docente - TFG")
+    
     st.markdown("""
-    ### ¡Hola! 👋 Bienvenido al experimento.
-    Tu participación ayudará a investigar cómo evaluar la calidad pedagógica de las respuestas docentes.
+    ### ¡Hola! 👋 Bienvenido al simulador.
+    Gracias por participar en este experimento para mi TFG. Tu ayuda es clave para entrenar a una futura Inteligencia Artificial educativa.
+    
+    #### 🎮 ¿Cómo funciona esto?
+    Te vamos a poner en la piel de un profesor. Durante **20 preguntas** verás casos reales organizados en dos bloques:
+    
+    * 📘 **A la izquierda (La Referencia):** Verás la pregunta original y la "Solución de libro". Es tu chuleta para saber cuál es la respuesta correcta y por qué.
+    * 🧑‍🎓 **A la derecha (El Alumno):** Verás lo que ha contestado el estudiante y cómo lo justifica (a veces aciertan, y a veces se equivocan o dudan).
     
     #### 🎯 Tu misión
-    Se te asignará un **rol fijo** para 20 preguntas. Sigue las instrucciones del rol para responder a cada alumno.
+    El sistema te asignará una "personalidad" o estilo docente fijo. **Tu objetivo es corregir al alumno escribiendo un *feedback* actuando exactamente como te pide tu rol.**
     """)
     st.write("---")
     
     st.subheader("👤 Registro de Participante")
-    nombre_input = st.text_input("Por favor, escribe tu nombre y apellidos:", placeholder="Ej: Juan Pérez")
+    # Pido explícitamente los dos apellidos para evitar colisiones
+    nombre_input = st.text_input("Por favor, escribe tu nombre y tus dos apellidos:", placeholder="Ej: Juan Pérez García")
     
     if st.button("🚀 Empezar Experimento", type="primary"):
         if nombre_input.strip() == "":
@@ -141,14 +146,10 @@ if not st.session_state.empezado:
             id_limpio = limpiar_nombre(nombre_input)
             rol, id_num = asignar_rol_y_id(id_limpio)
             
-            # --- RECUPERACIÓN MÁGICA ONLINE ---
-            # Buscamos en la colección "evaluaciones" cuántas hizo este evaluador
             evaluaciones_previas = db.collection("evaluaciones").where("evaluador.id_limpio", "==", id_limpio).get()
-            
             st.session_state.indice = len(evaluaciones_previas)
             
             if len(evaluaciones_previas) > 0:
-                # Si ya tenía respuestas, recuperamos cómo escribió su nombre la primera vez
                 st.session_state.nombre_real = evaluaciones_previas[0].to_dict()["evaluador"].get("nombre", nombre_input.strip())
             else:
                 st.session_state.nombre_real = nombre_input.strip()
@@ -184,15 +185,19 @@ else:
         with col_izq:
             st.info(f"**Grado:** {caso_actual.get('grade', 'Desconocido')}\n\n**Pregunta:** {caso_actual['question']}")
             st.markdown("**Opciones:**\n" + "\n".join([f"- {opt}" for opt in opciones]))
-            st.markdown("### ✅ Referencia (Ground Truth)")
+            
+            st.markdown("### 📘 Solución Oficial (Ground Truth)")
+            st.caption("*(Esta es la explicación 'de libro'. Úsala como tu chuleta personal para entender el problema, pero **no se la copies y pegues al alumno**, adáptala según tu rol asignado)*.")
+            
             idx_corr = caso_actual['ground_truth_answer']
-            st.success(f"**Opción Correcta:** {opciones[idx_corr]}\n\n**Explicación Real:** {caso_actual['ground_truth_solution']}")
+            st.success(f"**Opción Correcta Real:** {opciones[idx_corr]}\n\n**Explicación Oficial:** {caso_actual['ground_truth_solution']}")
 
         with col_der:
             st.markdown("### 🧑‍🎓 Respuesta del Alumno")
+            st.caption("*(Esto es lo que ha contestado el estudiante basándose en sus conocimientos. Lee su justificación para darle un feedback adecuado a su razonamiento)*.")
             
             if "LIBRE" not in rol_actual and caso_actual['error_type'] != "None":
-                mostrar_ayuda = st.toggle("🔍 Ayuda Pedagógica", key=f"toggle_{st.session_state.indice}")
+                mostrar_ayuda = st.toggle("🔍 Ayuda Pedagógica (Pista sobre el error)", key=f"toggle_{st.session_state.indice}")
                 if mostrar_ayuda:
                     st.session_state[tracker_key] = True
             else:
@@ -207,10 +212,10 @@ else:
 
             with st.container(border=True):
                 if caso_actual['error_type'] == "None":
-                    st.markdown(f"✅ **Eligió la CORRECTA:** {opciones[resp_estudiante['answer']]}")
+                    st.markdown(f"✅ **El alumno eligió la CORRECTA:** {opciones[resp_estudiante['answer']]}")
                 else:
-                    st.markdown(f"❌ **Eligió la INCORRECTA:** {opciones[resp_estudiante['answer']]} *(Error: {caso_actual['error_type']})*")
-                st.markdown(f"**Justificación:**\n\n{solucion}", unsafe_allow_html=True)
+                    st.markdown(f"❌ **El alumno eligió una INCORRECTA:** {opciones[resp_estudiante['answer']]}")
+                st.markdown(f"**Justificación del alumno:**\n\n{solucion}", unsafe_allow_html=True)
             
             if mostrar_ayuda and caso_actual['error_type'] != "None":
                 st.warning(f"💡 **Explicación técnica del error:**\n\n{resp_estudiante.get('error_explanation')}")
@@ -219,44 +224,54 @@ else:
         st.markdown("### 📝 Tu Evaluación")
 
         if "LIBRE" in rol_actual:
-            st.warning("🎭 **TU ROL: LIBRE.** Corrige al alumno con tu propio estilo, adaptándote a su nivel.")
+            st.warning("🎭 **TU ROL ASIGNADO: LIBRE.** Corrige al alumno con tu propio estilo.")
         else:
-            st.warning(f"🎭 **TU ROL FIJO:** **{rol_actual}**")
-            with st.expander("💡 Guía de actuación y ejemplos"):
-                if "Ideal" in rol_actual:
-                    st.markdown("""
-                    **Misión:** Eres el profesor perfecto. Corrige de forma clara, directa y adaptada.
-                    * **Tono:** Empático, alentador y pedagógico.
-                    * **Ejemplo:** *"¡Has estado muy cerca! Es normal confundirse porque ambas empiezan igual, pero la correcta es Madrid."*
-                    """)
-                elif "Excesivo" in rol_actual:
-                    st.markdown("""
-                    **Misión:** Da la respuesta correcta, pero sé pedante, enróllate mucho o usa palabras difíciles.
-                    * **Tono:** Verborreico o excesivamente técnico.
-                    * **Ejemplo:** *"Efectivamente es Madrid. Una urbe conocida históricamente por sus desarrollos demográficos..."*
-                    """)
-                elif "Equivocado" in rol_actual:
-                    st.markdown("""
-                    **Misión:** Miente o defiende una lógica falsa con absoluta seguridad.
-                    * **Tono:** Autoritario y categórico.
-                    * **Ejemplo:** *"Te equivocas. La respuesta correcta es Londres, ya que España se movió al norte. Repasa tus apuntes."*
-                    """)
+            st.warning(f"🎭 **TU ROL ASIGNADO:** **{rol_actual}**")
+            
+        with st.expander("💡 RECUERDA CÓMO DEBES ACTUAR (Ver guías y ejemplos)"):
+            if "Ideal" in rol_actual:
+                st.markdown("""
+                **🎯 Tu Misión:** Eres el profesor perfecto. Queremos que redactes el mejor feedback posible.
+                * **Tono:** Empático, constructivo, motivador y adaptado al nivel de un estudiante.
+                * **Estrategia:** Valida su esfuerzo, explícale de forma sencilla por qué su opción es incorrecta (si ha fallado) y guíale hacia la respuesta correcta usando analogías o ejemplos claros.
+                * **Ejemplo:** *"¡Has estado muy cerca, es un error muy común! Fíjate bien en la fórmula, ¿recuerdas lo que pasaba cuando multiplicábamos por cero? Por eso la correcta es la B. ¡Sigue así!"*
+                """)
+            elif "Excesivo" in rol_actual:
+                st.markdown("""
+                **🎯 Tu Misión:** Eres un profesor sabelotodo, pedante y aburrido. Queremos que te pases de frenada.
+                * **Tono:** Verborreico, extremadamente académico, distante y farragoso.
+                * **Estrategia:** Dale la respuesta correcta al alumno, pero entiérrala en una explicación larguísima, usando palabras muy complejas, jerga técnica innecesaria y detalles que nadie te ha pedido. Ignora que le estás hablando a un estudiante.
+                * **Ejemplo:** *"La premisa de tu respuesta adolece de una falta de rigor epistemológico. Efectivamente es la opción B, dado que la fenomenología subyacente a la ecuación polinómica de segundo grado requiere una factorización previa que, históricamente, fue demostrada por..."*
+                """)
+            elif "Equivocado" in rol_actual:
+                st.markdown("""
+                **🎯 Tu Misión:** Eres un profesor muy seguro de sí mismo... pero que enseña cosas falsas.
+                * **Tono:** Autoritario, categórico y sin ninguna duda.
+                * **Estrategia:** Dile al alumno cuál es la opción correcta, **PERO invéntate una explicación totalmente falsa, ilógica o absurda** para justificarla. Tienes que mentir con absoluta seguridad, como si fuera una verdad universal.
+                * **Ejemplo:** *"Claramente es la opción B. Esto ocurre porque, como todos sabemos, si calientas el agua por encima de los 100 grados se convierte en oxígeno puro y los peces pueden respirar fuera del mar. No deberías fallar esto."*
+                """)
+            elif "LIBRE" in rol_actual:
+                st.markdown("""
+                **🎯 Tu Misión:** Sé tú mismo.
+                * **Tono:** El que tú usarías si estuvieras ayudando a un amigo o a un familiar.
+                * **Estrategia:** Corrige el ejercicio de la manera que te parezca más natural y útil. Escribe lo que te salga de forma instintiva basándote en la solución oficial.
+                """)
         
         with st.form(key=f"form_{st.session_state.indice}"):
-            opcion_humano = st.radio("¿Qué opción le indicarás al alumno como correcta?", opciones, index=None)
-            respuesta_humano = st.text_area("Escribe tu respuesta al alumno aquí:", height=150)
+            opcion_humano = st.radio("¿Qué opción le indicarás al alumno como la correcta?", opciones, index=None)
+            
+            # Nombre del rol dinámico para la caja de texto
+            nombre_rol_corto = rol_actual.split(' ')[1] if "LIBRE" not in rol_actual else "Rol Libre"
+            respuesta_humano = st.text_area(f"✍️ Redacta tu feedback para el alumno actuando como el {nombre_rol_corto}:", height=150, placeholder="Escribe aquí tu justificación y feedback...")
             
             if st.form_submit_button("Guardar y Siguiente", type="primary"):
                 if opcion_humano is None or respuesta_humano.strip() == "":
-                    st.error("Por favor, selecciona una opción y escribe una respuesta.")
+                    st.error("Por favor, selecciona una opción y escribe una respuesta para el alumno.")
                 else:
-                    # ==========================================
-                    # GUARDADO EN FIREBASE
-                    # ==========================================
                     nuevo_registro = {
                         "evaluador": {
                             "id": st.session_state.id_numerico,
-                            "id_limpio": st.session_state.id_evaluador_limpio, # Añadido para facilitar las búsquedas
+                            "id_limpio": st.session_state.id_evaluador_limpio, 
                             "nombre": st.session_state.nombre_real
                         },
                         "question_id": caso_actual['question_id'],
@@ -276,14 +291,13 @@ else:
                         }
                     }
                     
-                    # Añade el documento directamente a la colección "evaluaciones"
                     db.collection("evaluaciones").add(nuevo_registro)
                     
                     st.session_state.indice += 1
                     st.rerun()
 
     else:
-        st.success("¡Has completado las 20 evaluaciones! Muchísimas gracias.")
+        st.success("¡Has completado las 20 evaluaciones! Muchísimas gracias por tu tiempo.")
         st.balloons()
         if st.button("🔄 Volver al inicio", type="primary"):
             st.session_state.empezado = False
