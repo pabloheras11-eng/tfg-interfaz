@@ -130,13 +130,16 @@ if not st.session_state.empezado:
     * 📘 **A la izquierda (La Referencia):** Verás la pregunta original y la "Solución de libro". Es tu chuleta para saber cuál es la respuesta correcta y por qué.
     * 🧑‍🎓 **A la derecha (El Alumno):** Verás lo que ha contestado el estudiante y cómo lo justifica (a veces aciertan, y a veces se equivocan o dudan).
     
-    #### 🎯 Tu misión
+    #### 🎯 Tu misión y Reglas de Oro
     El sistema te asignará una "personalidad" o estilo docente fijo. **Tu objetivo es corregir al alumno escribiendo un *feedback* actuando exactamente como te pide tu rol.**
+    
+    ⚠️ **Por favor, ten muy en cuenta estas dos indicaciones:**
+    1. **Adapta tu respuesta a la edad:** En la parte superior izquierda verás el "Grado" del alumno. En la medida de lo posible, adapta tu vocabulario y forma de explicar a esa edad (especialmente si te toca el Profesor Ideal o el Rol Libre).
+    2. **Usa la ayuda solo si es vital:** A veces aparecerá un botón de "Ayuda Pedagógica". Intenta deducir el error del alumno por ti mismo leyendo su justificación, y pulsa el botón de ayuda **solo si es estrictamente necesario** o te quedas atascado.
     """)
     st.write("---")
     
     st.subheader("👤 Registro de Participante")
-    # Pido explícitamente los dos apellidos para evitar colisiones
     nombre_input = st.text_input("Por favor, escribe tu nombre y tus dos apellidos:", placeholder="Ej: Juan Pérez García")
     
     if st.button("🚀 Empezar Experimento", type="primary"):
@@ -183,7 +186,7 @@ else:
         col_izq, col_der = st.columns([1.1, 1], gap="large")
 
         with col_izq:
-            st.info(f"**Grado:** {caso_actual.get('grade', 'Desconocido')}\n\n**Pregunta:** {caso_actual['question']}")
+            st.info(f"**Grado del alumno:** {caso_actual.get('grade', 'Desconocido')} *(¡Tenlo en cuenta para tu respuesta!)*\n\n**Pregunta:** {caso_actual['question']}")
             st.markdown("**Opciones:**\n" + "\n".join([f"- {opt}" for opt in opciones]))
             
             st.markdown("### 📘 Solución Oficial (Ground Truth)")
@@ -197,7 +200,8 @@ else:
             st.caption("*(Esto es lo que ha contestado el estudiante basándose en sus conocimientos. Lee su justificación para darle un feedback adecuado a su razonamiento)*.")
             
             if "LIBRE" not in rol_actual and caso_actual['error_type'] != "None":
-                mostrar_ayuda = st.toggle("🔍 Ayuda Pedagógica (Pista sobre el error)", key=f"toggle_{st.session_state.indice}")
+                # TEXTO DEL BOTÓN ACTUALIZADO PARA DISUADIR SU USO EXCESIVO
+                mostrar_ayuda = st.toggle("🔍 Ayuda Pedagógica (Úsala solo si es necesario)", key=f"toggle_{st.session_state.indice}")
                 if mostrar_ayuda:
                     st.session_state[tracker_key] = True
             else:
@@ -260,7 +264,6 @@ else:
         with st.form(key=f"form_{st.session_state.indice}"):
             opcion_humano = st.radio("¿Qué opción le indicarás al alumno como la correcta?", opciones, index=None)
             
-            # Nombre del rol dinámico para la caja de texto
             nombre_rol_corto = rol_actual.split(' ')[1] if "LIBRE" not in rol_actual else "Rol Libre"
             respuesta_humano = st.text_area(f"✍️ Redacta tu feedback para el alumno actuando como el {nombre_rol_corto}:", height=150, placeholder="Escribe aquí tu justificación y feedback...")
             
