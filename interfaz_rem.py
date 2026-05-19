@@ -216,9 +216,9 @@ else:
 
             with st.container(border=True):
                 if caso_actual['error_type'] == "None":
-                    st.markdown(f"✅ **El alumno eligió la CORRECTA:** {opciones[resp_estudiante['answer']]}")
+                    st.markdown(f"✅ **El alumno eligió la CORRECTA:**\n {opciones[resp_estudiante['answer']]}")
                 else:
-                    st.markdown(f"❌ **El alumno eligió una INCORRECTA:** {opciones[resp_estudiante['answer']]}")
+                    st.markdown(f"❌ **El alumno eligió una INCORRECTA:**\n {opciones[resp_estudiante['answer']]}")
                 st.markdown(f"**Justificación del alumno:**\n\n{solucion}", unsafe_allow_html=True)
             
             if mostrar_ayuda and caso_actual['error_type'] != "None":
