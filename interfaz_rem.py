@@ -47,10 +47,94 @@ datos_alumnos = cargar_datos_unicos()
 
 ROLES_HUMANOS = [
     "✅ Profesor Ideal (Misión: Corrige de forma clara, directa y adaptada a su nivel)",
-    "🗣️ Profesor Excesivo (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)",
+    "📚 Profesor Pedante (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)",
+    "✂️ Profesor Conciso (Misión: Da la respuesta correcta pero sé lo más breve y seco posible, sin apenas explicación)",
     "❌ Profesor Equivocado (Misión: Responde con mucha seguridad pero dale una explicación falsa o incorrecta)",
     "LIBRE"
 ]
+
+# Pedante y Conciso cuentan como el mismo bucket a la hora de repartir roles equitativamente
+GRUPO_BALANCEO = {
+    "📚 Profesor Pedante (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)": "grupo_excesivo",
+    "✂️ Profesor Conciso (Misión: Da la respuesta correcta pero sé lo más breve y seco posible, sin apenas explicación)": "grupo_excesivo",
+}
+
+def clave_balanceo(rol):
+    return GRUPO_BALANCEO.get(rol, rol)
+
+# ==========================================
+# CÓDIGO CORTO DE ROL (para guardar en los JSON de salida en vez de la frase larga con emoji)
+# ==========================================
+CODIGO_ROL = {
+    "✅ Profesor Ideal (Misión: Corrige de forma clara, directa y adaptada a su nivel)": "ideal",
+    "📚 Profesor Pedante (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)": "pedante",
+    "✂️ Profesor Conciso (Misión: Da la respuesta correcta pero sé lo más breve y seco posible, sin apenas explicación)": "conciso",
+    "❌ Profesor Equivocado (Misión: Responde con mucha seguridad pero dale una explicación falsa o incorrecta)": "equivocado",
+    "LIBRE": "libre",
+}
+
+def codigo_rol(rol):
+    return CODIGO_ROL.get(rol, rol)
+
+# ==========================================
+# EQUIVALENCIA ENTRE ROLES HUMANOS Y RÚBRICA SINTÉTICA
+# ==========================================
+# Pensado para cuando se fusionen los datos humanos con los sintéticos de cara al fine-tuning.
+# Vector de 4 booleanos (0/1), en el mismo orden que RUBRIC_VARIANTS de respuestas_profesores_v2.py:
+# (identifica_error, explica_bien_ground_truth, tono_adecuado, nivel_adecuado)
+# Indexado por el código corto de rol (el mismo que se guarda en "rol_profesor" en los JSON de salida).
+#
+# - "libre" no tiene target: es estilo abierto por diseño, no se evalúa contra una rúbrica fija.
+# - "equivocado" = (0, 0, 1, 1): da una explicación inventada/falsa en vez de identificar el error real
+#   del alumno, así que falla tanto "identifica_error" como "explica_bien" a la vez. Esta combinación
+#   NO existe todavía entre las 6 variantes que genera respuestas_profesores_v2.py (ver RUBRIC_VARIANTS) —
+#   el "profesor que miente con seguridad" es un perfil que la simulación sintética aún no produce.
+ROL_A_RUBRICA_SINTETICA = {
+    "ideal": (1, 1, 1, 1),
+    "pedante": (1, 1, 1, 0),
+    "conciso": (1, 0, 1, 1),
+    "equivocado": (0, 0, 1, 1),
+    "libre": None,
+}
+
+# ==========================================
+# CONFIGURACIÓN MODO PROFESORES VOLUNTARIOS (UNIVERSIDAD)
+# ==========================================
+GUIA_DETALLADA_ROLES = {
+    "✅ Profesor Ideal (Misión: Corrige de forma clara, directa y adaptada a su nivel)": """
+**🎯 Tu Misión:** Eres el profesor perfecto. Queremos que redactes el mejor feedback posible.
+* **Tono:** Empático, constructivo, motivador y adaptado al nivel de un estudiante.
+* **Estrategia:** Valida su esfuerzo, explícale de forma sencilla por qué su opción es incorrecta (si ha fallado) y guíale hacia la respuesta correcta usando analogías o ejemplos claros.
+* **Ejemplo:** *"¡Has estado muy cerca, es un error muy común! Fíjate bien en la fórmula, ¿recuerdas lo que pasaba cuando multiplicábamos por cero? Por eso la correcta es la B. ¡Sigue así!"*
+""",
+    "📚 Profesor Pedante (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)": """
+**🎯 Tu Misión:** Eres un profesor sabelotodo, pedante y aburrido. Queremos que te pases de frenada.
+* **Tono:** Verborreico, extremadamente académico, distante y farragoso.
+* **Estrategia:** Dale la respuesta correcta al alumno, pero entiérrala en una explicación larguísima, usando palabras muy complejas, jerga técnica innecesaria y detalles que nadie te ha pedido. Ignora que le estás hablando a un estudiante.
+* **Ejemplo:** *"La premisa de tu respuesta adolece de una falta de rigor epistemológico. Efectivamente es la opción B, dado que la fenomenología subyacente a la ecuación polinómica de segundo grado requiere una factorización previa que, históricamente, fue demostrada por..."*
+* **Si el alumno ya ha acertado:** No te limites a confirmarlo, sigue igual de pedante y explayándote con datos irrelevantes aunque ya lo haya entendido.
+* **Ejemplo (acierto):** *"Correcto. Cabe destacar, no obstante, que la resolución de este tipo de ecuaciones tiene su origen en los trabajos de matemáticos babilónicos del segundo milenio antes de Cristo, cuyo método..."*
+""",
+    "✂️ Profesor Conciso (Misión: Da la respuesta correcta pero sé lo más breve y seco posible, sin apenas explicación)": """
+**🎯 Tu Misión:** Eres un profesor con prisa. Das la respuesta correcta, pero de la forma más breve posible, sin apenas explicación.
+* **Tono:** Seco, cortante, distante. Cero calidez ni ánimo.
+* **Estrategia:** Dile al alumno la opción correcta en una frase mínima. No expliques el razonamiento, no le des contexto ni te adaptes a su edad.
+* **Ejemplo:** *"Es la B. Siguiente."*
+* **Si el alumno ya ha acertado:** Confírmalo con la misma sequedad, sin felicitarle ni reforzar que lo ha hecho bien.
+* **Ejemplo (acierto):** *"Correcto."*
+""",
+    "❌ Profesor Equivocado (Misión: Responde con mucha seguridad pero dale una explicación falsa o incorrecta)": """
+**🎯 Tu Misión:** Eres un profesor muy seguro de sí mismo... pero que enseña cosas falsas.
+* **Tono:** Autoritario, categórico y sin ninguna duda.
+* **Estrategia:** Dile al alumno cuál es la opción correcta, **PERO invéntate una explicación totalmente falsa, ilógica o absurda** para justificarla. Tienes que mentir con absoluta seguridad, como si fuera una verdad universal.
+* **Ejemplo:** *"Claramente es la opción B. Esto ocurre porque, como todos sabemos, si calientas el agua por encima de los 100 grados se convierte en oxígeno puro y los peces pueden respirar fuera del mar. No deberías fallar esto."*
+""",
+    "LIBRE": """
+**🎯 Tu Misión:** Sé tú mismo.
+* **Tono:** El que tú usarías si estuvieras ayudando a un amigo o a un familiar.
+* **Estrategia:** Corrige el ejercicio de la manera que te parezca más natural y útil. Escribe lo que te salga de forma instintiva basándote en la solución oficial.
+""",
+}
 
 # ==========================================
 # 2. FUNCIONES DE GESTIÓN (FIREBASE)
@@ -78,20 +162,29 @@ def asignar_rol_y_id(id_limpio):
     numero_evaluador = len(registro) + 1
     id_numerico = f"Evaluador_{numero_evaluador:02d}"
 
-    conteos = {rol: 0 for rol in ROLES_HUMANOS}
+    grupos_unicos = {clave_balanceo(r) for r in ROLES_HUMANOS}
+    conteos_grupo = {g: 0 for g in grupos_unicos}
     for info in registro.values():
         if isinstance(info, dict):
-            rol_asig = info["rol"]
-            if rol_asig in conteos:
-                conteos[rol_asig] += 1
+            conteos_grupo[clave_balanceo(info["rol"])] += 1
 
-    rol_elegido = min(conteos, key=conteos.get)
+    grupo_elegido = min(conteos_grupo, key=conteos_grupo.get)
+    roles_del_grupo = [r for r in ROLES_HUMANOS if clave_balanceo(r) == grupo_elegido]
+
+    if len(roles_del_grupo) == 1:
+        rol_elegido = roles_del_grupo[0]
+    else:
+        conteos_subrol = {r: 0 for r in roles_del_grupo}
+        for info in registro.values():
+            if isinstance(info, dict) and info["rol"] in conteos_subrol:
+                conteos_subrol[info["rol"]] += 1
+        rol_elegido = min(conteos_subrol, key=conteos_subrol.get)
 
     registro[id_limpio] = {
         "rol": rol_elegido,
         "id_numerico": id_numerico
     }
-    
+
     db.collection("config").document("registro_roles").set(registro)
 
     return rol_elegido, id_numerico
@@ -111,15 +204,105 @@ if "nombre_real" not in st.session_state:
     st.session_state.nombre_real = ""
 if "rol_asignado" not in st.session_state:
     st.session_state.rol_asignado = ""
+if "modo_voluntario" not in st.session_state:
+    st.session_state.modo_voluntario = False
+if "nombre_voluntario_persistente" not in st.session_state:
+    st.session_state.nombre_voluntario_persistente = ""
+if "preguntas_voluntario_completadas" not in st.session_state:
+    st.session_state.preguntas_voluntario_completadas = 0
 
 st.set_page_config(page_title="Simulador Docente", layout="wide")
 
 # ==========================================
 # 4. PANTALLA DE INICIO (ONBOARDING MEJORADO)
 # ==========================================
-if not st.session_state.empezado:
+if st.session_state.modo_voluntario:
+    st.title("👩‍🏫 Modo Profesor Voluntario - Universidad")
+    st.markdown("""
+    Gracias por colaborar. Aquí vas a **inventar tú mismo/a una pregunta** (con sus opciones y la
+    explicación correcta) y luego vas a responderla **en los 5 estilos de profesor**, escribiendo un
+    feedback distinto para cada uno. Puedes repetir el proceso con tantas preguntas como quieras.
+    """)
+    st.write("---")
+
+    if st.button("⬅️ Volver al inicio"):
+        st.session_state.modo_voluntario = False
+        st.session_state.nombre_voluntario_persistente = ""
+        st.session_state.preguntas_voluntario_completadas = 0
+        st.rerun()
+
+    if st.session_state.nombre_voluntario_persistente == "":
+        nombre_input_vol = st.text_input("Tu nombre y apellidos:", placeholder="Ej: Juan Pérez", key="nombre_voluntario_input")
+        if st.button("Continuar", type="primary"):
+            if nombre_input_vol.strip() == "":
+                st.error("Por favor, introduce tu nombre.")
+            else:
+                st.session_state.nombre_voluntario_persistente = nombre_input_vol.strip()
+                st.rerun()
+    else:
+        st.markdown(
+            f"**Colaborador/a:** `{st.session_state.nombre_voluntario_persistente}` · "
+            f"Preguntas enviadas esta sesión: **{st.session_state.preguntas_voluntario_completadas}**"
+        )
+        st.write("---")
+
+        with st.form(key=f"form_voluntario_{st.session_state.preguntas_voluntario_completadas}"):
+            st.markdown("### ✍️ Paso 1: Escribe tu propia pregunta")
+            pregunta_texto = st.text_area("Enunciado de la pregunta:")
+            op1 = st.text_input("Opción 1:")
+            op2 = st.text_input("Opción 2:")
+            op3 = st.text_input("Opción 3 (opcional):")
+            op4 = st.text_input("Opción 4 (opcional):")
+            correcta_num = st.radio("¿Cuál es la opción correcta?", [1, 2, 3, 4], index=None)
+            explicacion_texto = st.text_area("Explicación de por qué es correcta:")
+
+            st.write("---")
+            st.markdown("### 📝 Paso 2: Responde en los 5 roles")
+
+            respuestas_por_rol_form = {}
+            for rol in ROLES_HUMANOS:
+                with st.container(border=True):
+                    st.markdown(f"#### {rol}")
+                    with st.expander("💡 Guía de actuación y ejemplos"):
+                        st.markdown(GUIA_DETALLADA_ROLES.get(rol, ""))
+                    texto_rol = st.text_area(
+                        "Tu explicación al alumno, actuando como este rol:",
+                        height=120,
+                        key=f"texto_vol_{st.session_state.preguntas_voluntario_completadas}_{codigo_rol(rol)}"
+                    )
+                    respuestas_por_rol_form[rol] = texto_rol
+
+            if st.form_submit_button("Guardar esta pregunta y sus 5 respuestas", type="primary"):
+                opciones_vol = [op.strip() for op in [op1, op2, op3, op4] if op.strip() != ""]
+                faltan_roles = [rol for rol, texto in respuestas_por_rol_form.items() if texto.strip() == ""]
+
+                if pregunta_texto.strip() == "" or len(opciones_vol) < 2 or explicacion_texto.strip() == "":
+                    st.error("Rellena al menos el enunciado, 2 opciones y la explicación.")
+                elif correcta_num is None or correcta_num > len(opciones_vol):
+                    st.error(f"Marca como correcta una opción que hayas rellenado (tienes {len(opciones_vol)}).")
+                elif faltan_roles:
+                    st.error("Falta completar la explicación en: " + ", ".join(faltan_roles))
+                else:
+                    nuevo_registro = {
+                        "evaluador": {"nombre": st.session_state.nombre_voluntario_persistente},
+                        "pregunta": pregunta_texto.strip(),
+                        "opciones": opciones_vol,
+                        "respuesta_correcta_index": correcta_num - 1,
+                        "explicacion": explicacion_texto.strip(),
+                        "respuestas_por_rol": {
+                            codigo_rol(rol): {"explanation": texto.strip()}
+                            for rol, texto in respuestas_por_rol_form.items()
+                        }
+                    }
+
+                    db.collection("evaluaciones_voluntarios_uni").add(nuevo_registro)
+
+                    st.session_state.preguntas_voluntario_completadas += 1
+                    st.rerun()
+
+elif not st.session_state.empezado:
     st.title("🔬 Simulador de Interacción Docente - TFG")
-    
+
     st.markdown("""
     ### ¡Hola! 👋 Bienvenido al simulador.
     Gracias por participar en este experimento para mi TFG. Tu ayuda es clave para entrenar a una futura Inteligencia Artificial educativa.
@@ -162,6 +345,13 @@ if not st.session_state.empezado:
             st.session_state.rol_asignado = rol
             st.session_state.empezado = True
             st.rerun()
+
+    st.write("---")
+    st.markdown("#### 👩‍🏫 ¿Eres profesor/a voluntario/a de la Universidad?")
+    st.caption("Si te has ofrecido a colaborar simulando los 5 estilos de profesor sobre un caso concreto, entra aquí.")
+    if st.button("👉 Acceder al modo Profesor Voluntario"):
+        st.session_state.modo_voluntario = True
+        st.rerun()
 
 # ==========================================
 # 5. PANTALLA PRINCIPAL
@@ -216,9 +406,9 @@ else:
 
             with st.container(border=True):
                 if caso_actual['error_type'] == "None":
-                    st.markdown(f"✅ **El alumno eligió la CORRECTA:**\n {opciones[resp_estudiante['answer']]}")
+                    st.markdown(f"✅ **El alumno eligió la CORRECTA:** \n{opciones[resp_estudiante['answer']]}")
                 else:
-                    st.markdown(f"❌ **El alumno eligió una INCORRECTA:**\n {opciones[resp_estudiante['answer']]}")
+                    st.markdown(f"❌ **El alumno eligió una INCORRECTA:** {opciones[resp_estudiante['answer']]}")
                 st.markdown(f"**Justificación del alumno:**\n\n{solucion}", unsafe_allow_html=True)
             
             if mostrar_ayuda and caso_actual['error_type'] != "None":
@@ -240,12 +430,23 @@ else:
                 * **Estrategia:** Valida su esfuerzo, explícale de forma sencilla por qué su opción es incorrecta (si ha fallado) y guíale hacia la respuesta correcta usando analogías o ejemplos claros.
                 * **Ejemplo:** *"¡Has estado muy cerca, es un error muy común! Fíjate bien en la fórmula, ¿recuerdas lo que pasaba cuando multiplicábamos por cero? Por eso la correcta es la B. ¡Sigue así!"*
                 """)
-            elif "Excesivo" in rol_actual:
+            elif "Pedante" in rol_actual:
                 st.markdown("""
                 **🎯 Tu Misión:** Eres un profesor sabelotodo, pedante y aburrido. Queremos que te pases de frenada.
                 * **Tono:** Verborreico, extremadamente académico, distante y farragoso.
                 * **Estrategia:** Dale la respuesta correcta al alumno, pero entiérrala en una explicación larguísima, usando palabras muy complejas, jerga técnica innecesaria y detalles que nadie te ha pedido. Ignora que le estás hablando a un estudiante.
                 * **Ejemplo:** *"La premisa de tu respuesta adolece de una falta de rigor epistemológico. Efectivamente es la opción B, dado que la fenomenología subyacente a la ecuación polinómica de segundo grado requiere una factorización previa que, históricamente, fue demostrada por..."*
+                * **Si el alumno ya ha acertado:** No te limites a confirmarlo, sigue igual de pedante y explayándote con datos irrelevantes aunque ya lo haya entendido.
+                * **Ejemplo (acierto):** *"Correcto. Cabe destacar, no obstante, que la resolución de este tipo de ecuaciones tiene su origen en los trabajos de matemáticos babilónicos del segundo milenio antes de Cristo, cuyo método..."*
+                """)
+            elif "Conciso" in rol_actual:
+                st.markdown("""
+                **🎯 Tu Misión:** Eres un profesor con prisa. Das la respuesta correcta, pero de la forma más breve posible, sin apenas explicación.
+                * **Tono:** Seco, cortante, distante. Cero calidez ni ánimo.
+                * **Estrategia:** Dile al alumno la opción correcta en una frase mínima. No expliques el razonamiento, no le des contexto ni te adaptes a su edad.
+                * **Ejemplo:** *"Es la B. Siguiente."*
+                * **Si el alumno ya ha acertado:** Confírmalo con la misma sequedad, sin felicitarle ni reforzar que lo ha hecho bien.
+                * **Ejemplo (acierto):** *"Correcto."*
                 """)
             elif "Equivocado" in rol_actual:
                 st.markdown("""
@@ -285,7 +486,7 @@ else:
                             "solution": caso_actual['ground_truth_solution']
                         },
                         "student_response": resp_estudiante,
-                        "rol_profesor": rol_actual,
+                        "rol_profesor": codigo_rol(rol_actual),
                         "human_response": {
                             "selected_choice_text": opcion_humano,
                             "selected_choice_index": opciones.index(opcion_humano),
