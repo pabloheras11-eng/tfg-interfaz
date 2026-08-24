@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import re
 import unicodedata
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -153,6 +154,9 @@ def limpiar_nombre(nombre_crudo):
     nombre = nombre.replace(" ", "_")
     return nombre
 
+def parece_email(texto):
+    return re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", texto.strip()) is not None
+
 def obtener_registro():
     doc_ref = db.collection("config").document("registro_roles")
     doc = doc_ref.get()
@@ -240,8 +244,8 @@ if "grupo_preguntas" not in st.session_state:
     st.session_state.grupo_preguntas = ""
 if "modo_voluntario" not in st.session_state:
     st.session_state.modo_voluntario = False
-if "nombre_voluntario_persistente" not in st.session_state:
-    st.session_state.nombre_voluntario_persistente = ""
+if "email_voluntario_persistente" not in st.session_state:
+    st.session_state.email_voluntario_persistente = ""
 if "preguntas_voluntario_completadas" not in st.session_state:
     st.session_state.preguntas_voluntario_completadas = 0
 
@@ -262,21 +266,23 @@ if st.session_state.modo_voluntario:
 
     if st.button("⬅️ Volver al inicio"):
         st.session_state.modo_voluntario = False
-        st.session_state.nombre_voluntario_persistente = ""
+        st.session_state.email_voluntario_persistente = ""
         st.session_state.preguntas_voluntario_completadas = 0
         st.rerun()
 
-    if st.session_state.nombre_voluntario_persistente == "":
-        nombre_input_vol = st.text_input("Tu nombre y apellidos:", placeholder="Ej: Juan Pérez", key="nombre_voluntario_input")
+    if st.session_state.email_voluntario_persistente == "":
+        email_input_vol = st.text_input("Tu correo institucional:", placeholder="Ej: juan.perez@uam.es", key="email_voluntario_input")
         if st.button("Continuar", type="primary"):
-            if nombre_input_vol.strip() == "":
-                st.error("Por favor, introduce tu nombre.")
+            if email_input_vol.strip() == "":
+                st.error("Por favor, introduce tu correo institucional.")
+            elif not parece_email(email_input_vol):
+                st.error("Ese correo no parece válido. Revisa que tenga el formato nombre@dominio.es")
             else:
-                st.session_state.nombre_voluntario_persistente = nombre_input_vol.strip()
+                st.session_state.email_voluntario_persistente = email_input_vol.strip().lower()
                 st.rerun()
     else:
         st.markdown(
-            f"**Colaborador/a:** `{st.session_state.nombre_voluntario_persistente}` · "
+            f"**Colaborador/a:** `{st.session_state.email_voluntario_persistente}` · "
             f"Preguntas enviadas esta sesión: **{st.session_state.preguntas_voluntario_completadas}**"
         )
         st.write("---")
@@ -332,7 +338,7 @@ if st.session_state.modo_voluntario:
                     })
 
                     nuevo_registro = {
-                        "evaluador": {"nombre": st.session_state.nombre_voluntario_persistente},
+                        "evaluador": {"email": st.session_state.email_voluntario_persistente},
                         "pregunta": pregunta_texto.strip(),
                         "opciones": opciones_vol,
                         "respuesta_correcta_index": correcta_num - 1,
@@ -518,10 +524,4 @@ else:
         st.balloons()
         if st.button("🔄 Volver al inicio", type="primary"):
             st.session_state.empezado = False
-            st.session_state.indice = 0
-            st.session_state.id_evaluador_limpio = ""
-            st.session_state.id_numerico = ""
-            st.session_state.nombre_real = ""
-            st.session_state.rol_asignado = ""
-            st.session_state.grupo_preguntas = ""
-            st.rerun()
+            st.session
