@@ -1,6 +1,5 @@
 import streamlit as st
 import json
-import random
 import unicodedata
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -23,27 +22,28 @@ db = firestore.client()
 # ==========================================
 @st.cache_data
 def cargar_datos_unicos():
-    with open("respuestas_alumnos_es.json", "r", encoding="utf-8") as f:
+    with open("respuestas_alumnos_es_40.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
-    
-    random.seed(42) 
-    random.shuffle(datos) 
-    
-    preguntas_vistas = set()
-    datos_filtrados = []
-    
+    with open("reparto_grupos_40.json", "r", encoding="utf-8") as f:
+        reparto = json.load(f)
+
+    indice = {}
     for item in datos:
         if isinstance(item, list) and len(item) > 0: item = item[0]
         if not isinstance(item, dict) or "question_id" not in item: continue
-        q_id = item["question_id"]
-        if q_id not in preguntas_vistas:
-            datos_filtrados.append(item)
-            preguntas_vistas.add(q_id)
-        if len(datos_filtrados) == 20: 
-            break
-    return datos_filtrados
+        clave = (str(item["question_id"]), item.get("error_type"))
+        indice[clave] = item
 
-datos_alumnos = cargar_datos_unicos()
+    resultado = {"A": [], "B": []}
+    for entrada in reparto:
+        clave = (str(entrada["question_id"]), entrada["error_type_asignado"])
+        item = indice.get(clave)
+        if item is not None:
+            resultado[entrada["grupo"]].append(item)
+
+    return resultado
+
+datos_por_grupo = cargar_datos_unicos()
 
 ROLES_HUMANOS = [
     "✅ Profesor Ideal (Misión: Corrige de forma clara, directa y adaptada a su nivel)",
@@ -197,6 +197,30 @@ def asignar_rol_y_id(id_limpio):
 
     return rol_elegido, id_numerico
 
+def asignar_grupo_preguntas(id_limpio):
+    """Reparte equitativamente el Grupo A / Grupo B de preguntas entre participantes,
+    con el mismo patrón de balanceo por conteo que asignar_rol_y_id."""
+    registro = obtener_registro()
+
+    info_existente = registro.get(id_limpio)
+    if isinstance(info_existente, dict) and "grupo_preguntas" in info_existente:
+        return info_existente["grupo_preguntas"]
+
+    conteos_grupo_preguntas = {"A": 0, "B": 0}
+    for info in registro.values():
+        if isinstance(info, dict) and "grupo_preguntas" in info:
+            conteos_grupo_preguntas[info["grupo_preguntas"]] += 1
+
+    grupo_elegido = min(conteos_grupo_preguntas, key=conteos_grupo_preguntas.get)
+
+    if not isinstance(registro.get(id_limpio), dict):
+        registro[id_limpio] = {}
+    registro[id_limpio]["grupo_preguntas"] = grupo_elegido
+
+    db.collection("config").document("registro_roles").set(registro)
+
+    return grupo_elegido
+
 # ==========================================
 # 3. INICIALIZACIÓN DE VARIABLES DE SESIÓN
 # ==========================================
@@ -212,6 +236,8 @@ if "nombre_real" not in st.session_state:
     st.session_state.nombre_real = ""
 if "rol_asignado" not in st.session_state:
     st.session_state.rol_asignado = ""
+if "grupo_preguntas" not in st.session_state:
+    st.session_state.grupo_preguntas = ""
 if "modo_voluntario" not in st.session_state:
     st.session_state.modo_voluntario = False
 if "nombre_voluntario_persistente" not in st.session_state:
@@ -350,7 +376,8 @@ elif not st.session_state.empezado:
         else:
             id_limpio = limpiar_nombre(nombre_input)
             rol, id_num = asignar_rol_y_id(id_limpio)
-            
+            grupo_preguntas = asignar_grupo_preguntas(id_limpio)
+
             evaluaciones_previas = db.collection("evaluaciones").where("evaluador.id_limpio", "==", id_limpio).get()
             st.session_state.indice = len(evaluaciones_previas)
             
@@ -362,6 +389,7 @@ elif not st.session_state.empezado:
             st.session_state.id_evaluador_limpio = id_limpio
             st.session_state.id_numerico = id_num
             st.session_state.rol_asignado = rol
+            st.session_state.grupo_preguntas = grupo_preguntas
             st.session_state.empezado = True
             st.rerun()
 
@@ -376,20 +404,22 @@ elif not st.session_state.empezado:
 # 5. PANTALLA PRINCIPAL
 # ==========================================
 else:
+    datos_alumnos = datos_por_grupo.get(st.session_state.grupo_preguntas, [])
+
     if st.session_state.indice < len(datos_alumnos):
-        
+
         caso_actual = datos_alumnos[st.session_state.indice]
-        rol_actual = st.session_state.rol_asignado 
+        rol_actual = st.session_state.rol_asignado
         resp_estudiante = caso_actual['student_response']
         opciones = caso_actual['choices']
-        
+
         tracker_key = f"ayuda_historial_{st.session_state.indice}"
         if tracker_key not in st.session_state:
             st.session_state[tracker_key] = False
-        
+
         st.progress(st.session_state.indice / len(datos_alumnos))
-        
-        st.markdown(f"**{st.session_state.id_numerico}** | Usuario: `{st.session_state.nombre_real}`")
+
+        st.markdown(f"**{st.session_state.id_numerico}** | Usuario: `{st.session_state.nombre_real}` | Grupo: **{st.session_state.grupo_preguntas}**")
         st.subheader(f"Pregunta {st.session_state.indice + 1} de {len(datos_alumnos)}")
         
         col_izq, col_der = st.columns([1.1, 1], gap="large")
@@ -469,11 +499,12 @@ else:
                         },
                         "student_response": resp_estudiante,
                         "rol_profesor": codigo_rol(rol_actual),
+                        "grupo_preguntas": st.session_state.grupo_preguntas,
                         "human_response": {
                             "selected_choice_text": opcion_humano,
                             "selected_choice_index": opciones.index(opcion_humano),
                             "explanation": respuesta_humano,
-                            "ayuda_pedagogica_utilizada": st.session_state[tracker_key] 
+                            "ayuda_pedagogica_utilizada": st.session_state[tracker_key]
                         }
                     }
                     
@@ -492,4 +523,5 @@ else:
             st.session_state.id_numerico = ""
             st.session_state.nombre_real = ""
             st.session_state.rol_asignado = ""
+            st.session_state.grupo_preguntas = ""
             st.rerun()
