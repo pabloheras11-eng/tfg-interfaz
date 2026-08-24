@@ -1,0 +1,202 @@
+[
+    {
+        "question_id": "29",
+        "grupo": "A",
+        "error_type_asignado": "Factual_Error"
+    },
+    {
+        "question_id": "19156",
+        "grupo": "A",
+        "error_type_asignado": "Conceptual_Misconception"
+    },
+    {
+        "question_id": "128",
+        "grupo": "A",
+        "error_type_asignado": "Overgeneralization"
+    },
+    {
+        "question_id": "15452",
+        "grupo": "A",
+        "error_type_asignado": "Incomplete_Reasoning"
+    },
+    {
+        "question_id": "20450",
+        "grupo": "A",
+        "error_type_asignado": "Misinterpretation_of_Question"
+    },
+    {
+        "question_id": "18425",
+        "grupo": "A",
+        "error_type_asignado": "None"
+    },
+    {
+        "question_id": "14560",
+        "grupo": "A",
+        "error_type_asignado": "Factual_Error"
+    },
+    {
+        "question_id": "723",
+        "grupo": "A",
+        "error_type_asignado": "Conceptual_Misconception"
+    },
+    {
+        "question_id": "20555",
+        "grupo": "A",
+        "error_type_asignado": "Overgeneralization"
+    },
+    {
+        "question_id": "17157",
+        "grupo": "A",
+        "error_type_asignado": "Incomplete_Reasoning"
+    },
+    {
+        "question_id": "10631",
+        "grupo": "A",
+        "error_type_asignado": "Misinterpretation_of_Question"
+    },
+    {
+        "question_id": "8254",
+        "grupo": "A",
+        "error_type_asignado": "None"
+    },
+    {
+        "question_id": "4357",
+        "grupo": "A",
+        "error_type_asignado": "Factual_Error"
+    },
+    {
+        "question_id": "9108",
+        "grupo": "A",
+        "error_type_asignado": "Conceptual_Misconception"
+    },
+    {
+        "question_id": "955",
+        "grupo": "A",
+        "error_type_asignado": "Overgeneralization"
+    },
+    {
+        "question_id": "1505",
+        "grupo": "A",
+        "error_type_asignado": "Incomplete_Reasoning"
+    },
+    {
+        "question_id": "98",
+        "grupo": "A",
+        "error_type_asignado": "Misinterpretation_of_Question"
+    },
+    {
+        "question_id": "390",
+        "grupo": "A",
+        "error_type_asignado": "None"
+    },
+    {
+        "question_id": "7711",
+        "grupo": "A",
+        "error_type_asignado": "Factual_Error"
+    },
+    {
+        "question_id": "19706",
+        "grupo": "A",
+        "error_type_asignado": "Conceptual_Misconception"
+    },
+    {
+        "question_id": "10436",
+        "grupo": "B",
+        "error_type_asignado": "Factual_Error"
+    },
+    {
+        "question_id": "838",
+        "grupo": "B",
+        "error_type_asignado": "Conceptual_Misconception"
+    },
+    {
+        "question_id": "16497",
+        "grupo": "B",
+        "error_type_asignado": "Overgeneralization"
+    },
+    {
+        "question_id": "10951",
+        "grupo": "B",
+        "error_type_asignado": "Incomplete_Reasoning"
+    },
+    {
+        "question_id": "3902",
+        "grupo": "B",
+        "error_type_asignado": "Misinterpretation_of_Question"
+    },
+    {
+        "question_id": "4191",
+        "grupo": "B",
+        "error_type_asignado": "None"
+    },
+    {
+        "question_id": "52",
+        "grupo": "B",
+        "error_type_asignado": "Factual_Error"
+    },
+    {
+        "question_id": "2262",
+        "grupo": "B",
+        "error_type_asignado": "Conceptual_Misconception"
+    },
+    {
+        "question_id": "113",
+        "grupo": "B",
+        "error_type_asignado": "Overgeneralization"
+    },
+    {
+        "question_id": "498",
+        "grupo": "B",
+        "error_type_asignado": "Incomplete_Reasoning"
+    },
+    {
+        "question_id": "2134",
+        "grupo": "B",
+        "error_type_asignado": "Misinterpretation_of_Question"
+    },
+    {
+        "question_id": "792",
+        "grupo": "B",
+        "error_type_asignado": "None"
+    },
+    {
+        "question_id": "9883",
+        "grupo": "B",
+        "error_type_asignado": "Factual_Error"
+    },
+    {
+        "question_id": "2814",
+        "grupo": "B",
+        "error_type_asignado": "Conceptual_Misconception"
+    },
+    {
+        "question_id": "15917",
+        "grupo": "B",
+        "error_type_asignado": "Overgeneralization"
+    },
+    {
+        "question_id": "19905",
+        "grupo": "B",
+        "error_type_asignado": "Incomplete_Reasoning"
+    },
+    {
+        "question_id": "19957",
+        "grupo": "B",
+        "error_type_asignado": "Misinterpretation_of_Question"
+    },
+    {
+        "question_id": "16924",
+        "grupo": "B",
+        "error_type_asignado": "None"
+    },
+    {
+        "question_id": "3621",
+        "grupo": "B",
+        "error_type_asignado": "Factual_Error"
+    },
+    {
+        "question_id": "13297",
+        "grupo": "B",
+        "error_type_asignado": "Conceptual_Misconception"
+    }
+]
