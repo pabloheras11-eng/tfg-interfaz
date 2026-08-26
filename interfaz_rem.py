@@ -503,6 +503,7 @@ else:
                             "answer": caso_actual['ground_truth_answer'],
                             "solution": caso_actual['ground_truth_solution']
                         },
+                        "error_type": caso_actual['error_type'],
                         "student_response": resp_estudiante,
                         "rol_profesor": codigo_rol(rol_actual),
                         "grupo_preguntas": st.session_state.grupo_preguntas,
@@ -524,4 +525,10 @@ else:
         st.balloons()
         if st.button("🔄 Volver al inicio", type="primary"):
             st.session_state.empezado = False
-            st.session
+            st.session_state.indice = 0
+            st.session_state.id_evaluador_limpio = ""
+            st.session_state.id_numerico = ""
+            st.session_state.nombre_real = ""
+            st.session_state.rol_asignado = ""
+            st.session_state.grupo_preguntas = ""
+            st.rerun()
