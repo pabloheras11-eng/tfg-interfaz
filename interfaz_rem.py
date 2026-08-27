@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import os
 import re
 import unicodedata
 import firebase_admin
@@ -28,6 +29,15 @@ def cargar_datos_unicos():
     with open("reparto_grupos_40.json", "r", encoding="utf-8") as f:
         reparto = json.load(f)
 
+    # hints_es_40.json es opcional: {question_id: hint_es}. Contiene el contexto/escena de la
+    # pregunta (personajes, valores numéricos) para las preguntas donde el enunciado por sí solo
+    # no se entiende sin él (p. ej. "Mackenzie" o "Quincy y Roger"). No se guardó en
+    # respuestas_alumnos_es_40.json porque solo se usó como insumo interno al generar al alumno.
+    hints = {}
+    if os.path.exists("hints_es_40.json"):
+        with open("hints_es_40.json", "r", encoding="utf-8") as f:
+            hints = json.load(f)
+
     indice = {}
     for item in datos:
         if isinstance(item, list) and len(item) > 0: item = item[0]
@@ -40,6 +50,7 @@ def cargar_datos_unicos():
         clave = (str(entrada["question_id"]), entrada["error_type_asignado"])
         item = indice.get(clave)
         if item is not None:
+            item["hint"] = hints.get(str(entrada["question_id"]), "")
             resultado[entrada["grupo"]].append(item)
 
     return resultado
@@ -431,7 +442,11 @@ else:
         col_izq, col_der = st.columns([1.1, 1], gap="large")
 
         with col_izq:
-            st.info(f"**Grado del alumno:** {caso_actual.get('grade', 'Desconocido')} *(¡Tenlo en cuenta para tu respuesta!)*\n\n**Pregunta:** {caso_actual['question']}")
+            texto_grado_pregunta = f"**Grado del alumno:** {caso_actual.get('grade', 'Desconocido')} *(¡Tenlo en cuenta para tu respuesta!)*"
+            if caso_actual.get('hint'):
+                texto_grado_pregunta += f"\n\n**Contexto:** {caso_actual['hint']}"
+            texto_grado_pregunta += f"\n\n**Pregunta:** {caso_actual['question']}"
+            st.info(texto_grado_pregunta)
             st.markdown("**Opciones:**\n" + "\n".join([f"- {opt}" for opt in opciones]))
             
             st.markdown("### 📘 Solución Oficial (Ground Truth)")
