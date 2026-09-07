@@ -109,6 +109,16 @@ def codigo_rol(rol):
 #   del alumno, así que falla tanto "identifica_error" como "explica_bien" a la vez. Esta combinación
 #   NO existe todavía entre las 6 variantes que genera respuestas_profesores_v2.py (ver RUBRIC_VARIANTS) —
 #   el "profesor que miente con seguridad" es un perfil que la simulación sintética aún no produce.
+#
+# - CRITERIO DE TONO (importante para "conciso" y "equivocado"): ambos mantienen tono_adecuado=1 A
+#   PROPÓSITO, aunque su Misión sea fallar en otro eje (explicación / contenido). Por eso, en
+#   GUIA_DETALLADA_ROLES, su tono se describe como amable/cordial (breve-pero-amable, seguro-pero-no-
+#   -desagradable) en vez de frío o autoritario: si el texto que escribe el evaluador sonara antipático,
+#   la etiqueta tono=1 sería falsa y contaminaría el dataset de entrenamiento. Se optó por mantener el
+#   tono bueno (en vez de bajar la tupla a tono=0) por dos motivos: (1) así cada rol humano aísla un
+#   único eje de fallo, igual que las variantes sintéticas V1-V6; (2) "equivocado" = (0,0,1,1) es la
+#   única casilla de las 16 combinaciones posibles (en todo el dataset, humano + sintético) que cubre
+#   "contenido incorrecto pero tono agradable" — bajarle el tono la dejaría sin ningún ejemplo.
 ROL_A_RUBRICA_SINTETICA = {
     "ideal": (1, 1, 1, 1),
     "pedante": (1, 1, 1, 0),
@@ -122,37 +132,35 @@ ROL_A_RUBRICA_SINTETICA = {
 # ==========================================
 GUIA_DETALLADA_ROLES = {
     "✅ Profesor Ideal (Misión: Corrige de forma clara, directa y adaptada a su nivel)": """
-**🎯 Tu Misión:** Eres el profesor perfecto. Queremos que redactes el mejor feedback posible.
-* **Tono:** Empático, constructivo, motivador y adaptado al nivel de un estudiante.
-* **Estrategia:** Valida su esfuerzo, explícale de forma sencilla por qué su opción es incorrecta (si ha fallado) y guíale hacia la respuesta correcta usando analogías o ejemplos claros.
-* **Ejemplo:** *"¡Has estado muy cerca, es un error muy común! Fíjate bien en la fórmula, ¿recuerdas lo que pasaba cuando multiplicábamos por cero? Por eso la correcta es la B. ¡Sigue así!"*
+**Misión:** Eres el profesor perfecto. Corrige de forma clara, directa y adaptada.
+* **Tono:** Empático, alentador y pedagógico (valida su intento y guíale usando ejemplos adaptados).
+* **Ejemplo (Geografía):** *"¡Has estado muy cerca! Es normal confundirse porque ambas ciudades empiezan igual, pero la correcta es Madrid. ¿Recuerdas cuando la vimos en el mapa?"*
 """,
     "📚 Profesor Pedante (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)": """
-**🎯 Tu Misión:** Eres un profesor sabelotodo, pedante y aburrido. Queremos que te pases de frenada.
-* **Tono:** Verborreico, extremadamente académico, distante y farragoso.
-* **Estrategia:** Dale la respuesta correcta al alumno, pero entiérrala en una explicación larguísima, usando palabras muy complejas, jerga técnica innecesaria y detalles que nadie te ha pedido. Ignora que le estás hablando a un estudiante.
-* **Ejemplo:** *"La premisa de tu respuesta adolece de una falta de rigor epistemológico. Efectivamente es la opción B, dado que la fenomenología subyacente a la ecuación polinómica de segundo grado requiere una factorización previa que, históricamente, fue demostrada por..."*
-* **Si el alumno ya ha acertado:** No te limites a confirmarlo, sigue igual de pedante y explayándote con datos irrelevantes aunque ya lo haya entendido.
-* **Ejemplo (acierto):** *"Correcto. Cabe destacar, no obstante, que la resolución de este tipo de ecuaciones tiene su origen en los trabajos de matemáticos babilónicos del segundo milenio antes de Cristo, cuyo método..."*
+**Misión:** Da la respuesta correcta, pero sé pedante, enróllate mucho o usa palabras difíciles.
+* **Tono:** Verborreico o excesivamente técnico, ignorando la edad del alumno.
+* **Ejemplo (Geografía):** *"Efectivamente es Madrid. Una urbe conocida históricamente por sus desarrollos demográficos, su densidad poblacional y su impacto socioeconómico..."*
+* **Si el alumno ya ha acertado:** Sigue igual de pedante, aunque solo tengas que confirmarlo.
+* **Ejemplo (acierto):** *"Correcto. Cabe señalar que Madrid, además, concentra el mayor producto interior bruto per cápita de la península ibérica, un dato que sin duda..."*
 """,
     "✂️ Profesor Conciso (Misión: Da la respuesta correcta pero sé lo más breve y seco posible, sin apenas explicación)": """
-**🎯 Tu Misión:** Eres un profesor con prisa. Das la respuesta correcta, pero de la forma más breve posible, sin apenas explicación.
-* **Tono:** Seco, cortante, distante. Cero calidez ni ánimo.
-* **Estrategia:** Dile al alumno la opción correcta en una frase mínima. No expliques el razonamiento, no le des contexto ni te adaptes a su edad.
-* **Ejemplo:** *"Es la B. Siguiente."*
-* **Si el alumno ya ha acertado:** Confírmalo con la misma sequedad, sin felicitarle ni reforzar que lo ha hecho bien.
-* **Ejemplo (acierto):** *"Correcto."*
+**Misión:** Da la respuesta correcta, pero sé lo más breve posible, sin apenas explicación.
+* **Tono:** Directo y muy breve, pero cordial — evita sonar frío o desagradable. Ve al grano con amabilidad.
+* **Ejemplo (Geografía):** *"¡Es Madrid!"*
+* **Si el alumno ya ha acertado:** Confírmalo igual de breve, pero con un toque amable.
+* **Ejemplo (acierto):** *"¡Correcto!"*
 """,
     "❌ Profesor Equivocado (Misión: Responde con mucha seguridad pero dale una explicación falsa o incorrecta)": """
-**🎯 Tu Misión:** Eres un profesor muy seguro de sí mismo... pero que enseña cosas falsas.
-* **Tono:** Autoritario, categórico y sin ninguna duda.
-* **Estrategia:** Dile al alumno cuál es la opción correcta, **PERO invéntate una explicación totalmente falsa, ilógica o absurda** para justificarla. Tienes que mentir con absoluta seguridad, como si fuera una verdad universal.
-* **Ejemplo:** *"Claramente es la opción B. Esto ocurre porque, como todos sabemos, si calientas el agua por encima de los 100 grados se convierte en oxígeno puro y los peces pueden respirar fuera del mar. No deberías fallar esto."*
+**Misión:** Da una explicación falsa o incorrecta con mucha seguridad.
+* **Tono:** Convencido y seguro de ti mismo, pero amable — te equivocas con total confianza, nunca con dureza ni sarcasmo.
+* **Ejemplo (Geografía):** *"¡Buen intento! Pero no, la respuesta correcta es Londres, porque desde los tratados fronterizos España se movió al norte."*
+* **Si el alumno ya ha acertado:** No reconozcas el acierto — con la misma seguridad y amabilidad, dile que se ha equivocado (o confirma la respuesta pero con un razonamiento falso).
+* **Ejemplo (acierto que niegas):** *"¡Buen intento, pero no es correcto! La capital de España no es Madrid, es Barcelona."*
 """,
     "LIBRE": """
-**🎯 Tu Misión:** Sé tú mismo.
+**Misión:** Sé tú mismo. Corrige con tu propio estilo natural, adaptándote a su nivel.
 * **Tono:** El que tú usarías si estuvieras ayudando a un amigo o a un familiar.
-* **Estrategia:** Corrige el ejercicio de la manera que te parezca más natural y útil. Escribe lo que te salga de forma instintiva basándote en la solución oficial.
+* **Estrategia:** Corrige de la manera que te parezca más natural y útil, basándote en la solución oficial.
 """,
 }
 
@@ -168,16 +176,12 @@ def limpiar_nombre(nombre_crudo):
 def parece_email(texto):
     return re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", texto.strip()) is not None
 
-def obtener_registro():
-    doc_ref = db.collection("config").document("registro_roles")
-    doc = doc_ref.get()
-    if doc.exists:
-        return doc.to_dict()
-    return {}
+REGISTRO_ROLES_REF = db.collection("config").document("registro_roles")
 
-def asignar_rol_y_id(id_limpio):
-    registro = obtener_registro()
-    
+@firestore.transactional
+def _asignar_rol_y_id_tx(transaction, id_limpio):
+    registro = REGISTRO_ROLES_REF.get(transaction=transaction).to_dict() or {}
+
     if id_limpio in registro:
         info = registro[id_limpio]
         return info["rol"], info["id_numerico"]
@@ -208,14 +212,19 @@ def asignar_rol_y_id(id_limpio):
         "id_numerico": id_numerico
     }
 
-    db.collection("config").document("registro_roles").set(registro)
+    transaction.set(REGISTRO_ROLES_REF, registro)
 
     return rol_elegido, id_numerico
 
-def asignar_grupo_preguntas(id_limpio):
+def asignar_rol_y_id(id_limpio):
+    transaction = db.transaction()
+    return _asignar_rol_y_id_tx(transaction, id_limpio)
+
+@firestore.transactional
+def _asignar_grupo_preguntas_tx(transaction, id_limpio):
     """Reparte equitativamente el Grupo A / Grupo B de preguntas entre participantes,
     con el mismo patrón de balanceo por conteo que asignar_rol_y_id."""
-    registro = obtener_registro()
+    registro = REGISTRO_ROLES_REF.get(transaction=transaction).to_dict() or {}
 
     info_existente = registro.get(id_limpio)
     if isinstance(info_existente, dict) and "grupo_preguntas" in info_existente:
@@ -232,9 +241,13 @@ def asignar_grupo_preguntas(id_limpio):
         registro[id_limpio] = {}
     registro[id_limpio]["grupo_preguntas"] = grupo_elegido
 
-    db.collection("config").document("registro_roles").set(registro)
+    transaction.set(REGISTRO_ROLES_REF, registro)
 
     return grupo_elegido
+
+def asignar_grupo_preguntas(id_limpio):
+    transaction = db.transaction()
+    return _asignar_grupo_preguntas_tx(transaction, id_limpio)
 
 # ==========================================
 # 3. INICIALIZACIÓN DE VARIABLES DE SESIÓN
