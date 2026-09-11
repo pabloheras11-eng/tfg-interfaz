@@ -14,7 +14,11 @@ if not firebase_admin._apps:
     # Lee las credenciales ocultas desde Streamlit Secrets
     cred_dict = dict(st.secrets["firebase"])
     cred = credentials.Certificate(cred_dict)
-    firebase_admin.initialize_app(cred)
+    try:
+        firebase_admin.initialize_app(cred)
+    except ValueError:
+        # Otro hilo/sesión de Streamlit ya inicializó la app por medio (condición de carrera)
+        pass
 
 # Conectamos con la base de datos Firestore
 db = firestore.client()
@@ -178,6 +182,47 @@ def parece_email(texto):
 
 REGISTRO_ROLES_REF = db.collection("config").document("registro_roles")
 
+# ==========================================
+# BALANCEO DE ROL + ID DE EVALUADOR
+# ==========================================
+# Estado global: un único documento Firestore (config/registro_roles) con la forma
+# { id_limpio: {rol, id_numerico, grupo_preguntas} }, una clave por participante.
+#
+# id_limpio (limpiar_nombre: minúsculas, sin tildes, espacios -> "_") es la clave de
+# deduplicación:
+#   - Si la persona vuelve a entrar, cae en la rama idempotente y recupera EXACTAMENTE
+#     su mismo rol e id (y el índice de progreso se reconstruye aparte, contando sus
+#     documentos en la colección "evaluaciones").
+#   - LIMITACIÓN: dos personas con el mismo nombre normalizado colisionan (la 2ª
+#     "continúa" la sesión de la 1ª). Y si alguien escribe su nombre distinto la 2ª
+#     vez (añade/quita un apellido), se le crea una identidad nueva.
+#
+# Todo ocurre dentro de una @firestore.transactional para que dos registros
+# simultáneos no lean el mismo estado y se pisen (dos Evaluador_NN iguales, o conteos
+# obsoletos que rompan el balance). En conflicto, Firestore aborta y reintenta.
+#
+# id_numerico = f"Evaluador_{len(registro)+1:02d}": contador de orden de llegada,
+# independiente del rol (relleno a 2 dígitos, se rompe visualmente a partir de 100).
+#
+# Reparto de rol = "coge el bucket con menos gente" (greedy, SIN random, para
+# garantizar balance casi perfecto con N pequeño: un RNG podría dar 7 Ideal / 1 Libre
+# con 8 personas). Dos niveles:
+#   Nivel 1: 4 buckets {ideal, grupo_excesivo, equivocado, LIBRE}
+#            (Pedante + Conciso = grupo_excesivo, ver GRUPO_BALANCEO).
+#   Nivel 2: si el bucket ganador tiene >1 rol (grupo_excesivo), se coge el sub-rol
+#            con menos gente (Pedante vs Conciso).
+#   Distribución a largo plazo: Ideal 25% / Equivocado 25% / Libre 25% /
+#   Pedante 12,5% / Conciso 12,5%. Ciclo completo = 8 participantes.
+#
+# LIMITACIÓN de reproducibilidad: min() en caso de empate devuelve la 1ª clave según
+# el orden de iteración del dict. En el Nivel 1 ese orden viene de grupos_unicos, que
+# es un set de strings -> depende de PYTHONHASHSEED y PUEDE CAMBIAR al reiniciar la
+# app. Solo afecta al orden de asignación mientras hay conteos empatados (primeros
+# participantes y cada vez que los buckets se re-igualan); la distribución a largo
+# plazo no cambia. El desempate Pedante/Conciso del Nivel 2 sí es determinista
+# (roles_del_grupo es una lista construida sobre ROLES_HUMANOS, no un set).
+# ==========================================
+
 @firestore.transactional
 def _asignar_rol_y_id_tx(transaction, id_limpio):
     registro = REGISTRO_ROLES_REF.get(transaction=transaction).to_dict() or {}
@@ -223,7 +268,10 @@ def asignar_rol_y_id(id_limpio):
 @firestore.transactional
 def _asignar_grupo_preguntas_tx(transaction, id_limpio):
     """Reparte equitativamente el Grupo A / Grupo B de preguntas entre participantes,
-    con el mismo patrón de balanceo por conteo que asignar_rol_y_id."""
+    con el mismo patrón de balanceo por conteo que asignar_rol_y_id, pero de UN SOLO
+    nivel. Aquí los empates van SIEMPRE a "A" (conteos_grupo_preguntas es un dict
+    literal, orden fijo), así que el reparto es determinista y alternante:
+    1->A, 2->B, 3->A... Es independiente del rol (se puede ser Ideal+A o Ideal+B)."""
     registro = REGISTRO_ROLES_REF.get(transaction=transaction).to_dict() or {}
 
     info_existente = registro.get(id_limpio)
