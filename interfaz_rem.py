@@ -418,10 +418,13 @@ if st.session_state.modo_voluntario:
                         "respuestas_por_rol": respuestas_por_rol_final
                     }
 
-                    db.collection("evaluaciones_voluntarios_uni").add(nuevo_registro)
-
-                    st.session_state.preguntas_voluntario_completadas += 1
-                    st.rerun()
+                    try:
+                        db.collection("evaluaciones_voluntarios_uni").add(nuevo_registro)
+                    except Exception as e:
+                        st.error(f"No se pudo guardar tu pregunta, inténtalo de nuevo. (Error: {e})")
+                    else:
+                        st.session_state.preguntas_voluntario_completadas += 1
+                        st.rerun()
 
 elif not st.session_state.empezado:
     st.title("🔬 Simulador de Interacción Docente - TFG")
@@ -591,10 +594,13 @@ else:
                         }
                     }
                     
-                    db.collection("evaluaciones").add(nuevo_registro)
-                    
-                    st.session_state.indice += 1
-                    st.rerun()
+                    try:
+                        db.collection("evaluaciones").add(nuevo_registro)
+                    except Exception as e:
+                        st.error(f"No se pudo guardar tu respuesta, inténtalo de nuevo. (Error: {e})")
+                    else:
+                        st.session_state.indice += 1
+                        st.rerun()
 
     else:
         st.success("¡Has completado las 20 evaluaciones! Muchísimas gracias por tu tiempo.")
