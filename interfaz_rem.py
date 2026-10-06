@@ -20,7 +20,6 @@ if not firebase_admin._apps:
         # Otro hilo/sesión de Streamlit ya inicializó la app por medio (condición de carrera)
         pass
 
-# Conectamos con la base de datos Firestore
 db = firestore.client()
 
 # ==========================================
@@ -62,109 +61,97 @@ def cargar_datos_unicos():
 datos_por_grupo = cargar_datos_unicos()
 
 ROLES_HUMANOS = [
-    "✅ Profesor Ideal (Misión: Corrige de forma clara, directa y adaptada a su nivel)",
-    "📚 Profesor Pedante (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)",
-    "✂️ Profesor Conciso (Misión: Da la respuesta correcta pero sé lo más breve y seco posible, sin apenas explicación)",
-    "❌ Profesor Equivocado (Misión: Responde con mucha seguridad pero dale una explicación falsa o incorrecta)",
-    "LIBRE"
+    "✅ Profesor Ideal (Misión: Corrige de forma precisa, bien desarrollada, clara y amable)",
+    "❌ Profesor Desinformado (Misión: Da una respuesta incorrecta con toda la seguridad de que fuera correcta)",
+    "✂️ Profesor Conciso (Misión: Da una corrección correcta y amable pero demasiado breve: te saltas pasos del razonamiento y das cosas por hechas, apenas explicas)",
+    "🌀 Profesor Divagador (Misión: Da una corrección correcta y bien explicada, pero en algún momento te sales del tema para comentar detalles irrelevantes —aunque coherentes— de otra cosa)",
+    "🤬 Profesor Tóxico (Misión: Da una corrección correcta, clara y bien explicada, pero con un tono brusco, irrespetuoso o incluso insultante)"
 ]
 
-# En el modo Profesor Voluntario, la explicación oficial que escribe el propio profesor (Paso 1)
-# SE REUTILIZA directamente como la respuesta del rol Ideal — no tiene sentido pedírsela dos veces
-# (indicación del tutor del TFG). Por el mismo motivo se excluye también "LIBRE": al no tener ya
-# una instrucción de estilo forzada, su "mejor explicación posible" (Ideal) y su "estilo natural"
-# (Libre) acabarían siendo el mismo texto. Paso 2 solo pide los 3 roles con un estilo deliberadamente distinto.
+# Modo Profesor Voluntario, dos pasos:
+#   Paso 1: el profesor escribe su propia pregunta y la explicación ideal — esa explicación SE
+#   REUTILIZA directamente como la respuesta del rol Ideal, no se le vuelve a pedir en el Paso 2.
+#   Paso 2: reformula esa misma corrección en los otros 4 roles de ROLES_VOLUNTARIO_PASO2 (todos
+#   menos Ideal, ya cubierto por el Paso 1).
 ROL_IDEAL = ROLES_HUMANOS[0]
-ROLES_VOLUNTARIO_PASO2 = [r for r in ROLES_HUMANOS if r not in (ROL_IDEAL, "LIBRE")]
-
-# Pedante y Conciso cuentan como el mismo bucket a la hora de repartir roles equitativamente
-GRUPO_BALANCEO = {
-    "📚 Profesor Pedante (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)": "grupo_excesivo",
-    "✂️ Profesor Conciso (Misión: Da la respuesta correcta pero sé lo más breve y seco posible, sin apenas explicación)": "grupo_excesivo",
-}
-
-def clave_balanceo(rol):
-    return GRUPO_BALANCEO.get(rol, rol)
+ROLES_VOLUNTARIO_PASO2 = [r for r in ROLES_HUMANOS if r != ROL_IDEAL]
 
 # ==========================================
 # CÓDIGO CORTO DE ROL (para guardar en los JSON de salida en vez de la frase larga con emoji)
 # ==========================================
 CODIGO_ROL = {
-    "✅ Profesor Ideal (Misión: Corrige de forma clara, directa y adaptada a su nivel)": "ideal",
-    "📚 Profesor Pedante (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)": "pedante",
-    "✂️ Profesor Conciso (Misión: Da la respuesta correcta pero sé lo más breve y seco posible, sin apenas explicación)": "conciso",
-    "❌ Profesor Equivocado (Misión: Responde con mucha seguridad pero dale una explicación falsa o incorrecta)": "equivocado",
-    "LIBRE": "libre",
+    "✅ Profesor Ideal (Misión: Corrige de forma precisa, bien desarrollada, clara y amable)": "ideal",
+    "❌ Profesor Desinformado (Misión: Da una respuesta incorrecta con toda la seguridad de que fuera correcta)": "desinformado",
+    "✂️ Profesor Conciso (Misión: Da una corrección correcta y amable pero demasiado breve: te saltas pasos del razonamiento y das cosas por hechas, apenas explicas)": "conciso",
+    "🌀 Profesor Divagador (Misión: Da una corrección correcta y bien explicada, pero en algún momento te sales del tema para comentar detalles irrelevantes —aunque coherentes— de otra cosa)": "divagador",
+    "🤬 Profesor Tóxico (Misión: Da una corrección correcta, clara y bien explicada, pero con un tono brusco, irrespetuoso o incluso insultante)": "toxico",
 }
 
 def codigo_rol(rol):
     return CODIGO_ROL.get(rol, rol)
 
 # ==========================================
-# EQUIVALENCIA ENTRE ROLES HUMANOS Y RÚBRICA SINTÉTICA
+# EQUIVALENCIA ENTRE ROLES HUMANOS Y RÚBRICA (R1-R4, rúbrica "real" definida por el tutor)
 # ==========================================
-# Pensado para cuando se fusionen los datos humanos con los sintéticos de cara al fine-tuning.
-# Vector de 4 booleanos (0/1), en el mismo orden que RUBRIC_VARIANTS de respuestas_profesores_v2.py:
-# (identifica_error, explica_bien_ground_truth, tono_adecuado, nivel_adecuado)
-# Indexado por el código corto de rol (el mismo que se guarda en "rol_profesor" en los JSON de salida).
+# Vector de 4 booleanos (0/1), orden fijo:
+#   R1 precisión factual   (identifica si la respuesta del alumno es correcta y, si no, por qué)
+#   R2 profundidad          (la corrección está suficientemente desarrollada, no se salta pasos)
+#   R3 claridad/concreción  (clara, se limita al tema, sin información irrelevante)
+#   R4 amabilidad           (respetuosa, anima al alumno a mejorar)
+# Indexado por el código corto de rol (el mismo que se guarda en "rol_profesor").
 #
-# - "libre" no tiene target: es estilo abierto por diseño, no se evalúa contra una rúbrica fija.
-# - "equivocado" = (0, 0, 1, 1): da una explicación inventada/falsa en vez de identificar el error real
-#   del alumno, así que falla tanto "identifica_error" como "explica_bien" a la vez. Esta combinación
-#   NO existe todavía entre las 6 variantes que genera respuestas_profesores_v2.py (ver RUBRIC_VARIANTS) —
-#   el "profesor que miente con seguridad" es un perfil que la simulación sintética aún no produce.
+# *** POLARIDAD: 0 = BIEN (cumple el eje), 1 = MAL (falla ese eje) ***. Cada 1 marca el ÚNICO
+# eje en el que ese rol falla a propósito, por eso "ideal" = (0,0,0,0).
 #
-# - CRITERIO DE TONO (importante para "conciso" y "equivocado"): ambos mantienen tono_adecuado=1 A
-#   PROPÓSITO, aunque su Misión sea fallar en otro eje (explicación / contenido). Por eso, en
-#   GUIA_DETALLADA_ROLES, su tono se describe como amable/cordial (breve-pero-amable, seguro-pero-no-
-#   -desagradable) en vez de frío o autoritario: si el texto que escribe el evaluador sonara antipático,
-#   la etiqueta tono=1 sería falsa y contaminaría el dataset de entrenamiento. Se optó por mantener el
-#   tono bueno (en vez de bajar la tupla a tono=0) por dos motivos: (1) así cada rol humano aísla un
-#   único eje de fallo, igual que las variantes sintéticas V1-V6; (2) "equivocado" = (0,0,1,1) es la
-#   única casilla de las 16 combinaciones posibles (en todo el dataset, humano + sintético) que cubre
-#   "contenido incorrecto pero tono agradable" — bajarle el tono la dejaría sin ningún ejemplo.
-ROL_A_RUBRICA_SINTETICA = {
-    "ideal": (1, 1, 1, 1),
-    "pedante": (1, 1, 1, 0),
-    "conciso": (1, 0, 1, 1),
-    "equivocado": (0, 0, 1, 1),
-    "libre": None,
+# "desinformado" R2=0 (bien) es discutible a propósito: ¿una explicación construida sobre una
+# premisa falsa puede llamarse "profunda"? Se deja así (ver GUIA_DETALLADA_ROLES para el matiz).
+#
+# PENDIENTE: ya no tiene correspondencia 1:1 con la rúbrica sintética de respuestas_profesores_v2.py
+# (RUBRIC_VARIANTS) — los ejes R2/R3 no existen ahí. Ese script no se ha tocado en este rediseño.
+ROL_A_RUBRICA = {
+    "ideal": (0, 0, 0, 0),
+    "desinformado": (1, 0, 0, 0),
+    "conciso": (0, 1, 0, 0),
+    "divagador": (0, 0, 1, 0),
+    "toxico": (0, 0, 0, 1),
 }
 
 # ==========================================
-# CONFIGURACIÓN MODO PROFESORES VOLUNTARIOS (UNIVERSIDAD)
+# GUÍAS DETALLADAS DE ROL (usadas tanto en el flujo normal de evaluación como en el modo voluntario)
 # ==========================================
 GUIA_DETALLADA_ROLES = {
-    "✅ Profesor Ideal (Misión: Corrige de forma clara, directa y adaptada a su nivel)": """
-**Misión:** Eres el profesor perfecto. Corrige de forma clara, directa y adaptada.
+    "✅ Profesor Ideal (Misión: Corrige de forma precisa, bien desarrollada, clara y amable)": """
+**Misión:** Eres el profesor perfecto. Corrige de forma precisa, bien desarrollada, clara y amable.
 * **Tono:** Empático, alentador y pedagógico (valida su intento y guíale usando ejemplos adaptados).
 * **Ejemplo (Geografía):** *"¡Has estado muy cerca! Es normal confundirse porque ambas ciudades empiezan igual, pero la correcta es Madrid. ¿Recuerdas cuando la vimos en el mapa?"*
 """,
-    "📚 Profesor Pedante (Misión: Da la respuesta correcta pero enróllate mucho o usa palabras muy difíciles)": """
-**Misión:** Da la respuesta correcta, pero sé pedante, enróllate mucho o usa palabras difíciles.
-* **Tono:** Verborreico o excesivamente técnico, ignorando la edad del alumno.
-* **Ejemplo (Geografía):** *"Efectivamente es Madrid. Una urbe conocida históricamente por sus desarrollos demográficos, su densidad poblacional y su impacto socioeconómico..."*
-* **Si el alumno ya ha acertado:** Sigue igual de pedante, aunque solo tengas que confirmarlo.
-* **Ejemplo (acierto):** *"Correcto. Cabe señalar que Madrid, además, concentra el mayor producto interior bruto per cápita de la península ibérica, un dato que sin duda..."*
+    "❌ Profesor Desinformado (Misión: Da una respuesta incorrecta con toda la seguridad de que fuera correcta)": """
+**Misión:** Da una respuesta incorrecta con toda la seguridad de que fuera correcta. Puede ser de tres formas: dile que ha acertado cuando en realidad se ha equivocado, dile que se ha equivocado cuando en realidad ha acertado, o dale el veredicto correcto pero con un motivo falso. El único fallo es de CONTENIDO — la explicación debe sonar igual de desarrollada, clara y amable que la de un buen profesor, solo que lo que dice es mentira.
+* **Tono:** Igual de cordial y seguro que si tuvieras razón — el problema no es cómo lo dices, es que lo que dices es falso.
+* **Ejemplo (Geografía):** *"¡Es Barcelona! Es la ciudad más grande de España, así que tiene que ser la capital."*
+* **Si el alumno ya ha acertado:** No reconozcas el acierto — con la misma seguridad y amabilidad, dile que se ha equivocado, o confírmaselo pero con un motivo falso.
+* **Ejemplo (acierto que niegas):** *"¡Casi! Pero la capital es Barcelona, no Madrid, porque es la ciudad más grande del país."*
 """,
-    "✂️ Profesor Conciso (Misión: Da la respuesta correcta pero sé lo más breve y seco posible, sin apenas explicación)": """
-**Misión:** Da la respuesta correcta, pero sé lo más breve posible, sin apenas explicación.
+    "✂️ Profesor Conciso (Misión: Da una corrección correcta y amable pero demasiado breve: te saltas pasos del razonamiento y das cosas por hechas, apenas explicas)": """
+**Misión:** Da una corrección correcta y amable, pero demasiado breve: te saltas pasos del razonamiento y das cosas por hechas, apenas explicas.
 * **Tono:** Directo y muy breve, pero cordial — evita sonar frío o desagradable. Ve al grano con amabilidad.
 * **Ejemplo (Geografía):** *"¡Es Madrid!"*
 * **Si el alumno ya ha acertado:** Confírmalo igual de breve, pero con un toque amable.
 * **Ejemplo (acierto):** *"¡Correcto!"*
 """,
-    "❌ Profesor Equivocado (Misión: Responde con mucha seguridad pero dale una explicación falsa o incorrecta)": """
-**Misión:** Da una explicación falsa o incorrecta con mucha seguridad.
-* **Tono:** Convencido y seguro de ti mismo, pero amable — te equivocas con total confianza, nunca con dureza ni sarcasmo.
-* **Ejemplo (Geografía):** *"¡Buen intento! Pero no, la respuesta correcta es Londres, porque desde los tratados fronterizos España se movió al norte."*
-* **Si el alumno ya ha acertado:** No reconozcas el acierto — con la misma seguridad y amabilidad, dile que se ha equivocado (o confirma la respuesta pero con un razonamiento falso).
-* **Ejemplo (acierto que niegas):** *"¡Buen intento, pero no es correcto! La capital de España no es Madrid, es Barcelona."*
+    "🌀 Profesor Divagador (Misión: Da una corrección correcta y bien explicada, pero en algún momento te sales del tema para comentar detalles irrelevantes —aunque coherentes— de otra cosa)": """
+**Misión:** Da la respuesta correcta y una buena explicación (identificando el error del alumno), pero en algún momento te sales del tema — comentas datos u observaciones que encajan lógicamente con lo que estás explicando pero que ya no aportan nada para corregir al alumno.
+* **Tono:** Cordial y bien intencionado — el problema no es el tono ni que el contenido principal esté mal, es que te dispersas y dejas de ir al grano.
+* **Ejemplo (Geografía):** *"Es Madrid, no Barcelona. Por cierto, ¿sabías que Madrid es una de las capitales europeas a mayor altitud? Y hablando de altitud, la Sierra de Guadarrama que la rodea tiene picos de más de 2000 metros donde mucha gente esquía en invierno..."*
+* **Si el alumno ya ha acertado:** Confírmalo con la explicación completa, pero divagando igual hacia detalles curiosos que no ha pedido.
+* **Ejemplo (acierto):** *"¡Correcto, es Madrid! Aprovecho para contarte que su nombre viene del árabe 'Mayrit', que significa algo así como 'lugar de muchas aguas'... (y sigue con una curiosidad histórica que ya no ayuda con la pregunta)."*
 """,
-    "LIBRE": """
-**Misión:** Sé tú mismo. Corrige con tu propio estilo natural, adaptándote a su nivel.
-* **Tono:** El que tú usarías si estuvieras ayudando a un amigo o a un familiar.
-* **Estrategia:** Corrige de la manera que te parezca más natural y útil, basándote en la solución oficial.
+    "🤬 Profesor Tóxico (Misión: Da una corrección correcta, clara y bien explicada, pero con un tono brusco, irrespetuoso o incluso insultante)": """
+**Misión:** Da la respuesta correcta y una buena explicación, completa y clara (identificando el error del alumno), pero dirígete al alumno de forma brusca, irrespetuosa o incluso insultante.
+* **Tono:** Grosero, despectivo o insultante — va más allá de la simple impaciencia o el sarcasmo leve. El contenido es correcto y completo — el problema es CÓMO lo dices.
+* **Ejemplo (Geografía):** *"¿En serio has confundido esto? Es Madrid, no Barcelona. ¿Es que no prestas atención en clase? Es de sentido común que ahí está el Gobierno."*
+* **Si el alumno ya ha acertado:** Confírmalo con la explicación completa, con el mismo tono despectivo, como si no te esperaras que acertara.
+* **Ejemplo (acierto):** *"Vaya, milagro. Sí, es Madrid, la capital, donde está el Gobierno. A ver si la próxima te la sabes sin tener que pensarlo tanto."*
 """,
 }
 
@@ -183,92 +170,76 @@ def parece_email(texto):
 REGISTRO_ROLES_REF = db.collection("config").document("registro_roles")
 
 # ==========================================
-# BALANCEO DE ROL + ID DE EVALUADOR
+# ROTACIÓN DE ROLES POR BLOQUES (cuadrado latino)
+# ==========================================
+# Cada evaluador rota por los 5 roles en bloques de TAMANO_BLOQUE preguntas seguidas (4x5=20).
+# Lo único que varía por evaluador es el DESPLAZAMIENTO (0-4), que decide con qué rol empieza:
+#   rol_para_indice(indice, desplazamiento) = ROLES_ROTACION[(indice // 4 + desplazamiento) % 5]
+# El orden de los roles es siempre el mismo (Ideal, Desinformado, Conciso, Divagador, Tóxico); el
+# desplazamiento solo decide por cuál empieza cada evaluador, así el mismo bloque de preguntas le
+# toca con un rol distinto a cada uno y cada evaluador pasa 4 preguntas por cada rol.
+ROLES_ROTACION = ROLES_HUMANOS
+TAMANO_BLOQUE = 20 // len(ROLES_ROTACION)  # 4, con los 5 roles actuales
+
+def rol_para_indice(indice, desplazamiento):
+    bloque = indice // TAMANO_BLOQUE
+    return ROLES_ROTACION[(bloque + desplazamiento) % len(ROLES_ROTACION)]
+
+# ==========================================
+# BALANCEO DE DESPLAZAMIENTO + ID DE EVALUADOR
 # ==========================================
 # Estado global: un único documento Firestore (config/registro_roles) con la forma
-# { id_limpio: {rol, id_numerico, grupo_preguntas} }, una clave por participante.
+# { id_limpio: {desplazamiento, id_numerico, grupo_preguntas} }, una clave por participante.
 #
-# id_limpio (limpiar_nombre: minúsculas, sin tildes, espacios -> "_") es la clave de
-# deduplicación:
-#   - Si la persona vuelve a entrar, cae en la rama idempotente y recupera EXACTAMENTE
-#     su mismo rol e id (y el índice de progreso se reconstruye aparte, contando sus
-#     documentos en la colección "evaluaciones").
-#   - LIMITACIÓN: dos personas con el mismo nombre normalizado colisionan (la 2ª
-#     "continúa" la sesión de la 1ª). Y si alguien escribe su nombre distinto la 2ª
-#     vez (añade/quita un apellido), se le crea una identidad nueva.
+# id_limpio (limpiar_nombre) es la clave de deduplicación: si la persona vuelve a entrar,
+# recupera el mismo desplazamiento e id (el progreso se reconstruye contando sus documentos
+# en "evaluaciones"). LIMITACIÓN: dos personas con el mismo nombre normalizado colisionan; si
+# alguien escribe su nombre distinto la 2ª vez, se le crea una identidad nueva.
 #
-# Todo ocurre dentro de una @firestore.transactional para que dos registros
-# simultáneos no lean el mismo estado y se pisen (dos Evaluador_NN iguales, o conteos
-# obsoletos que rompan el balance). En conflicto, Firestore aborta y reintenta.
+# Todo ocurre dentro de una @firestore.transactional para que dos altas simultáneas no se
+# pisen (dos Evaluador_NN iguales, o conteos obsoletos que rompan el balance).
 #
-# id_numerico = f"Evaluador_{len(registro)+1:02d}": contador de orden de llegada,
-# independiente del rol (relleno a 2 dígitos, se rompe visualmente a partir de 100).
-#
-# Reparto de rol = "coge el bucket con menos gente" (greedy, SIN random, para
-# garantizar balance casi perfecto con N pequeño: un RNG podría dar 7 Ideal / 1 Libre
-# con 8 personas). Dos niveles:
-#   Nivel 1: 4 buckets {ideal, grupo_excesivo, equivocado, LIBRE}
-#            (Pedante + Conciso = grupo_excesivo, ver GRUPO_BALANCEO).
-#   Nivel 2: si el bucket ganador tiene >1 rol (grupo_excesivo), se coge el sub-rol
-#            con menos gente (Pedante vs Conciso).
-#   Distribución a largo plazo: Ideal 25% / Equivocado 25% / Libre 25% /
-#   Pedante 12,5% / Conciso 12,5%. Ciclo completo = 8 participantes.
-#
-# LIMITACIÓN de reproducibilidad: min() en caso de empate devuelve la 1ª clave según
-# el orden de iteración del dict. En el Nivel 1 ese orden viene de grupos_unicos, que
-# es un set de strings -> depende de PYTHONHASHSEED y PUEDE CAMBIAR al reiniciar la
-# app. Solo afecta al orden de asignación mientras hay conteos empatados (primeros
-# participantes y cada vez que los buckets se re-igualan); la distribución a largo
-# plazo no cambia. El desempate Pedante/Conciso del Nivel 2 sí es determinista
-# (roles_del_grupo es una lista construida sobre ROLES_HUMANOS, no un set).
+# Reparto de desplazamiento = coge el menos usado hasta ahora (greedy, SIN random, para no
+# desequilibrar el cuadrado latino con N pequeño). En empate, gana el de menor índice (dict
+# con orden fijo 0-4), así que el desempate es determinista.
 # ==========================================
 
 @firestore.transactional
-def _asignar_rol_y_id_tx(transaction, id_limpio):
+def _asignar_desplazamiento_y_id_tx(transaction, id_limpio):
     registro = REGISTRO_ROLES_REF.get(transaction=transaction).to_dict() or {}
 
     if id_limpio in registro:
         info = registro[id_limpio]
-        return info["rol"], info["id_numerico"]
+        if "desplazamiento" in info:
+            return info["desplazamiento"], info["id_numerico"]
 
     numero_evaluador = len(registro) + 1
     id_numerico = f"Evaluador_{numero_evaluador:02d}"
 
-    grupos_unicos = {clave_balanceo(r) for r in ROLES_HUMANOS}
-    conteos_grupo = {g: 0 for g in grupos_unicos}
+    conteos_desplazamiento = {d: 0 for d in range(len(ROLES_ROTACION))}
     for info in registro.values():
-        if isinstance(info, dict):
-            conteos_grupo[clave_balanceo(info["rol"])] += 1
+        if isinstance(info, dict) and "desplazamiento" in info:
+            conteos_desplazamiento[info["desplazamiento"]] += 1
 
-    grupo_elegido = min(conteos_grupo, key=conteos_grupo.get)
-    roles_del_grupo = [r for r in ROLES_HUMANOS if clave_balanceo(r) == grupo_elegido]
-
-    if len(roles_del_grupo) == 1:
-        rol_elegido = roles_del_grupo[0]
-    else:
-        conteos_subrol = {r: 0 for r in roles_del_grupo}
-        for info in registro.values():
-            if isinstance(info, dict) and info["rol"] in conteos_subrol:
-                conteos_subrol[info["rol"]] += 1
-        rol_elegido = min(conteos_subrol, key=conteos_subrol.get)
+    desplazamiento_elegido = min(conteos_desplazamiento, key=conteos_desplazamiento.get)
 
     registro[id_limpio] = {
-        "rol": rol_elegido,
+        "desplazamiento": desplazamiento_elegido,
         "id_numerico": id_numerico
     }
 
     transaction.set(REGISTRO_ROLES_REF, registro)
 
-    return rol_elegido, id_numerico
+    return desplazamiento_elegido, id_numerico
 
-def asignar_rol_y_id(id_limpio):
+def asignar_desplazamiento_y_id(id_limpio):
     transaction = db.transaction()
-    return _asignar_rol_y_id_tx(transaction, id_limpio)
+    return _asignar_desplazamiento_y_id_tx(transaction, id_limpio)
 
 @firestore.transactional
 def _asignar_grupo_preguntas_tx(transaction, id_limpio):
     """Reparte equitativamente el Grupo A / Grupo B de preguntas entre participantes,
-    con el mismo patrón de balanceo por conteo que asignar_rol_y_id, pero de UN SOLO
+    con el mismo patrón de balanceo por conteo que asignar_desplazamiento_y_id, pero de UN SOLO
     nivel. Aquí los empates van SIEMPRE a "A" (conteos_grupo_preguntas es un dict
     literal, orden fijo), así que el reparto es determinista y alternante:
     1->A, 2->B, 3->A... Es independiente del rol (se puede ser Ideal+A o Ideal+B)."""
@@ -310,8 +281,8 @@ if "id_evaluador_limpio" not in st.session_state:
     st.session_state.id_evaluador_limpio = ""
 if "nombre_real" not in st.session_state:
     st.session_state.nombre_real = ""
-if "rol_asignado" not in st.session_state:
-    st.session_state.rol_asignado = ""
+if "desplazamiento_rol" not in st.session_state:
+    st.session_state.desplazamiento_rol = None
 if "grupo_preguntas" not in st.session_state:
     st.session_state.grupo_preguntas = ""
 if "modo_voluntario" not in st.session_state:
@@ -324,14 +295,14 @@ if "preguntas_voluntario_completadas" not in st.session_state:
 st.set_page_config(page_title="Simulador Docente", layout="wide")
 
 # ==========================================
-# 4. PANTALLA DE INICIO (ONBOARDING MEJORADO)
+# 4. PANTALLA DE INICIO
 # ==========================================
 if st.session_state.modo_voluntario:
     st.title("👩‍🏫 Modo Profesor Voluntario - Universidad")
     st.markdown("""
     Gracias por colaborar. Aquí vas a **inventar tú mismo/a una pregunta** (con sus opciones y la
     explicación correcta, escrita como el mejor profesor posible) y luego vas a responderla **en otros
-    3 estilos de profesor distintos**, escribiendo un feedback diferente para cada uno. Puedes repetir
+    4 estilos de profesor distintos**, escribiendo un feedback diferente para cada uno. Puedes repetir
     el proceso con tantas preguntas como quieras.
     """)
     st.write("---")
@@ -374,7 +345,7 @@ if st.session_state.modo_voluntario:
             )
 
             st.write("---")
-            st.markdown("### 📝 Paso 2: Responde en los otros 3 roles")
+            st.markdown("### 📝 Paso 2: Responde en los otros 4 roles")
             st.caption("El rol ✅ Ideal ya queda cubierto con la explicación que has escrito arriba.")
 
             respuestas_por_rol_form = {}
@@ -390,7 +361,7 @@ if st.session_state.modo_voluntario:
                     )
                     respuestas_por_rol_form[rol] = texto_rol
 
-            if st.form_submit_button("Guardar esta pregunta y sus 4 respuestas", type="primary"):
+            if st.form_submit_button("Guardar esta pregunta y sus 5 respuestas", type="primary"):
                 opciones_vol = [op.strip() for op in [op1, op2, op3, op4] if op.strip() != ""]
                 faltan_roles = [rol for rol, texto in respuestas_por_rol_form.items() if texto.strip() == ""]
 
@@ -440,11 +411,11 @@ elif not st.session_state.empezado:
     * 🧑‍🎓 **A la derecha (El Alumno):** Verás lo que ha contestado el estudiante y cómo lo justifica (a veces aciertan, y a veces se equivocan o dudan).
     
     #### 🎯 Tu misión y Reglas de Oro
-    El sistema te asignará una "personalidad" o estilo docente fijo. **Tu objetivo es corregir al alumno escribiendo un *feedback* actuando exactamente como te pide tu rol.**
-    
-    ⚠️ **Por favor, ten muy en cuenta estas dos indicaciones:**
-    1. **Adapta tu respuesta a la edad:** En la parte superior izquierda verás el "Grado" del alumno. En la medida de lo posible, adapta tu vocabulario y forma de explicar a esa edad (especialmente si te toca el Profesor Ideal o el Rol Libre).
-    2. **Usa la ayuda solo si es vital:** A veces aparecerá un botón de "Ayuda Pedagógica". Intenta deducir el error del alumno por ti mismo leyendo su justificación, y pulsa el botón de ayuda **solo si es estrictamente necesario** o te quedas atascado.
+    El sistema te irá asignando distintas "personalidades" o estilos docentes a lo largo de las 20 preguntas — **tu rol cambia cada 4 preguntas**, así que pasarás por varios estilos distintos. **Tu objetivo en cada pregunta es corregir al alumno escribiendo un *feedback* actuando exactamente como te pide el rol de ese momento** (lo verás indicado antes de cada pregunta).
+
+    ⚠️ **Por favor, ten muy en cuenta estas indicaciones:**
+    1. **Usa la ayuda solo si es vital:** A veces aparecerá un botón de "Ayuda Pedagógica". Intenta deducir el error del alumno por ti mismo leyendo su justificación, y pulsa el botón de ayuda **solo si es estrictamente necesario** o te quedas atascado.
+    2. **Si no tienes claro cómo actuar en tu rol:** junto a cada rol tienes una chuleta (💡 "RECUERDA CÓMO DEBES ACTUAR") con un ejemplo. Ese ejemplo es siempre sobre una pregunta inventada de geografía (la capital de España) — no tiene nada que ver con tu pregunta real de ciencias, es solo para que veas el ESTILO del rol (el tono, si debe ser breve o desarrollado...), no el contenido.
     """)
     st.write("---")
     
@@ -456,7 +427,7 @@ elif not st.session_state.empezado:
             st.error("Por favor, introduce tu nombre para continuar.")
         else:
             id_limpio = limpiar_nombre(nombre_input)
-            rol, id_num = asignar_rol_y_id(id_limpio)
+            desplazamiento, id_num = asignar_desplazamiento_y_id(id_limpio)
             grupo_preguntas = asignar_grupo_preguntas(id_limpio)
 
             evaluaciones_previas = db.collection("evaluaciones").where("evaluador.id_limpio", "==", id_limpio).get()
@@ -469,7 +440,7 @@ elif not st.session_state.empezado:
             
             st.session_state.id_evaluador_limpio = id_limpio
             st.session_state.id_numerico = id_num
-            st.session_state.rol_asignado = rol
+            st.session_state.desplazamiento_rol = desplazamiento
             st.session_state.grupo_preguntas = grupo_preguntas
             st.session_state.empezado = True
             st.rerun()
@@ -490,7 +461,7 @@ else:
     if st.session_state.indice < len(datos_alumnos):
 
         caso_actual = datos_alumnos[st.session_state.indice]
-        rol_actual = st.session_state.rol_asignado
+        rol_actual = rol_para_indice(st.session_state.indice, st.session_state.desplazamiento_rol)
         resp_estudiante = caso_actual['student_response']
         opciones = caso_actual['choices']
 
@@ -506,14 +477,14 @@ else:
         col_izq, col_der = st.columns([1.1, 1], gap="large")
 
         with col_izq:
-            texto_grado_pregunta = f"**Grado del alumno:** {caso_actual.get('grade', 'Desconocido')} *(¡Tenlo en cuenta para tu respuesta!)*"
+            texto_grado_pregunta = f"**Grado del alumno:** {caso_actual.get('grade', 'Desconocido')}"
             if caso_actual.get('hint'):
                 texto_grado_pregunta += f"\n\n**Contexto:** {caso_actual['hint']}"
             texto_grado_pregunta += f"\n\n**Pregunta:** {caso_actual['question']}"
             st.info(texto_grado_pregunta)
             st.markdown("**Opciones:**\n" + "\n".join([f"- {opt}" for opt in opciones]))
             
-            st.markdown("### 📘 Solución Oficial (Ground Truth)")
+            st.markdown("### 📘 Solución de libro")
             st.caption("*(Esta es la explicación 'de libro'. Úsala como tu chuleta personal para entender el problema, pero **no se la copies y pegues al alumno**, adáptala según tu rol asignado)*.")
             
             idx_corr = caso_actual['ground_truth_answer']
@@ -523,8 +494,7 @@ else:
             st.markdown("### 🧑‍🎓 Respuesta del Alumno")
             st.caption("*(Esto es lo que ha contestado el estudiante basándose en sus conocimientos. Lee su justificación para darle un feedback adecuado a su razonamiento)*.")
             
-            if "LIBRE" not in rol_actual and caso_actual['error_type'] != "None":
-                # TEXTO DEL BOTÓN ACTUALIZADO PARA DISUADIR SU USO EXCESIVO
+            if caso_actual['error_type'] != "None":
                 mostrar_ayuda = st.toggle("🔍 Ayuda Pedagógica (Úsala solo si es necesario)", key=f"toggle_{st.session_state.indice}")
                 if mostrar_ayuda:
                     st.session_state[tracker_key] = True
@@ -551,10 +521,13 @@ else:
         st.write("---")
         st.markdown("### 📝 Tu Evaluación")
 
-        if "LIBRE" in rol_actual:
-            st.warning("🎭 **TU ROL ASIGNADO: LIBRE.** Corrige al alumno con tu propio estilo.")
-        else:
-            st.warning(f"🎭 **TU ROL ASIGNADO:** **{rol_actual}**")
+        # Nombre del rol en grande y la misión debajo; en la 1ª pregunta de cada bloque (salvo la
+        # primera de todas) se avisa además de que el rol ha cambiado.
+        nombre_rol, mision_rol = rol_actual.split(" (Misión: ", 1)
+        aviso_cambio = ""
+        if st.session_state.indice > 0 and st.session_state.indice % TAMANO_BLOQUE == 0:
+            aviso_cambio = "🔄 **¡CAMBIO DE ROL!** A partir de esta pregunta tienes un rol nuevo.\n\n"
+        st.warning(f"{aviso_cambio}🎭 **TU ROL PARA ESTE BLOQUE DE PREGUNTAS:**\n\n### {nombre_rol}\n\n**Misión:** {mision_rol.rstrip(')')}")
             
         with st.expander("💡 RECUERDA CÓMO DEBES ACTUAR (Ver guías y ejemplos)"):
             st.markdown(GUIA_DETALLADA_ROLES.get(rol_actual, ""))
@@ -562,17 +535,20 @@ else:
         with st.form(key=f"form_{st.session_state.indice}"):
             opcion_humano = st.radio("¿Qué opción le indicarás al alumno como la correcta?", opciones, index=None)
             
-            nombre_rol_corto = rol_actual.split(' ')[1] if "LIBRE" not in rol_actual else "Rol Libre"
+            # índice 2, no 1: el formato es "{emoji} Profesor {Palabra} (...)" -> [0]=emoji,
+            # [1]="Profesor", [2]=nombre real del rol.
+            nombre_rol_corto = rol_actual.split(' ')[2]
             respuesta_humano = st.text_area(f"✍️ Redacta tu feedback para el alumno actuando como el {nombre_rol_corto}:", height=150, placeholder="Escribe aquí tu justificación y feedback...")
             
             if st.form_submit_button("Guardar y Siguiente", type="primary"):
                 if opcion_humano is None or respuesta_humano.strip() == "":
                     st.error("Por favor, selecciona una opción y escribe una respuesta para el alumno.")
                 else:
+                    codigo_rol_actual = codigo_rol(rol_actual)
                     nuevo_registro = {
                         "evaluador": {
                             "id": st.session_state.id_numerico,
-                            "id_limpio": st.session_state.id_evaluador_limpio, 
+                            "id_limpio": st.session_state.id_evaluador_limpio,
                             "nombre": st.session_state.nombre_real
                         },
                         "question_id": caso_actual['question_id'],
@@ -584,7 +560,11 @@ else:
                         },
                         "error_type": caso_actual['error_type'],
                         "student_response": resp_estudiante,
-                        "rol_profesor": codigo_rol(rol_actual),
+                        "rol_profesor": codigo_rol_actual,
+                        # Rúbrica objetivo (R1-R4) congelada en el momento de la captura: si
+                        # ROL_A_RUBRICA se redefine más adelante, este registro conserva la que
+                        # estaba vigente cuando se escribió, en vez de reinterpretarse con la nueva.
+                        "rubrica_objetivo": ROL_A_RUBRICA.get(codigo_rol_actual),
                         "grupo_preguntas": st.session_state.grupo_preguntas,
                         "human_response": {
                             "selected_choice_text": opcion_humano,
@@ -611,6 +591,6 @@ else:
             st.session_state.id_evaluador_limpio = ""
             st.session_state.id_numerico = ""
             st.session_state.nombre_real = ""
-            st.session_state.rol_asignado = ""
+            st.session_state.desplazamiento_rol = None
             st.session_state.grupo_preguntas = ""
             st.rerun()
