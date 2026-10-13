@@ -2,6 +2,7 @@ import streamlit as st
 import json
 import os
 import re
+import time
 import unicodedata
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -103,11 +104,13 @@ def codigo_rol(rol):
 # *** POLARIDAD: 0 = BIEN (cumple el eje), 1 = MAL (falla ese eje) ***. Cada 1 marca el ÚNICO
 # eje en el que ese rol falla a propósito, por eso "ideal" = (0,0,0,0).
 #
-# "desinformado" R2=0 (bien) es discutible a propósito: ¿una explicación construida sobre una
-# premisa falsa puede llamarse "profunda"? Se deja así (ver GUIA_DETALLADA_ROLES para el matiz).
+# "desinformado" R2=0 (bien) es una decisión de diseño: R2 mide si se desarrolla el razonamiento
+# que se presenta, no si es correcto (eso es R1). Una explicación puede ser profunda y falsa; si R2
+# también penalizara el error, R1 y R2 medirían lo mismo. Ver resumen_avances_tfg.md, sección 12.
 #
-# PENDIENTE: ya no tiene correspondencia 1:1 con la rúbrica sintética de respuestas_profesores_v2.py
-# (RUBRIC_VARIANTS) — los ejes R2/R3 no existen ahí. Ese script no se ha tocado en este rediseño.
+# respuestas_profesores_v3.py lee este diccionario directamente de este fichero (con ast) para
+# generar el profesor sintético con la misma rúbrica: debe seguir siendo un literal (sin variables
+# ni llamadas). respuestas_profesores_v2.py usa la rúbrica antigua y queda como histórico.
 ROL_A_RUBRICA = {
     "ideal": (0, 0, 0, 0),
     "desinformado": (1, 0, 0, 0),
@@ -268,6 +271,10 @@ def asignar_grupo_preguntas(id_limpio):
     transaction = db.transaction()
     return _asignar_grupo_preguntas_tx(transaction, id_limpio)
 
+def ya_registrado(id_limpio):
+    """True si el correo ya tiene identidad asignada (la persona vuelve)."""
+    return id_limpio in (REGISTRO_ROLES_REF.get().to_dict() or {})
+
 # ==========================================
 # 3. INICIALIZACIÓN DE VARIABLES DE SESIÓN
 # ==========================================
@@ -291,6 +298,14 @@ if "email_voluntario_persistente" not in st.session_state:
     st.session_state.email_voluntario_persistente = ""
 if "preguntas_voluntario_completadas" not in st.session_state:
     st.session_state.preguntas_voluntario_completadas = 0
+# Correo nuevo a la espera de que la persona confirme que está bien escrito.
+if "correo_pendiente" not in st.session_state:
+    st.session_state.correo_pendiente = ""
+# Correo a precargar en el campo al pulsar "Corregir".
+if "correo_borrador" not in st.session_state:
+    st.session_state.correo_borrador = ""
+if "aviso_bienvenida" not in st.session_state:
+    st.session_state.aviso_bienvenida = ""
 
 st.set_page_config(page_title="Simulador Docente", layout="wide")
 
@@ -340,7 +355,7 @@ if st.session_state.modo_voluntario:
             correcta_num = st.radio("¿Cuál es la opción correcta?", [1, 2, 3, 4], index=None)
             explicacion_texto = st.text_area(
                 "Explicación de por qué es correcta (escríbela ya como el mejor profesor posible: "
-                "clara, correcta y bien adaptada — esta es directamente tu respuesta para el rol ✅ Ideal, "
+                "precisa, bien desarrollada, clara y amable — esta es directamente tu respuesta para el rol ✅ Ideal, "
                 "no hace falta que la repitas después):"
             )
 
@@ -405,45 +420,86 @@ elif not st.session_state.empezado:
     Gracias por participar en este experimento para mi TFG. Tu ayuda es clave para entrenar a una futura Inteligencia Artificial educativa.
     
     #### 🎮 ¿Cómo funciona esto?
-    Te vamos a poner en la piel de un profesor. Durante **20 preguntas** verás casos reales organizados en dos bloques:
+    Te vamos a poner en la piel de un profesor. Durante **20 preguntas** verás respuestas de alumnos simulados, organizadas en dos bloques:
     
     * 📘 **A la izquierda (La Referencia):** Verás la pregunta original y la "Solución de libro". Es tu chuleta para saber cuál es la respuesta correcta y por qué.
     * 🧑‍🎓 **A la derecha (El Alumno):** Verás lo que ha contestado el estudiante y cómo lo justifica (a veces aciertan, y a veces se equivocan o dudan).
     
     #### 🎯 Tu misión y Reglas de Oro
-    El sistema te irá asignando distintas "personalidades" o estilos docentes a lo largo de las 20 preguntas — **tu rol cambia cada 4 preguntas**, así que pasarás por varios estilos distintos. **Tu objetivo en cada pregunta es corregir al alumno escribiendo un *feedback* actuando exactamente como te pide el rol de ese momento** (lo verás indicado antes de cada pregunta).
+    El sistema te irá asignando distintas "personalidades" o estilos docentes a lo largo de las 20 preguntas — **tu rol cambia cada 4 preguntas**, así que pasarás por varios estilos distintos. **Tu objetivo en cada pregunta es corregir al alumno escribiendo un *feedback* actuando exactamente como te pide el rol de ese momento** (lo verás indicado en cada pregunta, en el recuadro amarillo que hay debajo de la respuesta del alumno).
 
     ⚠️ **Por favor, ten muy en cuenta estas indicaciones:**
     1. **Usa la ayuda solo si es vital:** A veces aparecerá un botón de "Ayuda Pedagógica". Intenta deducir el error del alumno por ti mismo leyendo su justificación, y pulsa el botón de ayuda **solo si es estrictamente necesario** o te quedas atascado.
-    2. **Si no tienes claro cómo actuar en tu rol:** junto a cada rol tienes una chuleta (💡 "RECUERDA CÓMO DEBES ACTUAR") con un ejemplo. Ese ejemplo es siempre sobre una pregunta inventada de geografía (la capital de España) — no tiene nada que ver con tu pregunta real de ciencias, es solo para que veas el ESTILO del rol (el tono, si debe ser breve o desarrollado...), no el contenido.
+    2. **Si no tienes claro cómo actuar en tu rol:** junto a cada rol tienes una chuleta (💡 "RECUERDA CÓMO DEBES ACTUAR") con un ejemplo. Ese ejemplo es siempre sobre una pregunta inventada de geografía (la capital de España) — no tiene nada que ver con tu pregunta real de ciencias, es solo para que veas el ESTILO del rol (el tono, si debe ser breve o desarrollado...).
     """)
     st.write("---")
     
     st.subheader("👤 Registro de Participante")
-    nombre_input = st.text_input("Por favor, escribe tu nombre y tus dos apellidos:", placeholder="Ej: Juan Pérez García")
-    
-    if st.button("🚀 Empezar Experimento", type="primary"):
-        if nombre_input.strip() == "":
-            st.error("Por favor, introduce tu nombre para continuar.")
-        else:
-            id_limpio = limpiar_nombre(nombre_input)
-            desplazamiento, id_num = asignar_desplazamiento_y_id(id_limpio)
-            grupo_preguntas = asignar_grupo_preguntas(id_limpio)
-
-            evaluaciones_previas = db.collection("evaluaciones").where("evaluador.id_limpio", "==", id_limpio).get()
-            st.session_state.indice = len(evaluaciones_previas)
-            
-            if len(evaluaciones_previas) > 0:
-                st.session_state.nombre_real = evaluaciones_previas[0].to_dict()["evaluador"].get("nombre", nombre_input.strip())
-            else:
-                st.session_state.nombre_real = nombre_input.strip()
-            
-            st.session_state.id_evaluador_limpio = id_limpio
-            st.session_state.id_numerico = id_num
-            st.session_state.desplazamiento_rol = desplazamiento
-            st.session_state.grupo_preguntas = grupo_preguntas
-            st.session_state.empezado = True
+    # Se identifica por correo (no por nombre): es único y se escribe siempre igual al volver a
+    # entrar. Se sigue guardando en evaluador.nombre / id_limpio para no cambiar el esquema.
+    # Un correo NUEVO se confirma antes de registrarlo: si alguien que ya había empezado lo
+    # escribe distinto al volver, se le avisa en vez de crearle otra identidad sin que lo note.
+    entrar = False
+    vuelve = False
+    if st.session_state.correo_pendiente:
+        nombre_input = st.session_state.correo_pendiente
+        st.warning(f"Es la primera vez que entras con **{nombre_input}**. ¿Está bien escrito?\n\n"
+                   "⚠️ Si ya habías empezado antes, pulsa «Corregir» y revisa el correo: con uno distinto "
+                   "empezarías de cero.")
+        col_si, col_no = st.columns(2)
+        if col_si.button("✅ Sí, es correcto: empezar", type="primary"):
+            st.session_state.correo_pendiente = ""
+            entrar = True
+        if col_no.button("✏️ Corregir el correo"):
+            st.session_state.correo_borrador = nombre_input
+            st.session_state.correo_pendiente = ""
             st.rerun()
+    else:
+        nombre_input = st.text_input("Por favor, escribe tu correo electrónico:", value=st.session_state.correo_borrador,
+                                     placeholder="Ej: nombre@gmail.com")
+        st.caption("🔒 Tu correo es confidencial: solo se usará para identificarte si retomas el experimento otro día "
+                   "y para enviarte un recordatorio si no lo has terminado. En el análisis de los datos apareces "
+                   "con un identificador anónimo. Usa siempre el mismo correo para continuar donde lo dejaste.")
+
+        if st.button("🚀 Empezar Experimento", type="primary"):
+            if nombre_input.strip() == "":
+                st.error("Por favor, introduce tu correo para continuar.")
+            elif not parece_email(nombre_input):
+                st.error("Ese correo no parece válido. Revisa que tenga el formato nombre@dominio.es")
+            elif ya_registrado(limpiar_nombre(nombre_input)):
+                entrar = True
+                vuelve = True
+            else:
+                st.session_state.correo_pendiente = nombre_input.strip()
+                st.rerun()
+
+    if entrar:
+        id_limpio = limpiar_nombre(nombre_input)
+        desplazamiento, id_num = asignar_desplazamiento_y_id(id_limpio)
+        grupo_preguntas = asignar_grupo_preguntas(id_limpio)
+
+        evaluaciones_previas = db.collection("evaluaciones").where("evaluador.id_limpio", "==", id_limpio).get()
+        # Preguntas distintas, no registros: si una respuesta se hubiera guardado dos veces
+        # (p. ej. reintento tras un fallo de red), contar registros haría saltarse una pregunta.
+        st.session_state.indice = len({d.to_dict()["question_id"] for d in evaluaciones_previas})
+
+        if len(evaluaciones_previas) > 0:
+            st.session_state.nombre_real = evaluaciones_previas[0].to_dict()["evaluador"].get("nombre", nombre_input.strip())
+        else:
+            st.session_state.nombre_real = nombre_input.strip()
+
+        if vuelve:
+            total = len(datos_por_grupo.get(grupo_preguntas, []))
+            st.session_state.aviso_bienvenida = (f"👋 ¡Bienvenido/a de nuevo! Llevas {st.session_state.indice} de "
+                                                 f"{total} preguntas: sigues donde lo dejaste.")
+
+        st.session_state.id_evaluador_limpio = id_limpio
+        st.session_state.id_numerico = id_num
+        st.session_state.desplazamiento_rol = desplazamiento
+        st.session_state.grupo_preguntas = grupo_preguntas
+        st.session_state.correo_borrador = ""
+        st.session_state.empezado = True
+        st.rerun()
 
     st.write("---")
     st.markdown("#### 👩‍🏫 ¿Eres profesor/a voluntario/a de la Universidad?")
@@ -468,6 +524,15 @@ else:
         tracker_key = f"ayuda_historial_{st.session_state.indice}"
         if tracker_key not in st.session_state:
             st.session_state[tracker_key] = False
+
+        # Hora en que se mostró la pregunta (los reruns, p. ej. al activar la ayuda, no la reinician).
+        inicio_key = f"inicio_pregunta_{st.session_state.indice}"
+        if inicio_key not in st.session_state:
+            st.session_state[inicio_key] = time.time()
+
+        if st.session_state.aviso_bienvenida:
+            st.success(st.session_state.aviso_bienvenida)
+            st.session_state.aviso_bienvenida = ""
 
         st.progress(st.session_state.indice / len(datos_alumnos))
 
@@ -570,7 +635,8 @@ else:
                             "selected_choice_text": opcion_humano,
                             "selected_choice_index": opciones.index(opcion_humano),
                             "explanation": respuesta_humano,
-                            "ayuda_pedagogica_utilizada": st.session_state[tracker_key]
+                            "ayuda_pedagogica_utilizada": st.session_state[tracker_key],
+                            "segundos_en_pregunta": round(time.time() - st.session_state[inicio_key], 1)
                         }
                     }
                     
