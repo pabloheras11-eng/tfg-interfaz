@@ -126,7 +126,9 @@ GUIA_DETALLADA_ROLES = {
     "✅ Profesor Ideal (Misión: Corrige de forma precisa, bien desarrollada, clara y amable)": """
 **Misión:** Eres el profesor perfecto. Corrige de forma precisa, bien desarrollada, clara y amable.
 * **Tono:** Empático, alentador y pedagógico (valida su intento y guíale usando ejemplos adaptados).
-* **Ejemplo (Geografía):** *"¡Has estado muy cerca! Es normal confundirse porque ambas ciudades empiezan igual, pero la correcta es Madrid. ¿Recuerdas cuando la vimos en el mapa?"*
+* **Ejemplo (Geografía):** *"¡Has estado muy cerca! Es normal confundirse, porque Barcelona también es una ciudad muy grande e importante, pero la capital es Madrid: allí están el Gobierno y las Cortes. ¿Recuerdas cuando la vimos en el mapa?"*
+* **Si el alumno ya ha acertado:** Confírmaselo y explícale por qué su respuesta es correcta, reforzando lo que ha hecho bien.
+* **Ejemplo (acierto):** *"¡Muy bien, es Madrid! Lo has razonado bien: es la capital porque allí están el Gobierno y las Cortes. ¡Sigue así!"*
 """,
     "❌ Profesor Desinformado (Misión: Da una respuesta incorrecta con toda la seguridad de que fuera correcta)": """
 **Misión:** Da una respuesta incorrecta con toda la seguridad de que fuera correcta. Puede ser de tres formas: dile que ha acertado cuando en realidad se ha equivocado, dile que se ha equivocado cuando en realidad ha acertado, o dale el veredicto correcto pero con un motivo falso. El único fallo es de CONTENIDO — la explicación debe sonar igual de desarrollada, clara y amable que la de un buen profesor, solo que lo que dice es mentira.
@@ -157,6 +159,193 @@ GUIA_DETALLADA_ROLES = {
 * **Ejemplo (acierto):** *"Vaya, milagro. Sí, es Madrid, la capital, donde está el Gobierno. A ver si la próxima te la sabes sin tener que pensarlo tanto."*
 """,
 }
+
+# ==========================================
+# CONTROL DE TECLEO (anti copia-pega en el feedback)
+# ==========================================
+# El feedback tiene que escribirlo el evaluador, no pegarlo de una IA. Un script en la página:
+#   - bloquea pegar y arrastrar texto en el cuadro de feedback (con un aviso al intentarlo);
+#   - mide cómo se escribe: caracteres tecleados, borrados, autocorregidos y restaurados con
+#     deshacer, inserciones grandes de golpe (dictado, extensiones), intentos de pegar, salidas de
+#     la página (cambio de pestaña o de ventana) y la ventana de tecleo (de la primera a la última
+#     edición: el tiempo de leer y pensar antes de empezar va aparte y no cuenta como tecleo).
+# Las métricas viajan a Python como JSON en un text_input oculto del mismo formulario (llegan al
+# pulsar "Guardar", sin reruns) y se guardan en human_response.control_tecleo. Si el JS no llega a
+# funcionar, el registro se guarda igual con control_tecleo = None. seguimiento_captura.py usa
+# estas métricas para SEÑALAR respuestas sospechosas; no se excluye nada automáticamente.
+# Solo en el flujo normal de evaluación, no en el modo Profesor Voluntario.
+# Este bloque es idéntico en interfaz.py e interfaz_rem.py: cualquier cambio, en los dos a la vez.
+CAMPOS_CONTROL_TECLEO = (
+    "version", "chars_tecleados", "chars_borrados", "chars_autocorrector", "chars_deshacer",
+    "inserciones_grandes", "chars_inserciones_grandes", "intentos_pegar", "salidas_pagina",
+    "segundos_fuera", "segundos_hasta_primera_tecla", "segundos_tecleando",
+)
+
+# El cuadro de feedback y su campo oculto se emparejan por el sufijo de sus claves
+# (feedback_tecleo_<sufijo> / control_tecleo_<sufijo>), que Streamlit expone como clase CSS st-key-*.
+JS_CONTROL_TECLEO = r"""
+(() => {
+  // Una sola instalación por página: Streamlit vuelve a ejecutar este bloque en cada rerun.
+  if (window.__controlTecleo) return;
+  window.__controlTecleo = true;
+
+  const UMBRAL_INSERCION_GRANDE = 30;  // caracteres que entran de golpe en una sola edición
+  const TIPOS_PEGAR = new Set(["insertFromPaste", "insertFromPasteAsQuotation", "insertFromDrop", "insertFromYank"]);
+  const estados = new Map();  // sufijo -> métricas de esa pregunta
+  let activo = null;          // sufijo de la pregunta en pantalla
+  let fueraDesde = null;      // momento en que se salió de la página (null = está en ella)
+
+  const redondear = (x) => Math.round(x * 10) / 10;
+
+  function estadoDe(sufijo) {
+    if (!estados.has(sufijo)) {
+      estados.set(sufijo, {
+        version: 1,
+        chars_tecleados: 0, chars_borrados: 0, chars_autocorrector: 0, chars_deshacer: 0,
+        inserciones_grandes: 0, chars_inserciones_grandes: 0, intentos_pegar: 0,
+        salidas_pagina: 0, segundos_fuera: 0,
+        segundos_hasta_primera_tecla: null, segundos_tecleando: 0,
+        _mostrada: Date.now(), _primera: null,
+      });
+    }
+    return estados.get(sufijo);
+  }
+
+  // Escribe las métricas en el campo oculto con el setter nativo + evento input, para que React
+  // (y con él Streamlit) registre el valor igual que si se hubiera tecleado.
+  function publicar(sufijo) {
+    const campo = document.querySelector(`.st-key-control_tecleo_${sufijo} input`);
+    if (!campo) return;
+    const e = estadoDe(sufijo);
+    const datos = Object.fromEntries(Object.entries(e).filter(([k]) => !k.startsWith("_")));
+    datos.segundos_fuera = redondear(e.segundos_fuera);
+    const json = JSON.stringify(datos);
+    if (campo.value === json) return;
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set.call(campo, json);
+    campo.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+
+  let temporizadorAviso = null;
+  function avisar() {
+    let aviso = document.getElementById("aviso-control-tecleo");
+    if (!aviso) {
+      aviso = document.createElement("div");
+      aviso.id = "aviso-control-tecleo";
+      aviso.textContent = "🚫 Pegar texto está desactivado: escribe tu respuesta con el teclado.";
+      aviso.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100000;" +
+        "background:#d32f2f;color:#fff;padding:10px 18px;border-radius:8px;font-weight:600;" +
+        "box-shadow:0 4px 12px rgba(0,0,0,.25);max-width:90vw;text-align:center;";
+      document.body.appendChild(aviso);
+    }
+    aviso.style.display = "block";
+    clearTimeout(temporizadorAviso);
+    temporizadorAviso = setTimeout(() => { aviso.style.display = "none"; }, 3000);
+  }
+
+  function enganchar(ta, sufijo) {
+    activo = sufijo;
+    if (ta.dataset.controlTecleo) return;
+    ta.dataset.controlTecleo = "1";
+    const e = estadoDe(sufijo);
+    let longitud = ta.value.length;  // longitud antes de cada edición
+    let seleccion = 0;               // caracteres seleccionados que la edición va a sustituir
+    let arrastreInterno = false;
+
+    const bloquear = (ev) => {
+      ev.preventDefault();
+      e.intentos_pegar++;
+      avisar();
+      publicar(sufijo);
+    };
+    ta.addEventListener("paste", bloquear);
+    ta.addEventListener("dragstart", () => { arrastreInterno = true; });
+    ta.addEventListener("dragend", () => { arrastreInterno = false; });
+    ta.addEventListener("drop", (ev) => {
+      // Mover texto dentro del propio cuadro también se bloquea, pero no cuenta como intento de pegar.
+      if (arrastreInterno) { ev.preventDefault(); return; }
+      bloquear(ev);
+    });
+    ta.addEventListener("beforeinput", (ev) => {
+      if (TIPOS_PEGAR.has(ev.inputType)) { bloquear(ev); return; }
+      longitud = ta.value.length;
+      seleccion = ta.selectionEnd - ta.selectionStart;
+    });
+    // Se cuenta por cambio de longitud y tipo de edición, no por teclas: en los teclados de móvil
+    // las teclas llegan como "Unidentified" y el autocorrector reescribe palabras enteras.
+    ta.addEventListener("input", (ev) => {
+      const tipo = ev.inputType || "";
+      const neto = ta.value.length - longitud;
+      const insertados = Math.max(0, neto + seleccion);
+      const borrados = insertados - neto;
+      if (tipo.startsWith("history")) e.chars_deshacer += insertados;
+      else if (tipo === "insertReplacementText") e.chars_autocorrector += insertados;
+      else if (TIPOS_PEGAR.has(tipo) || insertados > UMBRAL_INSERCION_GRANDE) {
+        // Pegado que el navegador no dejó cancelar, dictado o extensión que escribe por el usuario.
+        if (TIPOS_PEGAR.has(tipo)) e.intentos_pegar++;
+        e.inserciones_grandes++;
+        e.chars_inserciones_grandes += insertados;
+      } else e.chars_tecleados += insertados;
+      e.chars_borrados += borrados;
+      longitud = ta.value.length;
+      seleccion = 0;
+
+      const ahora = Date.now();
+      if (e._primera === null) {
+        e._primera = ahora;
+        e.segundos_hasta_primera_tecla = redondear((ahora - e._mostrada) / 1000);
+      }
+      e.segundos_tecleando = redondear((ahora - e._primera) / 1000);
+      publicar(sufijo);
+    });
+    publicar(sufijo);
+  }
+
+  // Fuera de la página = pestaña oculta o ventana sin foco (otra app, otra ventana del navegador).
+  function actualizarPresencia() {
+    const fuera = document.hidden || !document.hasFocus();
+    if (fuera && fueraDesde === null) {
+      fueraDesde = Date.now();
+      if (activo !== null) { estadoDe(activo).salidas_pagina++; publicar(activo); }
+    } else if (!fuera && fueraDesde !== null) {
+      if (activo !== null) { estadoDe(activo).segundos_fuera += (Date.now() - fueraDesde) / 1000; publicar(activo); }
+      fueraDesde = null;
+    }
+  }
+  document.addEventListener("visibilitychange", actualizarPresencia);
+  window.addEventListener("blur", actualizarPresencia);
+  window.addEventListener("focus", actualizarPresencia);
+
+  // Streamlit redibuja la página en cada rerun: se vigila el DOM para engancharse a cada cuadro de
+  // feedback nuevo y para dejar de contar salidas cuando ya no hay ninguna pregunta en pantalla.
+  function revisar() {
+    let hayCuadro = false;
+    document.querySelectorAll('[class*="st-key-feedback_tecleo_"]').forEach((cont) => {
+      const m = cont.className.match(/st-key-feedback_tecleo_(\S+)/);
+      const ta = cont.querySelector("textarea");
+      if (m && ta) { enganchar(ta, m[1]); hayCuadro = true; }
+    });
+    if (!hayCuadro) activo = null;
+  }
+  new MutationObserver(revisar).observe(document.body, { childList: true, subtree: true });
+  revisar();
+})();
+"""
+
+def inyectar_control_tecleo():
+    """Oculta los campos de control y carga el script (st.html no va en iframe, así que corre en la
+    propia página; el script se protege solo frente a los reruns)."""
+    st.html(f"<style>[class*='st-key-control_tecleo_'] {{display: none;}}</style><script>{JS_CONTROL_TECLEO}</script>",
+            unsafe_allow_javascript=True)
+
+def leer_control_tecleo(valor):
+    """JSON del campo oculto -> dict con las métricas conocidas, o None si el JS no llegó a escribirlo."""
+    try:
+        datos = json.loads(valor)
+    except (TypeError, ValueError):
+        return None
+    if not isinstance(datos, dict):
+        return None
+    return {k: datos[k] for k in CAMPOS_CONTROL_TECLEO if isinstance(datos.get(k), (int, float))} or None
 
 # ==========================================
 # 2. FUNCIONES DE GESTIÓN (FIREBASE)
@@ -431,6 +620,7 @@ elif not st.session_state.empezado:
     ⚠️ **Por favor, ten muy en cuenta estas indicaciones:**
     1. **Usa la ayuda solo si es vital:** A veces aparecerá un botón de "Ayuda Pedagógica". Intenta deducir el error del alumno por ti mismo leyendo su justificación, y pulsa el botón de ayuda **solo si es estrictamente necesario** o te quedas atascado.
     2. **Si no tienes claro cómo actuar en tu rol:** junto a cada rol tienes una chuleta (💡 "RECUERDA CÓMO DEBES ACTUAR") con un ejemplo. Ese ejemplo es siempre sobre una pregunta inventada de geografía (la capital de España) — no tiene nada que ver con tu pregunta real de ciencias, es solo para que veas el ESTILO del rol (el tono, si debe ser breve o desarrollado...).
+    3. **Escribe tú cada respuesta:** no uses herramientas de IA.
     """)
     st.write("---")
     
@@ -596,15 +786,26 @@ else:
             
         with st.expander("💡 RECUERDA CÓMO DEBES ACTUAR (Ver guías y ejemplos)"):
             st.markdown(GUIA_DETALLADA_ROLES.get(rol_actual, ""))
-        
+
+        inyectar_control_tecleo()
+        st.caption("🔒 Para que el experimento sea válido, en el cuadro de feedback no se puede pegar texto y se "
+                   "registra cómo escribes la respuesta (ritmo de escritura y si sales de esta página), nunca "
+                   "lo que haces fuera de ella.")
+
         with st.form(key=f"form_{st.session_state.indice}"):
             opcion_humano = st.radio("¿Qué opción le indicarás al alumno como la correcta?", opciones, index=None)
-            
+
             # índice 2, no 1: el formato es "{emoji} Profesor {Palabra} (...)" -> [0]=emoji,
             # [1]="Profesor", [2]=nombre real del rol.
             nombre_rol_corto = rol_actual.split(' ')[2]
-            respuesta_humano = st.text_area(f"✍️ Redacta tu feedback para el alumno actuando como el {nombre_rol_corto}:", height=150, placeholder="Escribe aquí tu justificación y feedback...")
-            
+            # Sufijo único por evaluador y pregunta: empareja el cuadro con su campo oculto de control
+            # y evita que el script mezcle métricas si otra persona entra después en la misma pestaña.
+            sufijo_control = f"{st.session_state.id_numerico}_{st.session_state.indice}"
+            respuesta_humano = st.text_area(f"✍️ Redacta tu feedback para el alumno actuando como el {nombre_rol_corto}:", height=150, placeholder="Escribe aquí tu justificación y feedback...",
+                                            key=f"feedback_tecleo_{sufijo_control}")
+            control_tecleo = st.text_input("control", key=f"control_tecleo_{sufijo_control}",
+                                           label_visibility="collapsed", max_chars=2000)
+
             if st.form_submit_button("Guardar y Siguiente", type="primary"):
                 if opcion_humano is None or respuesta_humano.strip() == "":
                     st.error("Por favor, selecciona una opción y escribe una respuesta para el alumno.")
@@ -636,7 +837,8 @@ else:
                             "selected_choice_index": opciones.index(opcion_humano),
                             "explanation": respuesta_humano,
                             "ayuda_pedagogica_utilizada": st.session_state[tracker_key],
-                            "segundos_en_pregunta": round(time.time() - st.session_state[inicio_key], 1)
+                            "segundos_en_pregunta": round(time.time() - st.session_state[inicio_key], 1),
+                            "control_tecleo": leer_control_tecleo(control_tecleo)
                         }
                     }
                     
