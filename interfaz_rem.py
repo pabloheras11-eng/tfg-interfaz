@@ -908,12 +908,13 @@ else:
             aviso_cambio = "🔄 **¡CAMBIO DE ROL!** A partir de esta pregunta tienes un rol nuevo.\n\n"
         st.warning(f"{aviso_cambio}**TU ROL PARA ESTE BLOQUE DE PREGUNTAS:**\n\n### {nombre_rol}\n\n**Misión:** {mision_rol.rstrip(')')}")
             
-        # La guía del rol (tono y ejemplos) va siempre a la vista, en todas las preguntas, para poder volver
-        # a mirarla en cualquier momento. No va en un st.expander: si alguien lo cerraba, Streamlit lo dejaba
-        # cerrado en las preguntas siguientes, también tras un cambio de rol (probado en la versión 1.55,
-        # también con una key distinta en cada pregunta).
-        with st.container(border=True):
-            st.markdown("💡 **RECUERDA CÓMO DEBES ACTUAR** (guía y ejemplos de tu rol)")
+        # Guía del rol (tono y ejemplos) en un desplegable que sale abierto al empezar cada rol. Quien ya la
+        # tiene clara puede cerrarlo, y sigue cerrado en las demás preguntas de ese rol; al cambiar de rol
+        # vuelve a salir abierto, porque la guía es nueva. Lo consigue el nombre del rol en el título: con un
+        # título distinto, Streamlit lo trata como un desplegable nuevo y lo abre según `expanded`; con el
+        # mismo, conserva lo que hizo la persona. Comprobado en la versión 1.55 (cambiar solo la key no basta).
+        nombre_rol_sin_emoji = nombre_rol.split(" ", 1)[1]
+        with st.expander(f"💡 RECUERDA CÓMO DEBES ACTUAR: {nombre_rol_sin_emoji} (guía y ejemplos)", expanded=True):
             st.markdown(GUIA_DETALLADA_ROLES.get(rol_actual, ""))
 
         inyectar_control_tecleo()
