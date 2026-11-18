@@ -1898,7 +1898,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Lee atentamente el texto subrayado. Busca información sobre lo que le ocurre al agua en esta reacción química.\nAl igual que la gente en la Tierra, los astronautas que viven en la Estación Espacial Internacional necesitan oxígeno para sobrevivir. Como en el espacio no hay oxígeno para que los astronautas respiren, producen oxígeno mediante un proceso llamado electrólisis. Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno. El gas hidrógeno se puede eliminar de la estación espacial o reciclar, y el gas oxígeno se libera en el aire que respiran los astronautas.\nEl texto subrayado te dice que cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o pasa por un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Debido a que el agua reacciona en esta reacción química, el agua es un reactivo.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre al agua en esta reacción química.\nLa parte clave del texto es: «Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno».\nIndica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Como el agua reacciona en esta reacción química, el agua es un reactivo.",
         "error_type": "Factual_Error",
         "student_response": {
             "answer": 1,
@@ -1917,7 +1917,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Lee con atención el texto subrayado. Busca información sobre lo que le ocurre al agua en esta reacción química.\nAl igual que las personas en la Tierra, los astronautas que viven en la Estación Espacial Internacional necesitan oxígeno para sobrevivir. Como no hay oxígeno en el espacio para que los astronautas respiren, obtienen oxígeno mediante un proceso llamado electrólisis. Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno. El gas hidrógeno se puede expulsar de la estación espacial o reciclar, y el gas oxígeno se libera en el aire que respiran los astronautas.\nEl texto subrayado indica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Como el agua reacciona en esta reacción química, el agua es un reactivo.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre al agua en esta reacción química.\nLa parte clave del texto es: «Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno».\nIndica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Como el agua reacciona en esta reacción química, el agua es un reactivo.",
         "error_type": "Conceptual_Misconception",
         "student_response": {
             "answer": 1,
@@ -1936,7 +1936,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Lee el texto subrayado con atención. Busca información sobre qué le ocurre al agua en esta reacción química.\nAl igual que las personas en la Tierra, los astronautas que viven en la Estación Espacial Internacional necesitan oxígeno para sobrevivir. Dado que no hay oxígeno en el espacio para que los astronautas respiren, obtienen oxígeno mediante un proceso llamado electrólisis. Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno. El gas hidrógeno se puede eliminar de la estación espacial o reciclar, y el gas oxígeno se libera en el aire que respiran los astronautas.\nEl texto subrayado indica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Como el agua reacciona en esta reacción química, el agua es un reactivo.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre al agua en esta reacción química.\nLa parte clave del texto es: «Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno».\nIndica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Como el agua reacciona en esta reacción química, el agua es un reactivo.",
         "error_type": "Overgeneralization",
         "student_response": {
             "answer": 1,
@@ -1955,7 +1955,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Lee atentamente el texto subrayado. Busca información sobre qué le ocurre al agua en esta reacción química.\nAl igual que las personas en la Tierra, los astronautas que viven en la Estación Espacial Internacional necesitan oxígeno para sobrevivir. Como en el espacio no hay oxígeno para que los astronautas respiren, producen oxígeno mediante un proceso llamado electrólisis. Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno. El gas hidrógeno se puede eliminar de la estación espacial o reciclar, y el gas oxígeno se libera en el aire que respiran los astronautas.\nEl texto subrayado indica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Como el agua reacciona en esta reacción química, el agua es un reactivo.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre al agua en esta reacción química.\nLa parte clave del texto es: «Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno».\nIndica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Como el agua reacciona en esta reacción química, el agua es un reactivo.",
         "error_type": "Incomplete_Reasoning",
         "student_response": {
             "answer": 1,
@@ -1974,7 +1974,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Lee el texto subrayado con atención. Busca información sobre lo que le ocurre al agua en esta reacción química.\nAl igual que las personas en la Tierra, los astronautas que viven en la Estación Espacial Internacional necesitan oxígeno para sobrevivir. Como en el espacio no hay oxígeno para que los astronautas respiren, producen oxígeno mediante un proceso llamado electrólisis. Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno. El gas hidrógeno se puede eliminar de la estación espacial o reciclar, y el gas oxígeno se libera en el aire que respiran los astronautas.\nEl texto subrayado te dice que cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Dado que el agua reacciona en esta reacción química, el agua es un reactivo.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre al agua en esta reacción química.\nLa parte clave del texto es: «Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno».\nIndica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Como el agua reacciona en esta reacción química, el agua es un reactivo.",
         "error_type": "Misinterpretation_of_Question",
         "student_response": {
             "answer": 1,
@@ -1993,7 +1993,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Lee atentamente el texto subrayado. Busca información sobre lo que le ocurre al agua en esta reacción química.\nAl igual que las personas en la Tierra, los astronautas que viven en la Estación Espacial Internacional necesitan oxígeno para sobrevivir. Como no hay oxígeno en el espacio para que los astronautas respiren, producen oxígeno mediante un proceso llamado electrólisis. Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno. El gas hidrógeno se puede extraer de la estación espacial o reciclar, y el gas oxígeno se libera en el aire que respiran los astronautas.\nEl texto subrayado indica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o experimenta un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Dado que el agua reacciona en esta reacción química, el agua es un reactivo.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre al agua en esta reacción química.\nLa parte clave del texto es: «Este proceso utiliza electricidad para descomponer el agua en gas hidrógeno y gas oxígeno».\nIndica que, cuando el agua se descompone, se forman oxígeno e hidrógeno. Cuando el agua reacciona, o sufre un cambio químico, sus átomos se reordenan para formar oxígeno e hidrógeno. Como el agua reacciona en esta reacción química, el agua es un reactivo.",
         "error_type": "None",
         "student_response": {
             "answer": 0,
@@ -2012,7 +2012,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 1,
-        "ground_truth_solution": "Lee con atención el texto subrayado. Busca información sobre lo que le ocurre a la fructosa en esta reacción química.\nLas abejas melíferas elaboran miel a partir del néctar que recogen de las flores. El néctar es un líquido transparente que contiene un azúcar llamado sacarosa. Después de que una abeja recoja el néctar de una flor, los productos químicos del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa, dos azúcares más simples. A continuación, la abeja deposita esta mezcla en un panal y lo sella con cera.\nEl texto subrayado indica que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre a la fructosa en esta reacción química.\nLa parte clave del texto es: «unas sustancias químicas del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa».\nIndica que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
         "error_type": "Factual_Error",
         "student_response": {
             "answer": 0,
@@ -2031,7 +2031,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 1,
-        "ground_truth_solution": "Lee atentamente el texto subrayado. Busca información sobre lo que le ocurre a la fructosa en esta reacción química.\nLas abejas melíferas fabrican miel a partir del néctar que recogen de las flores. El néctar es un líquido transparente que contiene un azúcar llamado sacarosa. Después de que una abeja recoja el néctar de una flor, las sustancias químicas de su cuerpo descomponen la sacarosa en una mezcla de fructosa y glucosa, dos azúcares más sencillos. A continuación, la abeja deposita esta mezcla en un panal y lo sella con cera.\nEl texto subrayado indica que la fructosa se forma cuando la sacarosa se descompone. Como la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre a la fructosa en esta reacción química.\nLa parte clave del texto es: «unas sustancias químicas del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa».\nIndica que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
         "error_type": "Conceptual_Misconception",
         "student_response": {
             "answer": 0,
@@ -2050,7 +2050,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 1,
-        "ground_truth_solution": "Lee atentamente el texto subrayado. Busca información sobre lo que le ocurre a la fructosa en esta reacción química.\nLas abejas melíferas fabrican miel a partir del néctar que recogen de las flores. El néctar es un líquido transparente que contiene un azúcar llamado sacarosa. Después de que una abeja recoja el néctar de una flor, las sustancias químicas del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa, dos azúcares más simples. Luego, la abeja deposita esta mezcla en un panal y lo sella con cera.\nEl texto subrayado te indica que la fructosa se forma cuando la sacarosa se descompone. Como la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre a la fructosa en esta reacción química.\nLa parte clave del texto es: «unas sustancias químicas del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa».\nIndica que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
         "error_type": "Overgeneralization",
         "student_response": {
             "answer": 0,
@@ -2069,7 +2069,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 1,
-        "ground_truth_solution": "Lee atentamente el texto subrayado. Busca información sobre lo que le ocurre a la fructosa en esta reacción química.\nLas abejas melíferas fabrican miel a partir del néctar que recogen de las flores. El néctar es un líquido transparente que contiene un azúcar llamado sacarosa. Después de que una abeja recoja néctar de una flor, las sustancias químicas del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa, dos azúcares más sencillos. A continuación, la abeja deposita esta mezcla en un panal y sella el panal con cera.\nEl texto subrayado te dice que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre a la fructosa en esta reacción química.\nLa parte clave del texto es: «unas sustancias químicas del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa».\nIndica que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
         "error_type": "Incomplete_Reasoning",
         "student_response": {
             "answer": 0,
@@ -2088,7 +2088,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 1,
-        "ground_truth_solution": "Lee atentamente el texto subrayado. Busca información sobre lo que le ocurre a la fructosa en esta reacción química.\nLas abejas melíferas fabrican miel a partir del néctar que recogen de las flores. El néctar es un líquido transparente que contiene un azúcar llamado sacarosa. Después de que una abeja recoja el néctar de una flor, las sustancias químicas del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa, dos azúcares más simples. A continuación, la abeja deposita esta mezcla en un panal y lo sella con cera.\nEl texto subrayado te dice que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre a la fructosa en esta reacción química.\nLa parte clave del texto es: «unas sustancias químicas del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa».\nIndica que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
         "error_type": "Misinterpretation_of_Question",
         "student_response": {
             "answer": 0,
@@ -2107,7 +2107,7 @@
         ],
         "grade": "1º de ESO",
         "ground_truth_answer": 1,
-        "ground_truth_solution": "Lee atentamente el texto subrayado. Busca información sobre qué le ocurre a la fructosa en esta reacción química.\nLas abejas melíferas fabrican miel a partir del néctar que recogen de las flores. El néctar es un líquido transparente que contiene un azúcar llamado sacarosa. Después de que una abeja recoja néctar de una flor, las sustancias químicas de su cuerpo descomponen la sacarosa en una mezcla de fructosa y glucosa, dos azúcares más simples. A continuación, la abeja deposita esta mezcla en un panal y lo sella con cera.\nEl texto subrayado indica que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
+        "ground_truth_solution": "Busca en el texto qué le ocurre a la fructosa en esta reacción química.\nLa parte clave del texto es: «unas sustancias químicas del cuerpo de la abeja descomponen la sacarosa en una mezcla de fructosa y glucosa».\nIndica que la fructosa se forma cuando la sacarosa se descompone. Dado que la fructosa se produce mediante esta reacción química, la fructosa es un producto.",
         "error_type": "None",
         "student_response": {
             "answer": 1,
@@ -2126,7 +2126,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. Los airbags reducen las lesiones durante los accidentes de tráfico al inflarse rápidamente para proporcionar amortiguación a las personas que van dentro de un coche. Los airbags más antiguos contienen una pequeña cantidad de azida de sodio (NaN3). Si se produce un accidente, la azida de sodio se calienta, lo que hace que se descomponga en sodio metálico (Na) y nitrógeno gaseoso (N2). En menos de una décima de segundo, se produce suficiente nitrógeno gaseoso para llenar completamente el airbag. Como resultado de la reacción, la energía térmica se transfiere al entorno. El texto subrayado te dice que la energía térmica se transfiere al entorno. Debido a que la energía térmica sale de la reacción y entra en el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
+        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Como resultado de la reacción, se transfiere energía térmica al entorno».\nComo la energía térmica sale de la reacción y entra en el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
         "error_type": "Factual_Error",
         "student_response": {
             "answer": 1,
@@ -2145,7 +2145,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. Los airbags reducen las lesiones durante los accidentes de tráfico al inflarse rápidamente para proporcionar amortiguación a las personas que van dentro del coche. Los airbags más antiguos contienen una pequeña cantidad de azida de sodio (NaN3). Si se produce un accidente, la azida de sodio se calienta, lo que hace que se descomponga en sodio metálico (Na) y nitrógeno gaseoso (N2). En menos de una décima de segundo, se produce suficiente nitrógeno gaseoso para llenar completamente el airbag. Como resultado de la reacción, la energía térmica se transfiere al entorno. El texto subrayado te dice que la energía térmica se transfiere al entorno. Dado que la energía térmica sale de la reacción hacia el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
+        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Como resultado de la reacción, se transfiere energía térmica al entorno».\nComo la energía térmica sale de la reacción y entra en el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
         "error_type": "Conceptual_Misconception",
         "student_response": {
             "answer": 1,
@@ -2164,7 +2164,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. Los airbags reducen las lesiones durante los accidentes de tráfico al inflarse rápidamente para proporcionar amortiguación a las personas que están dentro del coche. Los airbags más antiguos contienen una pequeña cantidad de azida de sodio (NaN3). Si se produce un accidente, la azida de sodio se calienta, lo que hace que se descomponga en sodio metálico (Na) y nitrógeno gaseoso (N2). En menos de una décima de segundo, se produce suficiente nitrógeno gaseoso como para llenar completamente el airbag. Como resultado de la reacción, la energía térmica se transfiere al entorno. El texto subrayado te dice que la energía térmica se transfiere al entorno. Dado que la energía térmica sale de la reacción y va hacia el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
+        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Como resultado de la reacción, se transfiere energía térmica al entorno».\nComo la energía térmica sale de la reacción y entra en el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
         "error_type": "Overgeneralization",
         "student_response": {
             "answer": 1,
@@ -2183,7 +2183,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. Los airbags reducen las lesiones durante los accidentes de tráfico al inflarse rápidamente para proporcionar amortiguación a las personas que están dentro del coche. Los airbags más antiguos contienen una pequeña cantidad de azida de sodio (NaN3). Si se produce un accidente, la azida de sodio se calienta, lo que hace que se descomponga en sodio metálico (Na) y nitrógeno gaseoso (N2). En menos de una décima de segundo, se produce suficiente nitrógeno gaseoso para llenar por completo el airbag. Como resultado de la reacción, la energía térmica se transfiere al entorno. El texto subrayado te indica que la energía térmica se transfiere al entorno. Como la energía térmica sale de la reacción hacia el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
+        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Como resultado de la reacción, se transfiere energía térmica al entorno».\nComo la energía térmica sale de la reacción y entra en el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
         "error_type": "Incomplete_Reasoning",
         "student_response": {
             "answer": 1,
@@ -2202,7 +2202,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. Los airbags reducen las lesiones durante los accidentes de tráfico inflándose rápidamente para amortiguar a los ocupantes de un vehículo. Los airbags más antiguos contienen una pequeña cantidad de azida de sodio (NaN3). Si ocurre un accidente, la azida de sodio se calienta, lo que hace que se descomponga en sodio metálico (Na) y nitrógeno gaseoso (N2). En menos de una décima de segundo, se produce suficiente nitrógeno gaseoso para llenar por completo el airbag. Como resultado de la reacción, la energía térmica se transfiere al entorno. El texto subrayado indica que la energía térmica se transfiere al entorno. Como la energía térmica se desplaza fuera de la reacción y hacia el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
+        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Como resultado de la reacción, se transfiere energía térmica al entorno».\nComo la energía térmica sale de la reacción y entra en el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
         "error_type": "Misinterpretation_of_Question",
         "student_response": {
             "answer": 1,
@@ -2221,7 +2221,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. Los airbags reducen las lesiones durante los accidentes de coche al inflarse rápidamente para proporcionar amortiguación a las personas dentro del vehículo. Los airbags más antiguos contienen una pequeña cantidad de azida de sodio (NaN3). Si ocurre un accidente, la azida de sodio se calienta, lo que hace que se descomponga en sodio metálico (Na) y nitrógeno gaseoso (N2). En menos de una décima de segundo, se produce suficiente nitrógeno gaseoso para llenar completamente el airbag. Como resultado de la reacción, la energía térmica se transfiere al entorno. El texto subrayado indica que la energía térmica se transfiere al entorno. Debido a que la energía térmica sale de la reacción y se desplaza hacia el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
+        "ground_truth_solution": "Para determinar si el airbag se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Como resultado de la reacción, se transfiere energía térmica al entorno».\nComo la energía térmica sale de la reacción y entra en el entorno, la temperatura del entorno aumenta. El entorno incluye el airbag en el que tiene lugar la reacción. Por lo tanto, el airbag se vuelve más caliente.",
         "error_type": "None",
         "student_response": {
             "answer": 0,
@@ -2240,7 +2240,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción.El tipo de cemento más común del mundo es el cemento Portland, llamado así por una zona de Inglaterra que tiene mucha piedra caliza. La piedra caliza está compuesta principalmente de carbonato de calcio (CaCO3). Cuando el carbonato de calcio se calienta, se descompone en dióxido de carbono (CO2) y óxido de calcio (CaO), el ingrediente principal del cemento Portland. Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química.El texto subrayado indica que se absorbe energía térmica del entorno. Como la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye.El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
+        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química».\nComo la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye. El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
         "error_type": "Factual_Error",
         "student_response": {
             "answer": 1,
@@ -2259,7 +2259,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. El tipo de cemento más común en el mundo es el cemento Portland, llamado así por una zona de Inglaterra que tiene mucha piedra caliza. La piedra caliza está compuesta principalmente de carbonato de calcio (CaCO3). Cuando el carbonato de calcio se calienta, se descompone en dióxido de carbono (CO2) y óxido de calcio (CaO), el ingrediente principal del cemento Portland. Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química. El texto subrayado indica que se absorbe energía térmica del entorno. Como la energía térmica se desplaza del entorno hacia la reacción, la temperatura del entorno disminuye. El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
+        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química».\nComo la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye. El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
         "error_type": "Conceptual_Misconception",
         "student_response": {
             "answer": 1,
@@ -2278,7 +2278,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. El tipo de cemento más común del mundo es el cemento Portland, llamado así por una zona de Inglaterra que tiene mucha piedra caliza. La piedra caliza está compuesta principalmente de carbonato de calcio (CaCO3). Cuando el carbonato de calcio se calienta, se descompone en dióxido de carbono (CO2) y óxido de calcio (CaO), el ingrediente principal del cemento Portland. Durante esta reacción, la energía térmica se absorbe del entorno y se convierte en energía química. El texto subrayado te indica que la energía térmica se absorbe del entorno. Debido a que la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye. El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
+        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química».\nComo la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye. El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
         "error_type": "Overgeneralization",
         "student_response": {
             "answer": 1,
@@ -2297,7 +2297,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el aire que rodea la reacción se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. El tipo de cemento más común del mundo es el cemento Portland, llamado así por una zona de Inglaterra que tiene mucha piedra caliza. La piedra caliza está compuesta principalmente de carbonato de calcio (CaCO3). Cuando el carbonato de calcio se calienta, se descompone en dióxido de carbono (CO2) y óxido de calcio (CaO), el ingrediente principal del cemento Portland. Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química. El texto subrayado te dice que se absorbe energía térmica del entorno. Dado que la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye. El entorno incluye el aire que rodea la reacción. Por lo tanto, el aire que rodea la reacción se vuelve más frío.",
+        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química».\nComo la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye. El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
         "error_type": "Incomplete_Reasoning",
         "student_response": {
             "answer": 1,
@@ -2316,7 +2316,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción.El tipo de cemento más común en el mundo es el cemento Portland, llamado así por una zona de Inglaterra que tiene mucha piedra caliza. La piedra caliza está compuesta principalmente de carbonato de calcio (CaCO3). Cuando el carbonato de calcio se calienta, se descompone en dióxido de carbono (CO2) y óxido de calcio (CaO), el ingrediente principal del cemento Portland. Durante esta reacción, la energía térmica se absorbe del entorno y se convierte en energía química.El texto subrayado te indica que la energía térmica se absorbe del entorno. Debido a que la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye.El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
+        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química».\nComo la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye. El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
         "error_type": "Misinterpretation_of_Question",
         "student_response": {
             "answer": 1,
@@ -2335,7 +2335,7 @@
         ],
         "grade": "6º de Primaria",
         "ground_truth_answer": 0,
-        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca el texto que describe el movimiento de la energía térmica durante la reacción. El tipo de cemento más común en el mundo es el cemento Portland, llamado así por una zona de Inglaterra que tiene mucha piedra caliza. La piedra caliza está compuesta principalmente de carbonato de calcio (CaCO3). Cuando el carbonato de calcio se calienta, se descompone en dióxido de carbono (CO2) y óxido de calcio (CaO), el ingrediente principal del cemento Portland. Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química. El texto subrayado te indica que se absorbe energía térmica del entorno. Como la energía térmica se desplaza fuera del entorno hacia la reacción, la temperatura del entorno disminuye. El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
+        "ground_truth_solution": "Para determinar si el aire alrededor de la reacción se vuelve más caliente o más frío, busca en el texto la parte que describe el movimiento de la energía térmica durante la reacción.\nLa parte clave del texto es: «Durante esta reacción, se absorbe energía térmica del entorno y se convierte en energía química».\nComo la energía térmica sale del entorno y entra en la reacción, la temperatura del entorno disminuye. El entorno incluye el aire alrededor de la reacción. Por lo tanto, el aire alrededor de la reacción se vuelve más frío.",
         "error_type": "None",
         "student_response": {
             "answer": 0,

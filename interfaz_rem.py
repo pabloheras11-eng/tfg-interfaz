@@ -49,13 +49,28 @@ def cargar_datos_unicos():
         clave = (str(item["question_id"]), item.get("error_type"))
         indice[clave] = item
 
+    # Cada pregunta guarda sus alumnos posibles: "asignado" (el error del reparto, el que ven todos los
+    # roles) y, si tiene "marcada_acierto", también "acierto" (la variante None, que solo ven los roles
+    # de ROLES_CON_ACIERTO; ver caso_para_rol). Si falta una variante, la app se para en vez de saltarse
+    # la pregunta: saltársela descolocaría todas las siguientes.
     resultado = {"A": [], "B": []}
     for entrada in reparto:
-        clave = (str(entrada["question_id"]), entrada["error_type_asignado"])
-        item = indice.get(clave)
-        if item is not None:
-            item["hint"] = hints.get(str(entrada["question_id"]), "")
-            resultado[entrada["grupo"]].append(item)
+        qid = str(entrada["question_id"])
+        if "marcada_acierto" not in entrada:
+            raise RuntimeError("reparto_grupos_40.json no tiene el campo 'marcada_acierto': "
+                               "regenéralo con generar_reparto_grupos.py.")
+        variantes = {"asignado": entrada["error_type_asignado"]}
+        if entrada["marcada_acierto"]:
+            variantes["acierto"] = "None"
+        pregunta = {}
+        for nombre, error_type in variantes.items():
+            item = indice.get((qid, error_type))
+            if item is None:
+                raise RuntimeError(f"Falta en respuestas_alumnos_es_40.json la variante ({qid}, {error_type}) "
+                                   "que pide reparto_grupos_40.json.")
+            item["hint"] = hints.get(qid, "")
+            pregunta[nombre] = item
+        resultado[entrada["grupo"]].append(pregunta)
 
     return resultado
 
@@ -63,7 +78,7 @@ datos_por_grupo = cargar_datos_unicos()
 
 ROLES_HUMANOS = [
     "✅ Profesor Ideal (Misión: Corrige de forma precisa, bien desarrollada, clara y amable)",
-    "❌ Profesor Desinformado (Misión: Da una respuesta incorrecta con toda la seguridad de que fuera correcta)",
+    "❌ Profesor Desinformado (Misión: Da una corrección errónea (veredicto o motivo falso) con toda la seguridad de que fuera correcta)",
     "✂️ Profesor Conciso (Misión: Da una corrección correcta y amable pero demasiado breve: te saltas pasos del razonamiento y das cosas por hechas, apenas explicas)",
     "🌀 Profesor Divagador (Misión: Da una corrección correcta y bien explicada, pero en algún momento te sales del tema para comentar detalles irrelevantes —aunque coherentes— de otra cosa)",
     "🤬 Profesor Tóxico (Misión: Da una corrección correcta, clara y bien explicada, pero con un tono brusco, irrespetuoso o incluso insultante)"
@@ -73,7 +88,8 @@ ROLES_HUMANOS = [
 #   Paso 1: el profesor escribe su propia pregunta y la explicación ideal — esa explicación SE
 #   REUTILIZA directamente como la respuesta del rol Ideal, no se le vuelve a pedir en el Paso 2.
 #   Paso 2: reformula esa misma corrección en los otros 4 roles de ROLES_VOLUNTARIO_PASO2 (todos
-#   menos Ideal, ya cubierto por el Paso 1).
+#   menos Ideal, ya cubierto por el Paso 1). Son OPCIONALES: los que deja en blanco no se guardan
+#   (su clave no aparece en respuestas_por_rol), así que un envío lleva de 1 (solo Ideal) a 5 roles.
 ROL_IDEAL = ROLES_HUMANOS[0]
 ROLES_VOLUNTARIO_PASO2 = [r for r in ROLES_HUMANOS if r != ROL_IDEAL]
 
@@ -82,7 +98,7 @@ ROLES_VOLUNTARIO_PASO2 = [r for r in ROLES_HUMANOS if r != ROL_IDEAL]
 # ==========================================
 CODIGO_ROL = {
     "✅ Profesor Ideal (Misión: Corrige de forma precisa, bien desarrollada, clara y amable)": "ideal",
-    "❌ Profesor Desinformado (Misión: Da una respuesta incorrecta con toda la seguridad de que fuera correcta)": "desinformado",
+    "❌ Profesor Desinformado (Misión: Da una corrección errónea (veredicto o motivo falso) con toda la seguridad de que fuera correcta)": "desinformado",
     "✂️ Profesor Conciso (Misión: Da una corrección correcta y amable pero demasiado breve: te saltas pasos del razonamiento y das cosas por hechas, apenas explicas)": "conciso",
     "🌀 Profesor Divagador (Misión: Da una corrección correcta y bien explicada, pero en algún momento te sales del tema para comentar detalles irrelevantes —aunque coherentes— de otra cosa)": "divagador",
     "🤬 Profesor Tóxico (Misión: Da una corrección correcta, clara y bien explicada, pero con un tono brusco, irrespetuoso o incluso insultante)": "toxico",
@@ -120,8 +136,39 @@ ROL_A_RUBRICA = {
 }
 
 # ==========================================
-# GUÍAS DETALLADAS DE ROL (usadas tanto en el flujo normal de evaluación como en el modo voluntario)
+# ROLES QUE VEN AL ALUMNO QUE ACIERTA (sección 16 del resumen)
 # ==========================================
+# El alumno que acierta (variante error_type "None") solo se muestra a estos roles, y solo en las
+# preguntas con "marcada_acierto" en reparto_grupos_40.json (las 2 primeras de cada bloque de 4): así
+# cada evaluador ve 2 aciertos y 2 fallos como Ideal y otros tantos como Desinformado. Los demás roles
+# ven siempre el "error_type_asignado" de la pregunta. Por qué estos dos:
+#   - desinformado: negarle el acierto al alumno solo se puede recoger si el alumno ha acertado.
+#   - ideal: es el contraste. Si los aciertos solo salieran con el Desinformado, en los datos humanos
+#     "el alumno acierta" iría siempre unido a "el profesor se equivoca" (R1=1) y el juez podría
+#     aprender esa regla en vez de leer la corrección.
+#   - conciso, divagador y toxico, no: con un alumno que acierta, un "¡Correcto!" puede bastar (la R2=1
+#     del Conciso sería dudosa), y el fallo de Divagador y Tóxico se ve igual con un alumno que se
+#     equivoca. Sus correcciones de aciertos solo están en el sintético (respuestas_profesores_v3.py).
+# respuestas_profesores_v3.py lee esta tupla de interfaz_rem.py con ast (para --solo-reparto): debe
+# seguir siendo un literal. Si cambia, revisar también qué guías llevan «Si el alumno ya ha acertado».
+ROLES_CON_ACIERTO = ("ideal", "desinformado")
+
+_roles_acierto_desconocidos = set(ROLES_CON_ACIERTO) - set(ROL_A_RUBRICA)
+if _roles_acierto_desconocidos:
+    raise RuntimeError(f"ROLES_CON_ACIERTO tiene roles que no están en ROL_A_RUBRICA: {sorted(_roles_acierto_desconocidos)}")
+
+def caso_para_rol(pregunta, rol):
+    """Alumno que se muestra en una pregunta (ver cargar_datos_unicos) según el rol: el que acierta si
+    la pregunta está marcada y el rol está en ROLES_CON_ACIERTO; el del reparto en cualquier otro caso."""
+    if "acierto" in pregunta and codigo_rol(rol) in ROLES_CON_ACIERTO:
+        return pregunta["acierto"]
+    return pregunta["asignado"]
+
+# ==========================================
+# GUÍAS DETALLADAS DE ROL (flujo normal de evaluación; el modo voluntario usa GUIA_VOLUNTARIO_ROLES)
+# ==========================================
+# Solo Ideal y Desinformado llevan «Si el alumno ya ha acertado»: son los únicos roles que ven al
+# alumno que acierta (ROLES_CON_ACIERTO).
 GUIA_DETALLADA_ROLES = {
     "✅ Profesor Ideal (Misión: Corrige de forma precisa, bien desarrollada, clara y amable)": """
 **Misión:** Eres el profesor perfecto. Corrige de forma precisa, bien desarrollada, clara y amable.
@@ -130,35 +177,79 @@ GUIA_DETALLADA_ROLES = {
 * **Si el alumno ya ha acertado:** Confírmaselo y explícale por qué su respuesta es correcta, reforzando lo que ha hecho bien.
 * **Ejemplo (acierto):** *"¡Muy bien, es Madrid! Lo has razonado bien: es la capital porque allí están el Gobierno y las Cortes. ¡Sigue así!"*
 """,
-    "❌ Profesor Desinformado (Misión: Da una respuesta incorrecta con toda la seguridad de que fuera correcta)": """
-**Misión:** Da una respuesta incorrecta con toda la seguridad de que fuera correcta. Puede ser de tres formas: dile que ha acertado cuando en realidad se ha equivocado, dile que se ha equivocado cuando en realidad ha acertado, o dale el veredicto correcto pero con un motivo falso. El único fallo es de CONTENIDO — la explicación debe sonar igual de desarrollada, clara y amable que la de un buen profesor, solo que lo que dice es mentira.
+    "❌ Profesor Desinformado (Misión: Da una corrección errónea (veredicto o motivo falso) con toda la seguridad de que fuera correcta)": """
+**Misión:** Da una corrección errónea (veredicto o motivo falso) con toda la seguridad de que fuera correcta. Puede ser de tres formas: dile que ha acertado cuando en realidad se ha equivocado, dile que se ha equivocado cuando en realidad ha acertado, o dale el veredicto correcto pero con un motivo falso. El único fallo es de CONTENIDO — la explicación debe sonar igual de desarrollada, clara y amable que la de un buen profesor, solo que lo que dice es mentira.
 * **Tono:** Igual de cordial y seguro que si tuvieras razón — el problema no es cómo lo dices, es que lo que dices es falso.
 * **Ejemplo (Geografía):** *"¡Es Barcelona! Es la ciudad más grande de España, así que tiene que ser la capital."*
-* **Si el alumno ya ha acertado:** No reconozcas el acierto — con la misma seguridad y amabilidad, dile que se ha equivocado, o confírmaselo pero con un motivo falso.
+* **Si el alumno ya ha acertado:** Con la misma seguridad y amabilidad, dile que se ha equivocado, o dale la razón pero con un motivo falso.
 * **Ejemplo (acierto que niegas):** *"¡Casi! Pero la capital es Barcelona, no Madrid, porque es la ciudad más grande del país."*
+* **Ejemplo (acierto con motivo falso):** *"¡Muy bien, es Madrid! Es la capital porque es la ciudad más antigua de España."*
 """,
     "✂️ Profesor Conciso (Misión: Da una corrección correcta y amable pero demasiado breve: te saltas pasos del razonamiento y das cosas por hechas, apenas explicas)": """
 **Misión:** Da una corrección correcta y amable, pero demasiado breve: te saltas pasos del razonamiento y das cosas por hechas, apenas explicas.
 * **Tono:** Directo y muy breve, pero cordial — evita sonar frío o desagradable. Ve al grano con amabilidad.
 * **Ejemplo (Geografía):** *"¡Es Madrid!"*
-* **Si el alumno ya ha acertado:** Confírmalo igual de breve, pero con un toque amable.
-* **Ejemplo (acierto):** *"¡Correcto!"*
 """,
     "🌀 Profesor Divagador (Misión: Da una corrección correcta y bien explicada, pero en algún momento te sales del tema para comentar detalles irrelevantes —aunque coherentes— de otra cosa)": """
 **Misión:** Da la respuesta correcta y una buena explicación (identificando el error del alumno), pero en algún momento te sales del tema — comentas datos u observaciones que encajan lógicamente con lo que estás explicando pero que ya no aportan nada para corregir al alumno.
 * **Tono:** Cordial y bien intencionado — el problema no es el tono ni que el contenido principal esté mal, es que te dispersas y dejas de ir al grano.
 * **Ejemplo (Geografía):** *"Es Madrid, no Barcelona. Por cierto, ¿sabías que Madrid es una de las capitales europeas a mayor altitud? Y hablando de altitud, la Sierra de Guadarrama que la rodea tiene picos de más de 2000 metros donde mucha gente esquía en invierno..."*
-* **Si el alumno ya ha acertado:** Confírmalo con la explicación completa, pero divagando igual hacia detalles curiosos que no ha pedido.
-* **Ejemplo (acierto):** *"¡Correcto, es Madrid! Aprovecho para contarte que su nombre viene del árabe 'Mayrit', que significa algo así como 'lugar de muchas aguas'... (y sigue con una curiosidad histórica que ya no ayuda con la pregunta)."*
 """,
     "🤬 Profesor Tóxico (Misión: Da una corrección correcta, clara y bien explicada, pero con un tono brusco, irrespetuoso o incluso insultante)": """
 **Misión:** Da la respuesta correcta y una buena explicación, completa y clara (identificando el error del alumno), pero dirígete al alumno de forma brusca, irrespetuosa o incluso insultante.
 * **Tono:** Grosero, despectivo o insultante — va más allá de la simple impaciencia o el sarcasmo leve. El contenido es correcto y completo — el problema es CÓMO lo dices.
 * **Ejemplo (Geografía):** *"¿En serio has confundido esto? Es Madrid, no Barcelona. ¿Es que no prestas atención en clase? Es de sentido común que ahí está el Gobierno."*
-* **Si el alumno ya ha acertado:** Confírmalo con la explicación completa, con el mismo tono despectivo, como si no te esperaras que acertara.
-* **Ejemplo (acierto):** *"Vaya, milagro. Sí, es Madrid, la capital, donde está el Gobierno. A ver si la próxima te la sabes sin tener que pensarlo tanto."*
 """,
 }
+
+# ==========================================
+# GUÍAS DEL MODO PROFESOR VOLUNTARIO (Paso 2)
+# ==========================================
+# En el modo voluntario no hay alumno que acierte o falle: el profesor inventa la pregunta y explica
+# por qué la opción correcta lo es (Paso 1, que hace de Ideal). Las guías de GUIA_DETALLADA_ROLES
+# están escritas para corregir a un alumno ("si se ha equivocado" / "si ya ha acertado"), así que
+# aquí cada rol tiene su versión: reescribir la explicación del Paso 1 fallando en el mismo eje de
+# la rúbrica que en la rotación. Indexado por código corto; debe cubrir ROLES_VOLUNTARIO_PASO2.
+GUIA_VOLUNTARIO_ROLES = {
+    "desinformado": {
+        "mision": "Reescribe tu explicación con toda la seguridad de que es correcta, pero con un error de "
+                  "contenido: da por buena una opción incorrecta, o la correcta pero con un motivo falso.",
+        "guia": """
+* **Tono:** Igual de cordial y seguro que si tuvieras razón. El único fallo es de CONTENIDO: tiene que sonar igual de desarrollada, clara y amable que tu explicación ideal, solo que lo que dice es falso.
+* **Ejemplo (opción incorrecta):** *"La capital de España es Barcelona: es la ciudad más grande del país, y por eso allí están el Gobierno y las Cortes."*
+* **Ejemplo (opción correcta, motivo falso):** *"La capital de España es Madrid, porque es la ciudad más antigua del país y por eso se eligió como capital."*
+""",
+    },
+    "conciso": {
+        "mision": "Reescribe tu explicación de forma correcta y amable, pero demasiado breve: te saltas pasos "
+                  "del razonamiento y das cosas por hechas, apenas explicas.",
+        "guia": """
+* **Tono:** Directo y muy breve, pero cordial — evita sonar frío o desagradable. Ve al grano con amabilidad.
+* **Ejemplo:** *"¡Es Madrid!"*
+""",
+    },
+    "divagador": {
+        "mision": "Reescribe tu explicación con la respuesta correcta y bien explicada, pero en algún momento "
+                  "sal del tema para comentar detalles irrelevantes (aunque coherentes) que ya no ayudan a "
+                  "entender la pregunta.",
+        "guia": """
+* **Tono:** Cordial y bien intencionado — el problema no es el tono ni que el contenido principal esté mal, es que te dispersas y dejas de ir al grano.
+* **Ejemplo:** *"La capital es Madrid, porque allí están el Gobierno y las Cortes. Por cierto, ¿sabías que Madrid es una de las capitales europeas a mayor altitud? Y hablando de altitud, la Sierra de Guadarrama que la rodea tiene picos de más de 2000 metros donde mucha gente esquía en invierno..."*
+""",
+    },
+    "toxico": {
+        "mision": "Reescribe tu explicación con la respuesta correcta, completa y clara, pero dirigiéndote al "
+                  "alumno de forma brusca, despectiva o incluso insultante.",
+        "guia": """
+* **Tono:** Grosero, despectivo o insultante (por ejemplo, como si la pregunta fuera tan obvia que no merece tu tiempo) — va más allá de la simple impaciencia o el sarcasmo leve. El contenido es correcto y completo — el problema es CÓMO lo dices.
+* **Ejemplo:** *"Es Madrid, evidentemente. Allí están el Gobierno y las Cortes, algo que cualquiera con dos dedos de frente debería saber. No sé ni por qué tengo que explicarte esto."*
+""",
+    },
+}
+
+_faltan_guias_vol = {codigo_rol(r) for r in ROLES_VOLUNTARIO_PASO2} - set(GUIA_VOLUNTARIO_ROLES)
+if _faltan_guias_vol:
+    raise RuntimeError(f"Falta la guía del modo voluntario (GUIA_VOLUNTARIO_ROLES) para: {sorted(_faltan_guias_vol)}")
 
 # ==========================================
 # CONTROL DE TECLEO (anti copia-pega en el feedback)
@@ -371,6 +462,8 @@ REGISTRO_ROLES_REF = db.collection("config").document("registro_roles")
 # desplazamiento solo decide por cuál empieza cada evaluador, así el mismo bloque de preguntas le
 # toca con un rol distinto a cada uno y cada evaluador pasa 4 preguntas por cada rol.
 ROLES_ROTACION = ROLES_HUMANOS
+# Las marcas de acierto del reparto (marcada_acierto, las 2 primeras de cada bloque) asumen bloques
+# de 4: si cambia, hay que cambiar también TAMANO_BLOQUE en generar_reparto_grupos.py y regenerar.
 TAMANO_BLOQUE = 20 // len(ROLES_ROTACION)  # 4, con los 5 roles actuales
 
 def rol_para_indice(indice, desplazamiento):
@@ -505,9 +598,11 @@ if st.session_state.modo_voluntario:
     st.title("👩‍🏫 Modo Profesor Voluntario - Universidad")
     st.markdown("""
     Gracias por colaborar. Aquí vas a **inventar tú mismo/a una pregunta** (con sus opciones y la
-    explicación correcta, escrita como el mejor profesor posible) y luego vas a responderla **en otros
-    4 estilos de profesor distintos**, escribiendo un feedback diferente para cada uno. Puedes repetir
-    el proceso con tantas preguntas como quieras.
+    explicación correcta, escrita como el mejor profesor posible) y luego puedes reescribir esa explicación
+    **en otros 4 estilos de profesor distintos**, una versión diferente para cada uno. **No es obligatorio
+    rellenar los 4 estilos**: si puedes hacerlos todos, genial, pero también puedes guardar la pregunta
+    con los que hayas escrito y dejar el resto en blanco. Puedes repetir el proceso con tantas preguntas
+    como quieras.
     """)
     st.write("---")
 
@@ -549,39 +644,49 @@ if st.session_state.modo_voluntario:
             )
 
             st.write("---")
-            st.markdown("### 📝 Paso 2: Responde en los otros 4 roles")
-            st.caption("El rol ✅ Ideal ya queda cubierto con la explicación que has escrito arriba.")
+            st.markdown("### 📝 Paso 2: Reescribe tu explicación en los otros 4 roles (opcional)")
+            st.caption(
+                "El rol ✅ Ideal ya queda cubierto con la explicación que has escrito arriba. En cada rol, "
+                "parte de esa explicación y reescríbela siguiendo su misión."
+            )
+            st.info(
+                "💡 **No hace falta rellenar los 4 roles.** Si puedes completarlos todos, genial; si no, "
+                "guarda la pregunta con los que tengas. Los que dejes en blanco simplemente no se guardan."
+            )
 
             respuestas_por_rol_form = {}
             for rol in ROLES_VOLUNTARIO_PASO2:
+                guia_vol = GUIA_VOLUNTARIO_ROLES[codigo_rol(rol)]
                 with st.container(border=True):
-                    st.markdown(f"#### {rol}")
-                    with st.expander("💡 Guía de actuación y ejemplos"):
-                        st.markdown(GUIA_DETALLADA_ROLES.get(rol, ""))
+                    st.markdown(f"#### {rol.split(' (Misión')[0]}")
+                    st.markdown(f"**Misión:** {guia_vol['mision']}")
+                    with st.expander("💡 Tono y ejemplos"):
+                        st.caption("Ejemplos con la pregunta «¿Cuál es la capital de España?» "
+                                   "(A: Barcelona, B: Madrid; correcta: Madrid).")
+                        st.markdown(guia_vol["guia"])
                     texto_rol = st.text_area(
-                        "Tu explicación al alumno, actuando como este rol:",
+                        "Tu explicación al alumno, actuando como este rol (opcional):",
                         height=120,
                         key=f"texto_vol_{st.session_state.preguntas_voluntario_completadas}_{codigo_rol(rol)}"
                     )
                     respuestas_por_rol_form[rol] = texto_rol
 
-            if st.form_submit_button("Guardar esta pregunta y sus 5 respuestas", type="primary"):
+            if st.form_submit_button("Guardar esta pregunta y sus respuestas", type="primary"):
                 opciones_vol = [op.strip() for op in [op1, op2, op3, op4] if op.strip() != ""]
-                faltan_roles = [rol for rol, texto in respuestas_por_rol_form.items() if texto.strip() == ""]
 
                 if pregunta_texto.strip() == "" or len(opciones_vol) < 2 or explicacion_texto.strip() == "":
                     st.error("Rellena al menos el enunciado, 2 opciones y la explicación.")
                 elif correcta_num is None or correcta_num > len(opciones_vol):
                     st.error(f"Marca como correcta una opción que hayas rellenado (tienes {len(opciones_vol)}).")
-                elif faltan_roles:
-                    st.error("Falta completar la explicación en: " + ", ".join(faltan_roles))
                 else:
+                    # Los roles del Paso 2 son opcionales: solo se guardan los que tienen texto.
                     respuestas_por_rol_final = {
                         codigo_rol(ROL_IDEAL): {"explanation": explicacion_texto.strip()}
                     }
                     respuestas_por_rol_final.update({
                         codigo_rol(rol): {"explanation": texto.strip()}
                         for rol, texto in respuestas_por_rol_form.items()
+                        if texto.strip() != ""
                     })
 
                     nuevo_registro = {
@@ -706,8 +811,9 @@ else:
 
     if st.session_state.indice < len(datos_alumnos):
 
-        caso_actual = datos_alumnos[st.session_state.indice]
         rol_actual = rol_para_indice(st.session_state.indice, st.session_state.desplazamiento_rol)
+        # El alumno depende del rol: Ideal y Desinformado ven al que acierta en las preguntas marcadas.
+        caso_actual = caso_para_rol(datos_alumnos[st.session_state.indice], rol_actual)
         resp_estudiante = caso_actual['student_response']
         opciones = caso_actual['choices']
 
@@ -763,11 +869,15 @@ else:
                 resaltado = f"<span style='color: #d32f2f; font-weight: bold; background-color: #ffebee; padding: 0 4px; border-radius: 3px;'>{extracto}</span>"
                 solucion = solucion.replace(extracto, resaltado)
 
+            # Emoji en grande para que se vea de un vistazo si el alumno ha acertado o fallado.
+            estilo_emoji = "font-size: 2em; line-height: 1; vertical-align: middle;"
             with st.container(border=True):
                 if caso_actual['error_type'] == "None":
-                    st.markdown(f"✅ **El alumno eligió la CORRECTA:** \n{opciones[resp_estudiante['answer']]}")
+                    st.markdown(f"<span style='{estilo_emoji}'>✅</span> **El alumno eligió la CORRECTA:** \n{opciones[resp_estudiante['answer']]}",
+                                unsafe_allow_html=True)
                 else:
-                    st.markdown(f"❌ **El alumno eligió una INCORRECTA:** {opciones[resp_estudiante['answer']]}")
+                    st.markdown(f"<span style='{estilo_emoji}'>❌</span> **El alumno eligió una INCORRECTA:** {opciones[resp_estudiante['answer']]}",
+                                unsafe_allow_html=True)
                 st.markdown(f"**Justificación del alumno:**\n\n{solucion}", unsafe_allow_html=True)
             
             if mostrar_ayuda and caso_actual['error_type'] != "None":
@@ -782,15 +892,13 @@ else:
         aviso_cambio = ""
         if st.session_state.indice > 0 and st.session_state.indice % TAMANO_BLOQUE == 0:
             aviso_cambio = "🔄 **¡CAMBIO DE ROL!** A partir de esta pregunta tienes un rol nuevo.\n\n"
-        st.warning(f"{aviso_cambio}🎭 **TU ROL PARA ESTE BLOQUE DE PREGUNTAS:**\n\n### {nombre_rol}\n\n**Misión:** {mision_rol.rstrip(')')}")
+        st.warning(f"{aviso_cambio}**TU ROL PARA ESTE BLOQUE DE PREGUNTAS:**\n\n### {nombre_rol}\n\n**Misión:** {mision_rol.rstrip(')')}")
             
         with st.expander("💡 RECUERDA CÓMO DEBES ACTUAR (Ver guías y ejemplos)"):
             st.markdown(GUIA_DETALLADA_ROLES.get(rol_actual, ""))
 
         inyectar_control_tecleo()
-        st.caption("🔒 Para que el experimento sea válido, en el cuadro de feedback no se puede pegar texto y se "
-                   "registra cómo escribes la respuesta (ritmo de escritura y si sales de esta página), nunca "
-                   "lo que haces fuera de ella.")
+        st.caption("🔒 Para que el experimento sea válido, en el cuadro de feedback no se puede pegar texto")
 
         with st.form(key=f"form_{st.session_state.indice}"):
             opcion_humano = st.radio("¿Qué opción le indicarás al alumno como la correcta?", opciones, index=None)
