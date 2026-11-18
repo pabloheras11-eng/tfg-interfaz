@@ -439,6 +439,16 @@ def leer_control_tecleo(valor):
     return {k: datos[k] for k in CAMPOS_CONTROL_TECLEO if isinstance(datos.get(k), (int, float))} or None
 
 # ==========================================
+# SALTOS DE LÍNEA AL MOSTRAR LOS TEXTOS
+# ==========================================
+# En Markdown un salto de línea simple se lee como un espacio: «¿Qué tienen en común estos dos
+# cambios?\nX\nY» saldría en una sola línea, y el «Paso 2» de las explicaciones oficiales como frases
+# seguidas que parecen contradecirse. Cada salto simple pasa a ser un salto forzado ("  \n") solo al
+# mostrarlo: los datos y los registros guardados no cambian. Los saltos dobles (párrafos) se dejan.
+def md_saltos(texto):
+    return re.sub(r"(?<!\n)\n(?!\n)", "  \n", texto or "")
+
+# ==========================================
 # 2. FUNCIONES DE GESTIÓN (FIREBASE)
 # ==========================================
 def limpiar_nombre(nombre_crudo):
@@ -817,12 +827,16 @@ else:
         resp_estudiante = caso_actual['student_response']
         opciones = caso_actual['choices']
 
-        tracker_key = f"ayuda_historial_{st.session_state.indice}"
+        # Claves por evaluador y pregunta, no solo por pregunta: si al terminar alguien pulsa «Volver al
+        # inicio» y otra persona entra en la misma pestaña, no hereda la hora de inicio ni el uso de la
+        # ayuda de quien pasó antes por esa misma posición.
+        clave_pregunta = f"{st.session_state.id_numerico}_{st.session_state.indice}"
+        tracker_key = f"ayuda_historial_{clave_pregunta}"
         if tracker_key not in st.session_state:
             st.session_state[tracker_key] = False
 
         # Hora en que se mostró la pregunta (los reruns, p. ej. al activar la ayuda, no la reinician).
-        inicio_key = f"inicio_pregunta_{st.session_state.indice}"
+        inicio_key = f"inicio_pregunta_{clave_pregunta}"
         if inicio_key not in st.session_state:
             st.session_state[inicio_key] = time.time()
 
@@ -840,8 +854,8 @@ else:
         with col_izq:
             texto_grado_pregunta = f"**Grado del alumno:** {caso_actual.get('grade', 'Desconocido')}"
             if caso_actual.get('hint'):
-                texto_grado_pregunta += f"\n\n**Contexto:** {caso_actual['hint']}"
-            texto_grado_pregunta += f"\n\n**Pregunta:** {caso_actual['question']}"
+                texto_grado_pregunta += f"\n\n**Contexto:** {md_saltos(caso_actual['hint'])}"
+            texto_grado_pregunta += f"\n\n**Pregunta:** {md_saltos(caso_actual['question'])}"
             st.info(texto_grado_pregunta)
             st.markdown("**Opciones:**\n" + "\n".join([f"- {opt}" for opt in opciones]))
             
@@ -849,14 +863,14 @@ else:
             st.caption("*(Esta es la explicación 'de libro'. Úsala como tu chuleta personal para entender el problema, pero **no se la copies y pegues al alumno**, adáptala según tu rol asignado)*.")
             
             idx_corr = caso_actual['ground_truth_answer']
-            st.success(f"**Opción Correcta Real:** {opciones[idx_corr]}\n\n**Explicación Oficial:** {caso_actual['ground_truth_solution']}")
+            st.success(f"**Opción Correcta Real:** {opciones[idx_corr]}\n\n**Explicación Oficial:** {md_saltos(caso_actual['ground_truth_solution'])}")
 
         with col_der:
             st.markdown("### 🧑‍🎓 Respuesta del Alumno")
             st.caption("*(Esto es lo que ha contestado el estudiante basándose en sus conocimientos. Lee su justificación para darle un feedback adecuado a su razonamiento)*.")
             
             if caso_actual['error_type'] != "None":
-                mostrar_ayuda = st.toggle("🔍 Ayuda Pedagógica (Úsala solo si es necesario)", key=f"toggle_{st.session_state.indice}")
+                mostrar_ayuda = st.toggle("🔍 Ayuda Pedagógica (Úsala solo si es necesario)", key=f"toggle_{clave_pregunta}")
                 if mostrar_ayuda:
                     st.session_state[tracker_key] = True
             else:
@@ -878,10 +892,10 @@ else:
                 else:
                     st.markdown(f"<span style='{estilo_emoji}'>❌</span> **El alumno eligió una INCORRECTA:** {opciones[resp_estudiante['answer']]}",
                                 unsafe_allow_html=True)
-                st.markdown(f"**Justificación del alumno:**\n\n{solucion}", unsafe_allow_html=True)
+                st.markdown(f"**Justificación del alumno:**\n\n{md_saltos(solucion)}", unsafe_allow_html=True)
             
             if mostrar_ayuda and caso_actual['error_type'] != "None":
-                st.warning(f"💡 **Explicación técnica del error:**\n\n{resp_estudiante.get('error_explanation')}")
+                st.warning(f"💡 **Explicación técnica del error:**\n\n{md_saltos(resp_estudiante.get('error_explanation'))}")
 
         st.write("---")
         st.markdown("### 📝 Tu Evaluación")
@@ -900,15 +914,15 @@ else:
         inyectar_control_tecleo()
         st.caption("🔒 Para que el experimento sea válido, en el cuadro de feedback no se puede pegar texto")
 
-        with st.form(key=f"form_{st.session_state.indice}"):
+        with st.form(key=f"form_{clave_pregunta}"):
             opcion_humano = st.radio("¿Qué opción le indicarás al alumno como la correcta?", opciones, index=None)
 
             # índice 2, no 1: el formato es "{emoji} Profesor {Palabra} (...)" -> [0]=emoji,
             # [1]="Profesor", [2]=nombre real del rol.
             nombre_rol_corto = rol_actual.split(' ')[2]
-            # Sufijo único por evaluador y pregunta: empareja el cuadro con su campo oculto de control
-            # y evita que el script mezcle métricas si otra persona entra después en la misma pestaña.
-            sufijo_control = f"{st.session_state.id_numerico}_{st.session_state.indice}"
+            # Sufijo único por evaluador y pregunta (clave_pregunta): empareja el cuadro con su campo oculto
+            # de control y evita que el script mezcle métricas si otra persona entra después en la misma pestaña.
+            sufijo_control = clave_pregunta
             respuesta_humano = st.text_area(f"✍️ Redacta tu feedback para el alumno actuando como el {nombre_rol_corto}:", height=150, placeholder="Escribe aquí tu justificación y feedback...",
                                             key=f"feedback_tecleo_{sufijo_control}")
             control_tecleo = st.text_input("control", key=f"control_tecleo_{sufijo_control}",
