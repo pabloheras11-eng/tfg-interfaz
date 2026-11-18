@@ -908,7 +908,12 @@ else:
             aviso_cambio = "🔄 **¡CAMBIO DE ROL!** A partir de esta pregunta tienes un rol nuevo.\n\n"
         st.warning(f"{aviso_cambio}**TU ROL PARA ESTE BLOQUE DE PREGUNTAS:**\n\n### {nombre_rol}\n\n**Misión:** {mision_rol.rstrip(')')}")
             
-        with st.expander("💡 RECUERDA CÓMO DEBES ACTUAR (Ver guías y ejemplos)"):
+        # La guía del rol (tono y ejemplos) va siempre a la vista, en todas las preguntas, para poder volver
+        # a mirarla en cualquier momento. No va en un st.expander: si alguien lo cerraba, Streamlit lo dejaba
+        # cerrado en las preguntas siguientes, también tras un cambio de rol (probado en la versión 1.55,
+        # también con una key distinta en cada pregunta).
+        with st.container(border=True):
+            st.markdown("💡 **RECUERDA CÓMO DEBES ACTUAR** (guía y ejemplos de tu rol)")
             st.markdown(GUIA_DETALLADA_ROLES.get(rol_actual, ""))
 
         inyectar_control_tecleo()
@@ -929,10 +934,25 @@ else:
                                            label_visibility="collapsed", max_chars=2000)
 
             if st.form_submit_button("Guardar y Siguiente", type="primary"):
+                codigo_rol_actual = codigo_rol(rol_actual)
+                # Opción por la que ya se avisó en esta pregunta (ver el elif de abajo).
+                aviso_key = f"aviso_opcion_{clave_pregunta}"
                 if opcion_humano is None or respuesta_humano.strip() == "":
                     st.error("Por favor, selecciona una opción y escribe una respuesta para el alumno.")
+                # Los roles con R1=0 en ROL_A_RUBRICA (todos menos el Desinformado) tienen que indicar la
+                # opción correcta: si marcan otra, el registro quedaría etiquetado como «R1 bien» sin serlo.
+                # Suele ser un despiste, así que se avisa una vez; si se vuelve a pulsar con la misma opción,
+                # se guarda tal cual (por si de verdad lo quiere). Es lo mismo que comprueba
+                # respuestas_profesores_v3.py en el profesor sintético.
+                elif (ROL_A_RUBRICA[codigo_rol_actual][0] == 0
+                      and opciones.index(opcion_humano) != caso_actual['ground_truth_answer']
+                      and st.session_state.get(aviso_key) != opcion_humano):
+                    st.session_state[aviso_key] = opcion_humano
+                    st.warning(f"⚠️ Has marcado «{opcion_humano}», pero la opción correcta es "
+                               f"«{opciones[caso_actual['ground_truth_answer']]}». Como Profesor {nombre_rol_corto}, "
+                               "tu corrección tiene que indicar la opción correcta. Si ha sido un despiste, cámbiala. "
+                               "Si de verdad quieres indicar esa opción, vuelve a pulsar «Guardar y Siguiente».")
                 else:
-                    codigo_rol_actual = codigo_rol(rol_actual)
                     nuevo_registro = {
                         "evaluador": {
                             "id": st.session_state.id_numerico,
